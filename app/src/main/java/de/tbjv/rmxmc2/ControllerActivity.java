@@ -21,6 +21,7 @@ import java.util.List;
 import de.ccck.rmxmobile.communication.Connection;
 import de.ccck.rmxmobile.data_management.DataToComInterface;
 import de.ccck.rmxmobile.data_management.DataToGuiInterface;
+import de.ccck.rmxmobile.data_management.TrainObject;
 import eu.esu.mobilecontrol2.sdk.StopButtonFragment;
 import eu.esu.mobilecontrol2.sdk.ThrottleFragment;
 import eu.esu.mobilecontrol2.sdk.ThrottleScale;
@@ -68,9 +69,7 @@ public class ControllerActivity extends AppCompatActivity {
         seekBar1.setMax(14); // Maximum of mThrottleScale
         seekBar1.setOnSeekBarChangeListener(onSeekBarChangeListener);
 
-        ArrayList<String> trainList = new ArrayList<>();
-        trainList.addAll(DataToGuiInterface.generateTrainNameList());
-        System.out.println(trainList);
+
 
         getSupportFragmentManager().beginTransaction()
                 .add(throttleFragment, "mc2:throttle")
@@ -206,7 +205,6 @@ public class ControllerActivity extends AppCompatActivity {
     }
 
     public static void updateConnectionStatus(int connectionStatus) {
-
         handler.sendEmptyMessage(connectionStatus);
     }
 
