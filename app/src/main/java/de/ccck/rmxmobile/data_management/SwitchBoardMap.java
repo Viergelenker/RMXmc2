@@ -30,7 +30,7 @@ public class SwitchBoardMap {
 	}
 
 	/**
-	 * Fügt ein Switchboard zur SwitchboardMap hinzu.
+	 * Fï¿½gt ein Switchboard zur SwitchboardMap hinzu.
 	 * @param bus - Buskanal
 	 * @param number - Adresse
 	 * @param bytes - Byte: Stellung der Adresse
@@ -45,7 +45,7 @@ public class SwitchBoardMap {
 	}
 
 	/**
-	 * Gibt das Switchboard mit dem ausgewählten Bus-Kanal zurück
+	 * Gibt das Switchboard mit dem ausgewï¿½hlten Bus-Kanal zurï¿½ck
 	 * @param key - z.B. ("RMX 1|110")
 	 * @return
 	 */
@@ -54,7 +54,7 @@ public class SwitchBoardMap {
 	}
 
 	/**
-	 * Erstellt alle Switchboards für alle Buskanäle und deren
+	 * Erstellt alle Switchboards fï¿½r alle Buskanï¿½le und deren
 	 * 112 Adressen.
 	 */
 	protected synchronized void generateMap() {
@@ -66,8 +66,8 @@ public class SwitchBoardMap {
 	}
 
 	/**
-	 * Gibt ein Array aller Buskanäle (RMX 1, etc...) zurück.
-	 * @return StringArray aller Buskanäle
+	 * Gibt ein Array aller Buskanï¿½le (RMX 1, etc...) zurï¿½ck.
+	 * @return StringArray aller Buskanï¿½le
 	 */
 	public synchronized String[] getBusContainer() {
 		return BusContainer;

@@ -45,8 +45,8 @@ public class SharedPrefIO {
 				found = true;
 			}
 		}
-		if (found == false) {
-			while (sharedPreferences.contains("name//" + i) == true) {
+		if (!found) {
+			while (sharedPreferences.contains("name//" + i)) {
 				i++;
 			}
 		}
@@ -56,12 +56,13 @@ public class SharedPrefIO {
 				.getIpAdress());
 		editor.putString("Port//" + i, ConfigObject.getConfigObject().getPort());
 		editor.putInt("Theme//" + i, ConfigObject.getConfigObject().getTheme());
-		if (editor.commit() == true) {
-			Toast.makeText(
+		if (editor.commit()) {
+			// Done within the AddProfileActivity and MainActivity
+			/*Toast.makeText(
 					context,
 					"Der Datensatz mit dem Schlüssel: " + accountname
 							+ " wurde erfolgreich gespeichert",
-					Toast.LENGTH_SHORT).show();
+					Toast.LENGTH_SHORT).show();*/
 		} else {
 			Toast.makeText(
 					context,
@@ -125,7 +126,7 @@ public class SharedPrefIO {
 				found = true;
 			}
 		}
-		if (found == false) {
+		if (!found) {
 			Toast.makeText(
 					context,
 					"Der Datensatz mit dem Schlüssel: " + accountname
@@ -147,12 +148,13 @@ public class SharedPrefIO {
 				editor.remove("IP//" + splitResult[1]);
 				editor.remove("Port//" + splitResult[1]);
 				editor.remove("Theme//" + splitResult[1]);
-				if (editor.commit() == true) {
-					Toast.makeText(
+				if (editor.commit()) {
+					// Done within the MainActivity
+					/*Toast.makeText(
 							context,
 							"Der Datensatz mit dem Schlüssel: " + accountname
 									+ " wurde gelöscht",
-							Toast.LENGTH_SHORT).show();
+							Toast.LENGTH_SHORT).show();*/
 					ConfigObject.getConfigObject().setAccountName("");
 					ConfigObject.getConfigObject().setIpAdress("");
 					ConfigObject.getConfigObject().setPort("");

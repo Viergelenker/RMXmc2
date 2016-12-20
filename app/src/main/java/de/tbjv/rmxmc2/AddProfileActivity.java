@@ -1,9 +1,6 @@
 package de.tbjv.rmxmc2;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,8 +14,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import de.ccck.rmxmobile.data_management.DataToGuiInterface;
-import de.tbjv.rmxmc2.Service.AsyncConnect;
-import eu.esu.mobilecontrol2.sdk.MobileControl2;
 
 public class AddProfileActivity extends AppCompatActivity {
 
@@ -26,7 +21,6 @@ public class AddProfileActivity extends AppCompatActivity {
     private TextView profileName;
     private TextView ipAddress;
     private TextView port;
-    private AsyncConnect connect;
     private String profileNameText;
 
     @Override
@@ -122,7 +116,7 @@ public class AddProfileActivity extends AppCompatActivity {
     private void saveAndConnect(View view) {
         if (!saveProfile(view)) {
             DataToGuiInterface.loadConfigObject(context, profileNameText);
-            startActivity(new Intent(context, Interface.class));
+            startActivity(new Intent(context, ControllerActivity.class));
         }
     }
 

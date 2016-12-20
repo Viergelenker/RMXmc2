@@ -1,6 +1,5 @@
 package de.tbjv.rmxmc2;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,17 +19,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import de.ccck.rmxmobile.data_management.ConfigObject;
 import de.ccck.rmxmobile.data_management.DataToGuiInterface;
-import de.tbjv.rmxmc2.Service.AsyncConnect;
-import eu.esu.mobilecontrol2.sdk.MobileControl2;
 
 public class MainActivity extends AppCompatActivity {
 
     private Context context = this;
     private AdapterView profileListView;
-    private AsyncConnect connect;
-    private AlertDialog alertDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
         profileListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(final AdapterView<?> adapterView, View view, int i, long l) {
 
-                // The selected item
+                // The selected profile
                 final String item = ((TextView)view).getText().toString();
 
                 final AlertDialog.Builder connectionDiagBuilder = new AlertDialog.Builder(context);
@@ -67,8 +61,9 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton("Verbinden", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
+                                // Loads the specific profile
                                 DataToGuiInterface.loadConfigObject(context, item);
-                                Intent intent = new Intent(context, Interface.class);
+                                Intent intent = new Intent(context, ControllerActivity.class);
                                 startActivity(intent);
                             }
                         })
@@ -81,8 +76,24 @@ public class MainActivity extends AppCompatActivity {
                         .setNeutralButton("Löschen", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                DataToGuiInterface.loadConfigObject(context, item);
+                                final String ipAdress = DataToGuiInterface.getIpAdress();
+                                final String port = DataToGuiInterface.getPort();
                                 DataToGuiInterface.deleteConfigObject(context, item);
                                 loadAndPublishProfiles();
+                                Snackbar
+                                        .make(adapterView, "Profil "+item+" wurde gelöscht", Snackbar.LENGTH_LONG)
+                                        .setAction("Rückgängig", new View.OnClickListener() {
+
+                                            @Override
+                                            public void onClick(View view) {
+                                                DataToGuiInterface.saveConfigObject(context, item, ipAdress, port, 0);
+                                                loadAndPublishProfiles();
+                                                Snackbar.make(view, "Profil wurde wiederhergestellt", Snackbar.LENGTH_SHORT)
+                                                        .show();
+                                            }
+                                        })
+                                        .show();
                             }
                         });
                 AlertDialog alertDialog = connectionDiagBuilder.create();

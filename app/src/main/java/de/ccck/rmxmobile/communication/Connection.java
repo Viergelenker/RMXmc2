@@ -15,15 +15,15 @@ import de.ccck.rmxmobile.data_management.DataToComInterface;
  * Beherbergt den ConnectionThread, welcher sich via Zustandsverwaltung der
  * Verbindung um alle Verbindungszustaende kuemmert. Zentrale Klasse des
  * communication-Pakets.</BR></BR>
- * 
+ *
  * Zum herstellen einer Verbindung:</BR> Connection myConnection =
  * Connection.getConnection();</BR> myConnection.setConnecting();</BR></BR>
- * 
+ *
  * Zum trennen einer Verbindung: </BR>
  * myConnection.setDisconnecting();</BR></BR>
- * 
- * 
- * 
+ *
+ *
+ *
  * @author Corinna Coels
  */
 public class Connection {
@@ -52,7 +52,7 @@ public class Connection {
 	/**
 	 * Gibt die Connection zurueck. Synchronisiert um bei parallelen Zugriffen
 	 * ueber Threads Probleme zu vermeiden.
-	 * 
+	 *
 	 * @return Connection - Singleton-Objekt
 	 */
 	public static synchronized Connection getConnection() {
@@ -124,13 +124,13 @@ public class Connection {
 	 * Gibt den aktuellen Verbindungszustand des Clients zurueck. Kann benutzt
 	 * werden, damit externe Pakete die Konnektivitaet bzw. den Zustand abfragen
 	 * und/oder beobachten koennen. </BR></BR>
-	 * 
+	 *
 	 * Zustandswerte: </BR> 0 - NULL - Nicht verbunden, Thread ist dabei zu
 	 * terminieren!</BR> 1 - CONNECTING - Verbindungsaufbau, Einrichten der
 	 * Verbindung usw. </BR> 2 - CONNECTED - Verbunden, Normalbetrieb der
 	 * Verbindung</BR> 3 - DISCONNECTING - Verbindungsabbau, Schliessen der
 	 * Verbindung usw. </BR> 4 - DISCONNECTED - Nicht verbunden</BR>
-	 * 
+	 *
 	 * @return int
 	 */
 	public static int getConnectionStatus() {
@@ -153,7 +153,7 @@ public class Connection {
 	/**
 	 * Gibt die Fehlerliste zurueck, welche alle bis dahin aufgetretenen
 	 * Fehlermeldungen enthaelt (z.B. ConnectionTimeouts usw.)
-	 * 
+	 *
 	 * @return Liste aus Strings
 	 */
 	public static List<String> getErrorList() {
@@ -215,11 +215,11 @@ public class Connection {
 	/**
 	 * Stellt die Verbindung her. Socket-Objekt in Connections-Klasse wird
 	 * dadurch initialisiert.
-	 * 
+	 *
 	 * @param timeout
 	 *            - int - Timeout fuer den Verbindungsversuch in Millisekunden.
 	 *            0 steht fuer unendlich.
-	 * 
+	 *
 	 * @throws UnknownHostException
 	 * @throws IOException
 	 * @throws ConnectException
@@ -378,7 +378,7 @@ public class Connection {
 				case DISCONNECTED:
 
 					// Pruefen ob der Thread terminiert werden soll
-					if (askToTerminate == true) {
+					if (askToTerminate) {
 						connectionStatus = NULL;
 					}
 					break;
@@ -392,6 +392,7 @@ public class Connection {
 					cThread = null;
 					break;
 				}
+				DataToComInterface.changeConnectionStatus(connectionStatus);
 			}
 		}
 	}

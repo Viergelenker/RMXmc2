@@ -26,8 +26,8 @@
             android:name=".AddProfileActivity"
             android:label="@string/title_activity_add_profile" />
         <activity
-            android:name=".Interface"
-            android:label="@string/title_activity_interface"
+            android:name=".ControllerActivity"
+            android:label="@string/title_activity_controller"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
