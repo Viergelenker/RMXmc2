@@ -1,5 +1,6 @@
 package de.ccck.rmxmobile.data_management;
 
+import de.ccck.rmxmobile.GuiInterface;
 import de.tbjv.rmxmc2.ControllerActivity;
 import de.tbjv.rmxmc2.ControllerActivityFragment;
 
@@ -45,7 +46,7 @@ public class DataToComInterface {
 	 *            - boolean - true = "Energie an" / false = "Energie aus"
 	 */
 	public static synchronized void changeEnergyStatus(boolean energyOn) {
-		// GuiInterface.changeEnergyStatus(energyOn);
+		GuiInterface.changeEnergyStatus(energyOn);
 	}
 
 	/**
@@ -81,7 +82,7 @@ public class DataToComInterface {
 		TrainDepotMap.getTrainDepot().addTrain(trainNumber, adrShort, opmode,
 				rmxChannel, trainName, modeF0F7, modeF8F15, modeF16F23,
 				direction, maxRunningNotch);
-		// GuiInterface.updateTrainList();
+		GuiInterface.updateTrainList();
 	}
 
 	/**
@@ -92,7 +93,7 @@ public class DataToComInterface {
 	 */
 	public static synchronized void deleteTrain(int trainNumber) {
 		TrainDepotMap.getTrainDepot().removeTrain(trainNumber);
-		// GuiInterface.updateTrainList();
+		GuiInterface.updateTrainList();
 	}
 
 	/**
@@ -100,7 +101,7 @@ public class DataToComInterface {
 	 */
 	public static synchronized void deleteAllTrains() {
 		TrainDepotMap.getTrainDepot().clearTrain();
-		// GuiInterface.updateTrainList();
+		GuiInterface.updateTrainList();
 	}
 
 	/**
@@ -128,7 +129,7 @@ public class DataToComInterface {
 	public static synchronized void setTrainSpeed(int trainNumber, int Speed) {
 		TrainDepotMap.getTrainDepot().getTrainMapEntry(trainNumber)
 				.setRunningNotch(Speed);
-		// GuiInterface.setTrainSpeed(trainNumber);
+		GuiInterface.setTrainSpeed(trainNumber);
 	}
 
 	/**
@@ -141,7 +142,7 @@ public class DataToComInterface {
 			byte direction) {
 		TrainDepotMap.getTrainDepot().getTrainMapEntry(trainNumber)
 				.setDirection(direction);
-		// GuiInterface.setTrainDirection(trainNumber);
+		GuiInterface.setTrainDirection(trainNumber);
 	}
 
 	/**
@@ -154,7 +155,7 @@ public class DataToComInterface {
 			byte modeF0toF7) {
 		TrainDepotMap.getTrainDepot().getTrainMapEntry(trainNumber)
 				.setModeF0F7(modeF0toF7);
-		// GuiInterface.setTrainMode0to7(trainNumber);
+		GuiInterface.setTrainMode0to7(trainNumber);
 	}
 
 	/**
@@ -167,7 +168,7 @@ public class DataToComInterface {
 			byte modeF8toF15) {
 		TrainDepotMap.getTrainDepot().getTrainMapEntry(trainNumber)
 				.setModeF8F15(modeF8toF15);
-		// GuiInterface.setTrainMode8to15(trainNumber);
+		GuiInterface.setTrainMode8to15(trainNumber);
 	}
 
 	/**
@@ -180,7 +181,7 @@ public class DataToComInterface {
 			byte modeF16toF23) {
 		TrainDepotMap.getTrainDepot().getTrainMapEntry(trainNumber)
 				.setModeF16F23(modeF16toF23);
-		// GuiInterface.setTrainMode16to23(trainNumber);
+		GuiInterface.setTrainMode16to23(trainNumber);
 	}
 
 	/**
@@ -200,14 +201,15 @@ public class DataToComInterface {
 		String addressString = Integer.toString(address & 0xFF);
 		String key = rmxString + "|" + addressString;
 
+		// TODO
 		// SwitchBoardMap.getSwitchBoardMap().getSwitchBoardEntry(key)
 		//		.setBytesFromServer(value);
 		// aktualisiert die Daten der TrackLayoutElemente
 		// TrackLayoutMap.getTrackLayoutMap().updateTrackLayoutElements(
 		//		rmxString, addressString, value);
 		
-		// GuiInterface.updateTrackLayoutElements(rmx, addressString);
+		GuiInterface.updateTrackLayoutElements(rmx, addressString);
 		// C&K Version
-		// GuiInterface.updateBusAdress(rmx, key);
+		GuiInterface.updateBusAdress(rmx, key);
 	}
 }

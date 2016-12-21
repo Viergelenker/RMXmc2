@@ -1,7 +1,6 @@
 package de.tbjv.rmxmc2;
 
 import android.app.Dialog;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -21,7 +19,6 @@ import java.util.List;
 import de.ccck.rmxmobile.communication.Connection;
 import de.ccck.rmxmobile.data_management.DataToComInterface;
 import de.ccck.rmxmobile.data_management.DataToGuiInterface;
-import de.ccck.rmxmobile.data_management.TrainObject;
 import eu.esu.mobilecontrol2.sdk.StopButtonFragment;
 import eu.esu.mobilecontrol2.sdk.ThrottleFragment;
 import eu.esu.mobilecontrol2.sdk.ThrottleScale;
@@ -32,13 +29,13 @@ public class ControllerActivity extends AppCompatActivity {
     private SeekBar seekBar1;
     private ThrottleScale throttleScale = new ThrottleScale(10, 15);
     public Context context;
-    public static FragmentManager fragmentManager;
     private static TextView textView;
 
     // ErrorThread benötigte Variablen
     private Thread ErrorThread;
     private static boolean active;
     private static List<String> errorList;
+    private android.support.v4.app.FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +47,6 @@ public class ControllerActivity extends AppCompatActivity {
         startThread();
 
         context = this.getApplicationContext();
-        fragmentManager = getFragmentManager();
 
         textView = (TextView) findViewById(R.id.textView);
 
@@ -69,8 +65,6 @@ public class ControllerActivity extends AppCompatActivity {
         seekBar1.setMax(14); // Maximum of mThrottleScale
         seekBar1.setOnSeekBarChangeListener(onSeekBarChangeListener);
 
-
-
         getSupportFragmentManager().beginTransaction()
                 .add(throttleFragment, "mc2:throttle")
                 .add(stopButtonFragment, "mc2:stopKey")
@@ -88,6 +82,72 @@ public class ControllerActivity extends AppCompatActivity {
         ControllerActivity.this.startActivity(intent);
         finish();
     }
+
+    public static void updateConnectionStatus(int connectionStatus) {
+        connectionHandler.sendEmptyMessage(connectionStatus);
+    }
+
+    private static Handler connectionHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message message) {
+            textView.setText(String.valueOf(message.what));
+        }
+    };
+
+    private StopButtonFragment.OnStopButtonListener mStopButtonListener = new StopButtonFragment.OnStopButtonListener() {
+        @Override
+        public void onStopButtonDown() {
+            DataToGuiInterface.sendPanic();
+        }
+
+        @Override
+        public void onStopButtonUp() {
+            // Don't know yet
+        }
+    };
+
+    private ThrottleFragment.OnThrottleListener onThrottleListener = new ThrottleFragment.OnThrottleListener() {
+        @Override
+        public void onButtonDown() {
+            // Happens when you turn the thottle wheel all the way counter clockwise
+        }
+
+        @Override
+        public void onButtonUp() {
+            // ... and when you release it after
+        }
+
+        @Override
+        public void onPositionChanged(int position) {
+            seekBar1.setProgress(throttleScale.positionToStep(position));
+        }
+    };
+
+    /**
+     * Repositions the throttle wheel if the seekbar/slider on screen is changed
+     */
+    private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
+
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            int position = throttleScale.stepToPosition(progress);
+
+            if (fromUser) {
+                throttleFragment.moveThrottle(position);
+            }
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    };
 
     /**
      * startThread - Startet den ErrorThread
@@ -203,70 +263,4 @@ public class ControllerActivity extends AppCompatActivity {
     public static List<String> getErrorList() {
         return errorList;
     }
-
-    public static void updateConnectionStatus(int connectionStatus) {
-        handler.sendEmptyMessage(connectionStatus);
-    }
-
-    private static Handler handler = new Handler() {
-
-        @Override
-        public void handleMessage(Message message) {
-            textView.setText(String.valueOf(message.what));
-        }
-    };
-
-    private StopButtonFragment.OnStopButtonListener mStopButtonListener = new StopButtonFragment.OnStopButtonListener() {
-        @Override
-        public void onStopButtonDown() {
-            DataToGuiInterface.sendPanic();
-        }
-
-        @Override
-        public void onStopButtonUp() {
-            // Don't know yet
-        }
-    };
-
-    private ThrottleFragment.OnThrottleListener onThrottleListener = new ThrottleFragment.OnThrottleListener() {
-        @Override
-        public void onButtonDown() {
-            // Happens when you turn the thottle wheel all the way counter clockwise
-        }
-
-        @Override
-        public void onButtonUp() {
-            // ... and when you release it after
-        }
-
-        @Override
-        public void onPositionChanged(int position) {
-            seekBar1.setProgress(throttleScale.positionToStep(position));
-        }
-    };
-
-    /**
-     * Repositions the throttle wheel if the seekbar/slider on screen is changed
-     */
-    private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
-
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            int position = throttleScale.stepToPosition(progress);
-
-            if (fromUser) {
-                throttleFragment.moveThrottle(position);
-            }
-        }
-
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-
-        }
-    };
 }

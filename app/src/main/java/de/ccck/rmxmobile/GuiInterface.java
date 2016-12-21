@@ -59,6 +59,7 @@ public class GuiInterface {
      * Methode zum Aktualisieren des TrainSpinner
      */
     public static synchronized void updateTrainList() {
+
         // FavoriteAndLoklistViewCollection.initializeTrainList();
         // TrainControllerViewCollection.initializeTrainSpinner();
     }
