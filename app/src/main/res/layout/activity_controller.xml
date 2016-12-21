@@ -21,6 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/fragment_controller" />
+    <include layout="@layout/fragment_controller"
+        android:layout_height="273dp" />
 
 </android.support.design.widget.CoordinatorLayout>

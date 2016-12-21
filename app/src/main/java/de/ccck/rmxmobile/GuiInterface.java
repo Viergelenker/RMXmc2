@@ -1,5 +1,8 @@
 package de.ccck.rmxmobile;
 
+import de.tbjv.rmxmc2.activity.ControllerActivity;
+import de.tbjv.rmxmc2.controller.TrainControl;
+
 /**
  * Bietet eine Schnittstelle um der Funktionen der grafischen Oberflaeche des
  * Clients zu steuern.
@@ -60,8 +63,7 @@ public class GuiInterface {
      */
     public static synchronized void updateTrainList() {
 
-        // FavoriteAndLoklistViewCollection.initializeTrainList();
-        // TrainControllerViewCollection.initializeTrainSpinner();
+        TrainControl.initializeTrainSelector();
     }
 
     /**

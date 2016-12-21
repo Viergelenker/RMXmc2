@@ -9,10 +9,14 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import de.ccck.rmxmobile.communication.Connection;
@@ -28,8 +32,9 @@ public class ControllerActivity extends AppCompatActivity {
     private ThrottleFragment throttleFragment;
     private SeekBar seekBar1;
     private ThrottleScale throttleScale = new ThrottleScale(10, 15);
-    public Context context;
+    public static Context context;
     private static TextView textView;
+    private static Spinner trainSelector;
 
     // ErrorThread benötigte Variablen
     private Thread ErrorThread;
@@ -39,6 +44,7 @@ public class ControllerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controller);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -49,6 +55,8 @@ public class ControllerActivity extends AppCompatActivity {
         context = this.getApplicationContext();
 
         textView = (TextView) findViewById(R.id.textView);
+        trainSelector = (Spinner) findViewById(R.id.trainSelector);
+
 
         // Versucht eine Verbindung herzustellen
         DataToComInterface.deleteAllTrains();
@@ -70,7 +78,26 @@ public class ControllerActivity extends AppCompatActivity {
                 .add(stopButtonFragment, "mc2:stopKey")
                 .commit();
 
+
     }
+
+    public static void updateTrainSelector() {
+
+        trainSelectorHandler.sendEmptyMessage(0);
+    }
+
+    private static Handler trainSelectorHandler = new Handler() {
+
+        public  void handleMessage(Message message) {
+
+            ArrayList<String> trainList = DataToGuiInterface.generateTrainNameList();
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,trainList);
+            //specify the layout to appear list items
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            //data bind adapter with both spinners
+            trainSelector.setAdapter(adapter);
+        }
+    };
 
     @Override
     public void onBackPressed() {
@@ -151,7 +178,6 @@ public class ControllerActivity extends AppCompatActivity {
 
     /**
      * startThread - Startet den ErrorThread
-     *
      */
     protected void startThread() {
 
@@ -164,7 +190,6 @@ public class ControllerActivity extends AppCompatActivity {
 
     /**
      * stoppThread - Stopt den ErrorThread
-     *
      */
     protected void stoppThread() {
         setActive(false);
@@ -192,9 +217,7 @@ public class ControllerActivity extends AppCompatActivity {
     /**
      * ErrorThread für ein Verbindungsaufbau Fehler
      *
-     *
      * @author Arthur Kaul, Tobias Ilg
-     *
      */
     private class ErrorThreadCreator implements Runnable {
 
