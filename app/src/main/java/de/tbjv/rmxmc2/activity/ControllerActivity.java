@@ -43,7 +43,7 @@ public class ControllerActivity extends AppCompatActivity {
     private static List<String> errorList;
     private android.support.v4.app.FragmentTransaction fragmentTransaction;
 
-    private int currentTrain = -1;
+    private int currentTrain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class ControllerActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                currentTrain = i;
+                currentTrain = i+2;
             }
 
             @Override
@@ -166,9 +166,6 @@ public class ControllerActivity extends AppCompatActivity {
         public void onPositionChanged(int position) {
             seekBar1.setProgress(throttleScale.positionToStep(position));
 
-            if (currentTrain >= 0) {
-                DataToGuiInterface.setRunningNotch(currentTrain, position);
-            }
         }
     };
 
@@ -180,6 +177,10 @@ public class ControllerActivity extends AppCompatActivity {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             int position = throttleScale.stepToPosition(progress);
+
+            if (currentTrain > 1) {
+                DataToGuiInterface.setRunningNotch(currentTrain, position);
+            }
 
             if (fromUser) {
                 throttleFragment.moveThrottle(position);
