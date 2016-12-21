@@ -9,6 +9,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -31,7 +32,7 @@ public class ControllerActivity extends AppCompatActivity {
 
     private ThrottleFragment throttleFragment;
     private SeekBar seekBar1;
-    private ThrottleScale throttleScale = new ThrottleScale(10, 15);
+    private ThrottleScale throttleScale = new ThrottleScale(10, 29);
     public static Context context;
     private static TextView textView;
     private static Spinner trainSelector;
@@ -41,6 +42,8 @@ public class ControllerActivity extends AppCompatActivity {
     private static boolean active;
     private static List<String> errorList;
     private android.support.v4.app.FragmentTransaction fragmentTransaction;
+
+    private int currentTrain = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,19 @@ public class ControllerActivity extends AppCompatActivity {
 
         textView = (TextView) findViewById(R.id.textView);
         trainSelector = (Spinner) findViewById(R.id.trainSelector);
+        trainSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                currentTrain = i;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
 
         // Versucht eine Verbindung herzustellen
@@ -70,7 +86,7 @@ public class ControllerActivity extends AppCompatActivity {
 
         // Set up views
         seekBar1 = (SeekBar) findViewById(R.id.seekBar);
-        seekBar1.setMax(14); // Maximum of mThrottleScale
+        seekBar1.setMax(28); // Maximum of mThrottleScale
         seekBar1.setOnSeekBarChangeListener(onSeekBarChangeListener);
 
         getSupportFragmentManager().beginTransaction()
@@ -80,6 +96,7 @@ public class ControllerActivity extends AppCompatActivity {
 
 
     }
+
 
     public static void updateTrainSelector() {
 
@@ -148,6 +165,10 @@ public class ControllerActivity extends AppCompatActivity {
         @Override
         public void onPositionChanged(int position) {
             seekBar1.setProgress(throttleScale.positionToStep(position));
+
+            if (currentTrain >= 0) {
+                DataToGuiInterface.setRunningNotch(currentTrain, position);
+            }
         }
     };
 
