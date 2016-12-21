@@ -1,4 +1,4 @@
-package de.tbjv.rmxmc2;
+package de.tbjv.rmxmc2.activity;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -13,12 +13,12 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.ccck.rmxmobile.communication.Connection;
 import de.ccck.rmxmobile.data_management.DataToComInterface;
 import de.ccck.rmxmobile.data_management.DataToGuiInterface;
+import de.tbjv.rmxmc2.R;
 import eu.esu.mobilecontrol2.sdk.StopButtonFragment;
 import eu.esu.mobilecontrol2.sdk.ThrottleFragment;
 import eu.esu.mobilecontrol2.sdk.ThrottleScale;

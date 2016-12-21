@@ -1,8 +1,7 @@
 package de.ccck.rmxmobile.data_management;
 
 import de.ccck.rmxmobile.GuiInterface;
-import de.tbjv.rmxmc2.ControllerActivity;
-import de.tbjv.rmxmc2.ControllerActivityFragment;
+import de.tbjv.rmxmc2.activity.ControllerActivity;
 
 /**
  * Bietet eine Schnittstelle fuer das Kommunikationspaket um die Datenressourcen
@@ -201,9 +200,11 @@ public class DataToComInterface {
 		String addressString = Integer.toString(address & 0xFF);
 		String key = rmxString + "|" + addressString;
 
-		// TODO
+
 		// SwitchBoardMap.getSwitchBoardMap().getSwitchBoardEntry(key)
 		//		.setBytesFromServer(value);
+
+		// TODO
 		// aktualisiert die Daten der TrackLayoutElemente
 		// TrackLayoutMap.getTrackLayoutMap().updateTrackLayoutElements(
 		//		rmxString, addressString, value);

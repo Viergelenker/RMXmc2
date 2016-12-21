@@ -1,4 +1,4 @@
-package de.tbjv.rmxmc2;
+package de.tbjv.rmxmc2.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import de.ccck.rmxmobile.data_management.DataToGuiInterface;
+import de.tbjv.rmxmc2.R;
 
 public class AddProfileActivity extends AppCompatActivity {
 
