@@ -17,7 +17,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import de.ccck.rmxmobile.communication.Connection;
@@ -34,16 +33,17 @@ public class ControllerActivity extends AppCompatActivity {
     private SeekBar seekBar1;
     private ThrottleScale throttleScale = new ThrottleScale(10, 29);
     public static Context context;
-    private static TextView textView;
+    private static TextView connectionStatus;
     private static Spinner trainSelector;
 
     // ErrorThread benötigte Variablen
     private Thread ErrorThread;
     private static boolean active;
     private static List<String> errorList;
-    private android.support.v4.app.FragmentTransaction fragmentTransaction;
+    private static TrainSelectorHandler trainSelectorHandler = new TrainSelectorHandler();
+    private static ConnectionHandler connectionHandler = new ConnectionHandler();
 
-    private int currentTrain;
+    private static int currentTrain = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +57,16 @@ public class ControllerActivity extends AppCompatActivity {
 
         context = this.getApplicationContext();
 
-        textView = (TextView) findViewById(R.id.textView);
+        connectionStatus = (TextView) findViewById(R.id.connectionStatus);
         trainSelector = (Spinner) findViewById(R.id.trainSelector);
-        trainSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+        trainSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                currentTrain = i+2;
+                if (currentTrain >= 0) {
+                    currentTrain = i+1;
+                }
             }
 
             @Override
@@ -103,18 +105,21 @@ public class ControllerActivity extends AppCompatActivity {
         trainSelectorHandler.sendEmptyMessage(0);
     }
 
-    private static Handler trainSelectorHandler = new Handler() {
+    static class TrainSelectorHandler extends Handler {
 
-        public  void handleMessage(Message message) {
+        @Override
+        public void handleMessage(Message message) {
 
             ArrayList<String> trainList = DataToGuiInterface.generateTrainNameList();
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,trainList);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, trainList);
             //specify the layout to appear list items
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             //data bind adapter with both spinners
             trainSelector.setAdapter(adapter);
+            //set the currentTrain
+            currentTrain = 0;
         }
-    };
+    }
 
     @Override
     public void onBackPressed() {
@@ -131,13 +136,13 @@ public class ControllerActivity extends AppCompatActivity {
         connectionHandler.sendEmptyMessage(connectionStatus);
     }
 
-    private static Handler connectionHandler = new Handler() {
+    static class ConnectionHandler extends Handler {
 
         @Override
         public void handleMessage(Message message) {
-            textView.setText(String.valueOf(message.what));
+            connectionStatus.setText(String.valueOf(message.what));
         }
-    };
+    }
 
     private StopButtonFragment.OnStopButtonListener mStopButtonListener = new StopButtonFragment.OnStopButtonListener() {
         @Override
@@ -178,8 +183,13 @@ public class ControllerActivity extends AppCompatActivity {
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             int position = throttleScale.stepToPosition(progress);
 
-            if (currentTrain > 1) {
-                DataToGuiInterface.setRunningNotch(currentTrain, position);
+            if (currentTrain >= 0) {
+
+                int maxTrainSpeed = DataToGuiInterface.getMaxRunningNotch(currentTrain);
+                float proportionalMaxSpeed = (float) (maxTrainSpeed/255.0);
+                double trainSpeed = Math.ceil(proportionalMaxSpeed*position);
+
+                DataToGuiInterface.setRunningNotch(currentTrain, (int)trainSpeed);
             }
 
             if (fromUser) {
@@ -245,7 +255,7 @@ public class ControllerActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            while (isActive() == true) {
+            while (isActive()) {
 
                 if (DataToGuiInterface.getErrorList().size() > 0) {
 

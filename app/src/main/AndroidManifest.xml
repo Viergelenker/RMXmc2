@@ -28,7 +28,7 @@
         <activity
             android:name=".activity.ControllerActivity"
             android:label="@string/title_activity_controller"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
