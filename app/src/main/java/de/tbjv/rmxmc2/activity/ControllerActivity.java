@@ -65,7 +65,7 @@ public class ControllerActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 if (currentTrain >= 0) {
-                    currentTrain = i+1;
+                    currentTrain = i + 1;
                 }
             }
 
@@ -111,13 +111,15 @@ public class ControllerActivity extends AppCompatActivity {
         public void handleMessage(Message message) {
 
             ArrayList<String> trainList = DataToGuiInterface.generateTrainNameList();
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, trainList);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, trainList);
             //specify the layout to appear list items
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             //data bind adapter with both spinners
             trainSelector.setAdapter(adapter);
-            //set the currentTrain
-            currentTrain = 0;
+            //set the currentTrain if the list isn't empty
+            if (!trainList.isEmpty()) {
+                currentTrain = 0;
+            }
         }
     }
 
@@ -159,12 +161,18 @@ public class ControllerActivity extends AppCompatActivity {
     private ThrottleFragment.OnThrottleListener onThrottleListener = new ThrottleFragment.OnThrottleListener() {
         @Override
         public void onButtonDown() {
-            // Happens when you turn the thottle wheel all the way counter clockwise
+
+            // Changes the train direction if the user turns the throttle wheel all the way counter-clockwise
+            if (DataToGuiInterface.getDirection(currentTrain) == 0) {
+                DataToGuiInterface.setDirection(currentTrain, (byte) 1);
+            }
+            else DataToGuiInterface.setDirection(currentTrain, (byte) 0);
+
         }
 
         @Override
         public void onButtonUp() {
-            // ... and when you release it after
+
         }
 
         @Override
@@ -186,10 +194,10 @@ public class ControllerActivity extends AppCompatActivity {
             if (currentTrain >= 0) {
 
                 int maxTrainSpeed = DataToGuiInterface.getMaxRunningNotch(currentTrain);
-                float proportionalMaxSpeed = (float) (maxTrainSpeed/255.0);
-                double trainSpeed = Math.ceil(proportionalMaxSpeed*position);
+                float proportionalMaxSpeed = (float) (maxTrainSpeed / 255.0);
+                double trainSpeed = Math.ceil(proportionalMaxSpeed * position);
 
-                DataToGuiInterface.setRunningNotch(currentTrain, (int)trainSpeed);
+                DataToGuiInterface.setRunningNotch(currentTrain, (int) trainSpeed);
             }
 
             if (fromUser) {
