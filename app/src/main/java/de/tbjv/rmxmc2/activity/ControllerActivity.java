@@ -111,9 +111,9 @@ public class ControllerActivity extends AppCompatActivity {
         public void handleMessage(Message message) {
 
             ArrayList<String> trainList = DataToGuiInterface.generateTrainNameList();
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, trainList);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.spinner_list_item, trainList);
             //specify the layout to appear list items
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            adapter.setDropDownViewResource(R.layout.spinner_list_item);
             //data bind adapter with both spinners
             trainSelector.setAdapter(adapter);
             //set the currentTrain if the list isn't empty
