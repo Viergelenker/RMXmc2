@@ -31,7 +31,7 @@ public class ControllerActivity extends AppCompatActivity {
 
     private ThrottleFragment throttleFragment;
     private SeekBar seekBar1;
-    private ThrottleScale throttleScale = new ThrottleScale(10, 29);
+    private ThrottleScale throttleScale = new ThrottleScale(10, 127);
     public static Context context;
     private static TextView connectionStatus;
     private static Spinner trainSelector;
@@ -66,6 +66,9 @@ public class ControllerActivity extends AppCompatActivity {
 
                 if (currentTrain >= 0) {
                     currentTrain = i + 1;
+
+                    seekBar1.setProgress(DataToGuiInterface.getRunningNotch(currentTrain));
+                    throttleFragment.moveThrottle(throttleScale.stepToPosition(DataToGuiInterface.getRunningNotch(currentTrain)));
                 }
             }
 
@@ -88,7 +91,7 @@ public class ControllerActivity extends AppCompatActivity {
 
         // Set up views
         seekBar1 = (SeekBar) findViewById(R.id.seekBar);
-        seekBar1.setMax(28); // Maximum of mThrottleScale
+        seekBar1.setMax(126); // Maximum of mThrottleScale
         seekBar1.setOnSeekBarChangeListener(onSeekBarChangeListener);
 
         getSupportFragmentManager().beginTransaction()
