@@ -11,32 +11,220 @@
     tools:context="de.tbjv.rmxmc2.activity.ControllerActivityFragment"
     tools:showIn="@layout/activity_controller">
 
-
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/connectionStatus" />
+        android:id="@+id/connectionStatus"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
-    <SeekBar
+    <ToggleButton
+        android:text="ToggleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="105dp"
-        android:id="@+id/seekBar"
-        android:layout_alignParentTop="true"
+        android:id="@+id/button_F1"
+        android:layout_below="@+id/trainSelector"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:textOn="F1"
+        android:textOff="F1" />
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_F2"
+        android:layout_below="@+id/button_F1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textOn="F2"
+        android:textOff="F2"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_F3"
+        android:layout_below="@+id/button_F2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textOn="F3"
+        android:textOff="F3"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_F4"
+        android:layout_below="@+id/button_F3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textOn="F4"
+        android:textOff="F4"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_F5"
+        android:layout_below="@+id/button_F4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textOn="F5"
+        android:textOff="F5"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_F6"
+        android:layout_below="@+id/button_F5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textOn="F6"
+        android:textOff="F6"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_F7"
+        android:layout_below="@+id/button_F6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textOn="F7"
+        android:textOff="F7"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_F8"
+        android:layout_below="@+id/button_F7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textOn="F8"
+        android:textOff="F8"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_F2"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:id="@+id/button_F9"
+        android:textOn="F9"
+        android:textOff="F9"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_F9"
+        android:layout_alignLeft="@+id/button_F9"
+        android:layout_alignStart="@+id/button_F9"
+        android:id="@+id/button_F10"
+        android:textOn="F10"
+        android:textOff="F10"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_F10"
+        android:layout_alignLeft="@+id/button_F10"
+        android:layout_alignStart="@+id/button_F10"
+        android:id="@+id/button_F11"
+        android:textOn="F11"
+        android:textOff="F11"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_F11"
+        android:layout_alignLeft="@+id/button_F11"
+        android:layout_alignStart="@+id/button_F11"
+        android:id="@+id/button_F12"
+        android:textOn="F12"
+        android:textOff="F12"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_F12"
+        android:layout_alignLeft="@+id/button_F12"
+        android:layout_alignStart="@+id/button_F12"
+        android:id="@+id/button_F13"
+        android:textOn="F13"
+        android:textOff="F13"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_F13"
+        android:layout_alignLeft="@+id/button_F13"
+        android:layout_alignStart="@+id/button_F13"
+        android:id="@+id/button_F14"
+        android:textOn="F14"
+        android:textOff="F14"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_F14"
+        android:layout_alignLeft="@+id/button_F14"
+        android:layout_alignStart="@+id/button_F14"
+        android:id="@+id/button_F15"
+        android:textOn="F15"
+        android:textOff="F15"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_F15"
+        android:layout_alignLeft="@+id/button_F15"
+        android:layout_alignStart="@+id/button_F15"
+        android:id="@+id/button_F16"
+        android:textOn="F16"
+        android:textOff="F16"/>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_Light"
+        android:layout_below="@+id/trainSelector"
+        android:layout_centerHorizontal="true"
+        android:textOn="Licht"
+        android:textOff="Licht"/>
+
+    <SeekBar
+        android:layout_below="@+id/button_Light"
+        android:id="@+id/seekBar"
+        android:layout_alignBottom="@+id/button_F8"
+        android:rotation="270"
+        android:layout_alignRight="@+id/button_Light"
+        android:layout_alignEnd="@+id/button_Light"
+        android:layout_alignLeft="@+id/button_Light"
+        android:layout_alignStart="@+id/button_Light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.SeekBar" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/trainSelector"
-        android:layout_marginBottom="28dp"
-        android:layout_alignBottom="@+id/seekBar"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/connectionStatus"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
 </RelativeLayout>
