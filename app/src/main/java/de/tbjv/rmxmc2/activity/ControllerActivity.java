@@ -67,8 +67,10 @@ public class ControllerActivity extends AppCompatActivity {
                 if (currentTrain >= 0) {
                     currentTrain = i + 1;
 
-                    seekBar1.setProgress(DataToGuiInterface.getRunningNotch(currentTrain));
-                    throttleFragment.moveThrottle(throttleScale.stepToPosition(DataToGuiInterface.getRunningNotch(currentTrain)));
+                    // Sets the position of the seekbar and throttle wheel to the running notch of the selected train
+                    int trainSpeed = DataToGuiInterface.getRunningNotch(currentTrain);
+                    seekBar1.setProgress(trainSpeed);
+                    throttleFragment.moveThrottle(throttleScale.stepToPosition(trainSpeed));
                 }
             }
 
