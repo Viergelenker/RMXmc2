@@ -12,4 +12,9 @@ public class TrainControl {
 
         ControllerActivity.updateTrainSelector();
     }
+
+    public static void initializeTrainSpeed(int trainNumber) {
+
+        ControllerActivity.updateTrainSpeed(trainNumber);
+    }
 }

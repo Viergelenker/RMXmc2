@@ -29,12 +29,14 @@ import eu.esu.mobilecontrol2.sdk.ThrottleScale;
 
 public class ControllerActivity extends AppCompatActivity {
 
-    private ThrottleFragment throttleFragment;
-    private SeekBar seekBar1;
-    private ThrottleScale throttleScale = new ThrottleScale(10, 127);
+    private static ThrottleFragment throttleFragment;
+    private static SeekBar seekBar1;
+    private static ThrottleScale throttleScale = new ThrottleScale(10, 127);
     public static Context context;
     private static TextView connectionStatus;
     private static Spinner trainSelector;
+    private static boolean fromServer = false;
+    private static boolean changedFromUser = false;
 
     // ErrorThread benötigte Variablen
     private Thread ErrorThread;
@@ -42,6 +44,7 @@ public class ControllerActivity extends AppCompatActivity {
     private static List<String> errorList;
     private static TrainSelectorHandler trainSelectorHandler = new TrainSelectorHandler();
     private static ConnectionHandler connectionHandler = new ConnectionHandler();
+    private static TrainSpeedHandler trainSpeedHandler = new TrainSpeedHandler();
 
     private static int currentTrain = -1;
 
@@ -107,7 +110,9 @@ public class ControllerActivity extends AppCompatActivity {
 
     public static void updateTrainSelector() {
 
-        trainSelectorHandler.sendEmptyMessage(0);
+        if (!changedFromUser) {
+            trainSelectorHandler.sendEmptyMessage(0);
+        }
     }
 
     static class TrainSelectorHandler extends Handler {
@@ -124,6 +129,32 @@ public class ControllerActivity extends AppCompatActivity {
             //set the currentTrain if the list isn't empty
             if (!trainList.isEmpty()) {
                 currentTrain = 0;
+            }
+        }
+    }
+
+    public static void updateTrainSpeed(int trainNumber) {
+
+        trainSpeedHandler.sendEmptyMessage(trainNumber);
+    }
+
+    static class TrainSpeedHandler extends Handler {
+
+        @Override
+        public void handleMessage(Message message) {
+
+            if (currentTrain == message.what) {
+
+                int trainSpeed = DataToGuiInterface.getRunningNotch(currentTrain);
+                int maxTrainSpeed = DataToGuiInterface.getMaxRunningNotch(currentTrain);
+                float proportionalSpeed = (float) (126.0 / maxTrainSpeed);
+                double trainSpeedSetting = Math.ceil(proportionalSpeed * trainSpeed);
+
+                fromServer = true;
+                // Sets the position of the seekbar and throttle wheel to the running notch of the selected train
+
+                seekBar1.setProgress((int) trainSpeedSetting);
+                throttleFragment.moveThrottle(throttleScale.stepToPosition((int) trainSpeedSetting));
             }
         }
     }
@@ -202,7 +233,11 @@ public class ControllerActivity extends AppCompatActivity {
                 float proportionalMaxSpeed = (float) (maxTrainSpeed / 255.0);
                 double trainSpeed = Math.ceil(proportionalMaxSpeed * position);
 
-                DataToGuiInterface.setRunningNotch(currentTrain, (int) trainSpeed);
+                if (!fromServer) {
+                    changedFromUser = true;
+                    DataToGuiInterface.setRunningNotch(currentTrain, (int) trainSpeed);
+                } else fromServer = false;
+
             }
 
             if (fromUser) {

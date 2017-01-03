@@ -15,7 +15,7 @@ public class GuiInterface {
      *            - int - Die Lok-Nr. Identifier.
      */
     public static synchronized void setTrainSpeed(int trainNumber) {
-        // TrainControllerViewCollection.initializeSpeed(trainNumber);
+        TrainControl.initializeTrainSpeed(trainNumber);
     }
 
     /**
