@@ -147,7 +147,21 @@ public class ControllerActivity extends AppCompatActivity {
 
         @Override
         public void handleMessage(Message message) {
-            connectionStatus.setText(String.valueOf(message.what));
+
+            switch (Integer.valueOf(message.what)) {
+                case 0: connectionStatus.setText("Null");
+                    break;
+                case 1: connectionStatus.setText("Verbinden...");
+                    break;
+                case 2: connectionStatus.setText("Verbunden");
+                    break;
+                case 3: connectionStatus.setText("Verbindung trennen...");
+                    break;
+                case 4: connectionStatus.setText("Nicht verbunden");
+                    break;
+                default: connectionStatus.setText("Unbekannter Status");
+                    break;
+            }
         }
     }
 
