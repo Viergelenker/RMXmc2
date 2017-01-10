@@ -35,7 +35,7 @@ public class ControllerActivity extends AppCompatActivity {
     public static Context context;
     private static TextView connectionStatus;
     private static Spinner trainSelector;
-    private static boolean fromServer = false;
+    private static boolean fromServer = true;
     private static boolean changedFromUser = false;
 
     // ErrorThread benötigte Variablen
