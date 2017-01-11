@@ -351,21 +351,34 @@ public class ControllerActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
         switch (keyCode) {
             case ThrottleFragment.KEYCODE_THROTTLE_WAKEUP:
                 // Ignore the wake up key. You must return true here to avoid further input key handling.
                 return true;
             case MobileControl2.KEYCODE_TOP_LEFT:
-
+                if (UtilsByte.bitIsSet(modeByte, 0)) {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 0));
+                } else {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 0));
+                }
                 return true;
-            case MobileControl2.KEYCODE_BOTTOM_LEFT:
-
+            case MobileControl2.KEYCODE_BOTTOM_LEFT:;
+                if (UtilsByte.bitIsSet(modeByte, 1)) {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 1));
+                } else {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 1));
+                }
                 return true;
             case MobileControl2.KEYCODE_TOP_RIGHT:
-                DataToGuiInterface.setRunningNotch(currentTrain, DataToGuiInterface.getRunningNotch(currentTrain)+1);
+                if (DataToGuiInterface.getRunningNotch(currentTrain) < DataToGuiInterface.getMaxRunningNotch(currentTrain)) {
+                    DataToGuiInterface.setRunningNotch(currentTrain, DataToGuiInterface.getRunningNotch(currentTrain) + 1);
+                }
                 return true;
             case MobileControl2.KEYCODE_BOTTOM_RIGHT:
-                DataToGuiInterface.setRunningNotch(currentTrain, DataToGuiInterface.getRunningNotch(currentTrain)-1);
+                if (DataToGuiInterface.getRunningNotch(currentTrain) > 0) {
+                    DataToGuiInterface.setRunningNotch(currentTrain, DataToGuiInterface.getRunningNotch(currentTrain) - 1);
+                }
                 return true;
             default:
                 return super.onKeyDown(keyCode, event);
