@@ -102,6 +102,9 @@ public class ControllerActivity extends AppCompatActivity {
                     int trainSpeed = DataToGuiInterface.getRunningNotch(currentTrain);
                     seekBar1.setProgress(trainSpeed);
                     throttleFragment.moveThrottle(throttleScale.stepToPosition(trainSpeed));
+                    trainMode0to7Handler.sendEmptyMessage(currentTrain);
+                    trainMode8to15Handler.sendEmptyMessage(currentTrain);
+
                 }
             }
 
