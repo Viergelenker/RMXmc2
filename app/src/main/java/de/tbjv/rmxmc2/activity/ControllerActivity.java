@@ -22,10 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.ccck.rmxmobile.UtilsByte;
-import de.ccck.rmxmobile.communication.CommunicationUtils;
 import de.ccck.rmxmobile.communication.Connection;
 import de.ccck.rmxmobile.data_management.DataToComInterface;
 import de.ccck.rmxmobile.data_management.DataToGuiInterface;
+import de.ccck.rmxmobile.data_management.TrainDepotMap;
+import de.ccck.rmxmobile.data_management.TrainObject;
 import de.tbjv.rmxmc2.R;
 import eu.esu.mobilecontrol2.sdk.MobileControl2;
 import eu.esu.mobilecontrol2.sdk.StopButtonFragment;
@@ -59,6 +60,7 @@ public class ControllerActivity extends AppCompatActivity {
     private static ToggleButton buttonF14;
     private static ToggleButton buttonF15;
     private static ToggleButton buttonF16;
+    private static ToggleButton directionButton;
 
     // ErrorThread benötigte Variablen
     private Thread ErrorThread;
@@ -67,6 +69,10 @@ public class ControllerActivity extends AppCompatActivity {
     private static TrainSelectorHandler trainSelectorHandler = new TrainSelectorHandler();
     private static ConnectionHandler connectionHandler = new ConnectionHandler();
     private static TrainSpeedHandler trainSpeedHandler = new TrainSpeedHandler();
+    private static TrainDirectionHandler trainDirectionHandler = new TrainDirectionHandler();
+    private static TrainMode0to7Handler trainMode0to7Handler = new TrainMode0to7Handler();
+    private static TrainMode8to15Handler trainMode8to15Handler = new TrainMode8to15Handler();
+    private static TrainMode16to23Handler trainMode16to23Handler = new TrainMode16to23Handler();
 
     private static int currentTrain = -1;
 
@@ -125,6 +131,19 @@ public class ControllerActivity extends AppCompatActivity {
                 .add(throttleFragment, "mc2:throttle")
                 .add(stopButtonFragment, "mc2:stopKey")
                 .commit();
+
+        directionButton = (ToggleButton) findViewById(R.id.directionButton);
+        directionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (DataToGuiInterface.getDirection(currentTrain) == 0) {
+                    directionButton.setChecked(true);
+                } else {
+                    directionButton.setChecked(false);
+                }
+            }
+        });
 
         // Button onClickListener
         buttonLight = (ToggleButton) findViewById(R.id.button_Light);
@@ -363,7 +382,8 @@ public class ControllerActivity extends AppCompatActivity {
                     DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 0));
                 }
                 return true;
-            case MobileControl2.KEYCODE_BOTTOM_LEFT:;
+            case MobileControl2.KEYCODE_BOTTOM_LEFT:
+                ;
                 if (UtilsByte.bitIsSet(modeByte, 1)) {
                     DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 1));
                 } else {
@@ -432,6 +452,202 @@ public class ControllerActivity extends AppCompatActivity {
 
                 seekBar1.setProgress((int) trainSpeedSetting);
                 throttleFragment.moveThrottle(throttleScale.stepToPosition((int) trainSpeedSetting));
+            }
+        }
+    }
+
+    /**
+     * Update the trainDirection button within the gui
+     *
+     * @param trainNumber
+     */
+    public static void updateTrainDirection(int trainNumber) {
+
+        trainDirectionHandler.sendEmptyMessage(trainNumber);
+    }
+
+    static class TrainDirectionHandler extends Handler {
+
+        public void handleMessage(Message message) {
+
+            // Only change the direction if its the currently selected train
+            if (currentTrain == message.what) {
+                if (DataToGuiInterface.getDirection(currentTrain) == 0) {
+                    directionButton.setChecked(true);
+                } else {
+                    directionButton.setChecked(false);
+                }
+            }
+        }
+    }
+
+    /**
+     * Update the train mode buttons within the gui
+     *
+     * @param trainNumber
+     */
+    public static void updateTrainMode0to7(int trainNumber) {
+
+        trainMode0to7Handler.sendEmptyMessage(trainNumber);
+    }
+
+    static class TrainMode0to7Handler extends Handler {
+
+        public void handleMessage(Message message) {
+
+            // Only change the direction if its the currently selected train
+            if (currentTrain == message.what) {
+
+                byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
+
+                // This is so unbelievable ugly, pls fix it if you find a better solution
+                if (UtilsByte.bitIsSet(modeByte, 0)) {
+                    buttonLight.setChecked(true);
+                } else {
+                    buttonLight.setChecked(false);
+                }
+
+                if (UtilsByte.bitIsSet(modeByte, 1)) {
+                    buttonF1.setChecked(true);
+                } else {
+                    buttonF1.setChecked(false);
+                }
+
+                if (UtilsByte.bitIsSet(modeByte, 2)) {
+                    buttonF2.setChecked(true);
+                } else {
+                    buttonF2.setChecked(false);
+                }
+
+                if (UtilsByte.bitIsSet(modeByte, 3)) {
+                    buttonF3.setChecked(true);
+                } else {
+                    buttonF3.setChecked(false);
+                }
+
+                if (UtilsByte.bitIsSet(modeByte, 4)) {
+                    buttonF4.setChecked(true);
+                } else {
+                    buttonF4.setChecked(false);
+                }
+
+                if (UtilsByte.bitIsSet(modeByte, 5)) {
+                    buttonF5.setChecked(true);
+                } else {
+                    buttonF5.setChecked(false);
+                }
+
+                if (UtilsByte.bitIsSet(modeByte, 6)) {
+                    buttonF6.setChecked(true);
+                } else {
+                    buttonF6.setChecked(false);
+                }
+
+                if (UtilsByte.bitIsSet(modeByte, 7)) {
+                    buttonF7.setChecked(true);
+                } else {
+                    buttonF7.setChecked(false);
+                }
+            }
+        }
+    }
+
+    /**
+     * Update the train mode buttons within the gui
+     *
+     * @param trainNumber
+     */
+    public static void updateTrainMode8to15(int trainNumber) {
+
+        trainMode8to15Handler.sendEmptyMessage(trainNumber);
+    }
+
+    static class TrainMode8to15Handler extends Handler {
+
+        public void handleMessage(Message message) {
+
+            // Only change the direction if its the currently selected train
+            if (currentTrain == message.what) {
+
+                byte modeByte = DataToGuiInterface.getModeF8F15(currentTrain);
+
+                // This is so unbelievable ugly, pls fix it if you find a better solution
+                if (UtilsByte.bitIsSet(modeByte, 0)) {
+                    buttonF8.setChecked(true);
+                } else {
+                    buttonF8.setChecked(false);
+                }
+
+                if (UtilsByte.bitIsSet(modeByte, 1)) {
+                    buttonF9.setChecked(true);
+                } else {
+                    buttonF9.setChecked(false);
+                }
+
+                if (UtilsByte.bitIsSet(modeByte, 2)) {
+                    buttonF10.setChecked(true);
+                } else {
+                    buttonF10.setChecked(false);
+                }
+
+                if (UtilsByte.bitIsSet(modeByte, 3)) {
+                    buttonF11.setChecked(true);
+                } else {
+                    buttonF11.setChecked(false);
+                }
+
+                if (UtilsByte.bitIsSet(modeByte, 4)) {
+                    buttonF12.setChecked(true);
+                } else {
+                    buttonF12.setChecked(false);
+                }
+
+                if (UtilsByte.bitIsSet(modeByte, 5)) {
+                    buttonF13.setChecked(true);
+                } else {
+                    buttonF13.setChecked(false);
+                }
+
+                if (UtilsByte.bitIsSet(modeByte, 6)) {
+                    buttonF14.setChecked(true);
+                } else {
+                    buttonF14.setChecked(false);
+                }
+
+                if (UtilsByte.bitIsSet(modeByte, 7)) {
+                    buttonF15.setChecked(true);
+                } else {
+                    buttonF15.setChecked(false);
+                }
+            }
+        }
+    }
+
+    /**
+     * Update the train mode buttons within the gui
+     *
+     * @param trainNumber
+     */
+    public static void updateTrainMode16to23(int trainNumber) {
+
+        trainMode16to23Handler.sendEmptyMessage(trainNumber);
+    }
+
+    static class TrainMode16to23Handler extends Handler {
+
+        public void handleMessage(Message message) {
+
+            // Only change the direction if its the currently selected train
+            if (currentTrain == message.what) {
+
+                byte modeByte = DataToGuiInterface.getModeF16F23(currentTrain);
+
+                // This is so unbelievable ugly, pls fix it if you find a better solution
+                if (UtilsByte.bitIsSet(modeByte, 0)) {
+                    buttonF16.setChecked(true);
+                } else {
+                    buttonF16.setChecked(false);
+                }
             }
         }
     }
@@ -536,9 +752,10 @@ public class ControllerActivity extends AppCompatActivity {
 
             }
 
+            /* Not working with the current api level
             if (fromUser) {
                 throttleFragment.moveThrottle(position);
-            }
+            }*/
         }
 
         @Override

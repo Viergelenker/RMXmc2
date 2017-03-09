@@ -1,7 +1,6 @@
 package de.ccck.rmxmobile;
 
 import de.tbjv.rmxmc2.activity.ControllerActivity;
-import de.tbjv.rmxmc2.controller.TrainControl;
 
 /**
  * Bietet eine Schnittstelle um der Funktionen der grafischen Oberflaeche des
@@ -15,7 +14,7 @@ public class GuiInterface {
      *            - int - Die Lok-Nr. Identifier.
      */
     public static synchronized void setTrainSpeed(int trainNumber) {
-        TrainControl.initializeTrainSpeed(trainNumber);
+        ControllerActivity.updateTrainSpeed(trainNumber);
     }
 
     /**
@@ -25,7 +24,7 @@ public class GuiInterface {
      *            - int - Die Lok-Nr. Identifier.
      */
     public static synchronized void setTrainDirection(int trainNumber) {
-        // TrainControllerViewCollection.initializeDirection(trainNumber);
+       ControllerActivity.updateTrainDirection(trainNumber);
     }
 
     /**
@@ -35,7 +34,7 @@ public class GuiInterface {
      *            - int - Die Lok-Nr. Identifier.
      */
     public static synchronized void setTrainMode0to7(int trainNumber) {
-        // TrainControllerViewCollection.initializef0tof7(trainNumber);
+        ControllerActivity.updateTrainMode0to7(trainNumber);
     }
 
     /**
@@ -45,7 +44,7 @@ public class GuiInterface {
      *            - int - Die Lok-Nr. Identifier.
      */
     public static synchronized void setTrainMode8to15(int trainNumber) {
-        // TrainControllerViewCollection.initializef8tof15(trainNumber);
+        ControllerActivity.updateTrainMode8to15(trainNumber);
     }
 
     /**
@@ -55,15 +54,14 @@ public class GuiInterface {
      *            - int - Die Lok-Nr. Identifier.
      */
     public static synchronized void setTrainMode16to23(int trainNumber) {
-        // TrainControllerViewCollection.initializef16to23(trainNumber);
+        ControllerActivity.updateTrainMode16to23(trainNumber);
     }
 
     /**
      * Methode zum Aktualisieren des TrainSpinner
      */
     public static synchronized void updateTrainList() {
-
-        TrainControl.initializeTrainSelector();
+        ControllerActivity.updateTrainSelector();
     }
 
     /**
