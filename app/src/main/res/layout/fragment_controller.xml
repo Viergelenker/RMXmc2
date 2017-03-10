@@ -229,11 +229,19 @@
     <android.widget.VerticalSeekBar
         android:id="@+id/seekBar"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:layout_above="@+id/button_F16"
-        android:layout_below="@+id/button_Light"
-        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/speedTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_Light"
+        android:layout_marginTop="13dp"
+        android:text="0"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

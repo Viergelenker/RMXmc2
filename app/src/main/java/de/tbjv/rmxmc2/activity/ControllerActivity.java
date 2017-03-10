@@ -3,6 +3,7 @@ package de.tbjv.rmxmc2.activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -40,6 +41,7 @@ public class ControllerActivity extends AppCompatActivity {
     private static ThrottleScale throttleScale = new ThrottleScale(10, 127);
     public static Context context;
     private static TextView connectionStatus;
+    private static TextView speed;
     private static Spinner trainSelector;
     private static boolean fromServer = true;
     private static boolean changedFromUser = false;
@@ -66,6 +68,8 @@ public class ControllerActivity extends AppCompatActivity {
     private Thread ErrorThread;
     private static boolean active;
     private static List<String> errorList;
+
+    // Handler
     private static TrainSelectorHandler trainSelectorHandler = new TrainSelectorHandler();
     private static ConnectionHandler connectionHandler = new ConnectionHandler();
     private static TrainSpeedHandler trainSpeedHandler = new TrainSpeedHandler();
@@ -89,6 +93,7 @@ public class ControllerActivity extends AppCompatActivity {
         context = this.getApplicationContext();
 
         connectionStatus = (TextView) findViewById(R.id.connectionStatus);
+        speed = (TextView) findViewById(R.id.speedTextView);
         trainSelector = (Spinner) findViewById(R.id.trainSelector);
         trainSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -101,6 +106,7 @@ public class ControllerActivity extends AppCompatActivity {
                     // Sets the position of the seekbar and throttle wheel to the running notch of the selected train
                     int trainSpeed = DataToGuiInterface.getRunningNotch(currentTrain);
                     seekBar1.setProgress(trainSpeed);
+                    speed.setText(String.valueOf(trainSpeed));
                     throttleFragment.moveThrottle(throttleScale.stepToPosition(trainSpeed));
                     trainMode0to7Handler.sendEmptyMessage(currentTrain);
                     trainMode8to15Handler.sendEmptyMessage(currentTrain);
@@ -369,6 +375,42 @@ public class ControllerActivity extends AppCompatActivity {
         });
     }
 
+    public void setMapping(int keyToMap, int function) {
+
+        // Load the current mapping of the selected profile and train
+        SharedPreferences mapping = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
+        // The second string is the value to return if this preference does not exist.
+        String functionMappingString = mapping.getString(String.valueOf(currentTrain), "00010203");
+
+        // Add a zero to the function number so the final string has always the same size
+        String functionString;
+        if (function < 10) {
+            functionString = "0";
+            functionString.concat(String.valueOf(function));
+        } else functionString = String.valueOf(function);
+
+        // Split the retrieved string and build a array list with it
+        List<String> functionList = new ArrayList<>();
+        int index = 0;
+        while (index < functionMappingString.length()) {
+            functionList.add(functionMappingString.substring(index, Math.min(index + 2,
+                    functionMappingString.length())));
+            index = index + 2;
+        }
+
+        // Now the value of the new function is set within the array list, at the corresponding
+        // index of the keyToMap
+        functionList.set(keyToMap, functionString);
+
+        SharedPreferences settings = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(String.valueOf(currentTrain), "01020304");
+
+        // and commit the edits (i used apply() instead of commit, because this way it gets handled
+        // in the background whereas commit() blocks the thread)
+        editor.apply();
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
@@ -449,8 +491,9 @@ public class ControllerActivity extends AppCompatActivity {
                 double trainSpeedSetting = Math.ceil(proportionalSpeed * trainSpeed);
 
                 fromServer = true;
-                // Sets the position of the seekbar and throttle wheel to the running notch of the selected train
 
+                speed.setText(String.valueOf(trainSpeed));
+                // Sets the position of the seekbar and throttle wheel to the running notch of the selected train
                 seekBar1.setProgress((int) trainSpeedSetting);
                 throttleFragment.moveThrottle(throttleScale.stepToPosition((int) trainSpeedSetting));
             }
@@ -749,6 +792,8 @@ public class ControllerActivity extends AppCompatActivity {
                 if (!fromServer) {
                     changedFromUser = true;
                     DataToGuiInterface.setRunningNotch(currentTrain, (int) trainSpeed);
+                    String speedString = String.valueOf((int) trainSpeed);
+                    speed.setText(speedString);
                 } else fromServer = false;
 
             }
