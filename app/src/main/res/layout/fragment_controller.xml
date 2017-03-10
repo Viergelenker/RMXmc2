@@ -205,19 +205,6 @@
         android:textOn="Licht"
         android:textOff="Licht"/>
 
-    <SeekBar
-        android:layout_below="@+id/button_Light"
-        android:id="@+id/seekBar"
-        android:rotation="270"
-        android:layout_alignRight="@+id/button_Light"
-        android:layout_alignEnd="@+id/button_Light"
-        android:layout_alignLeft="@+id/button_Light"
-        android:layout_alignStart="@+id/button_Light"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.SeekBar"
-        android:layout_above="@+id/button_F8" />
-
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -231,12 +218,22 @@
         android:id="@+id/directionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button_F8"
-        android:layout_alignEnd="@+id/seekBar"
-        android:layout_alignRight="@+id/seekBar"
         android:checked="true"
         android:text="@string/togglebutton"
         android:textOff="@string/DirectionBack"
-        android:textOn=">" />
+        android:textOn=">"
+        android:layout_below="@+id/seekBar"
+        android:layout_alignLeft="@+id/button_Light"
+        android:layout_alignStart="@+id/button_Light" />
+
+    <android.widget.VerticalSeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_above="@+id/button_F16"
+        android:layout_below="@+id/button_Light"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>
