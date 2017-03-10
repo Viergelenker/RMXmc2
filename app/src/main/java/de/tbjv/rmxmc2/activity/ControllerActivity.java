@@ -104,7 +104,7 @@ public class ControllerActivity extends AppCompatActivity {
                     throttleFragment.moveThrottle(throttleScale.stepToPosition(trainSpeed));
                     trainMode0to7Handler.sendEmptyMessage(currentTrain);
                     trainMode8to15Handler.sendEmptyMessage(currentTrain);
-
+                    trainMode16to23Handler.sendEmptyMessage(currentTrain);
                 }
             }
 
@@ -141,10 +141,8 @@ public class ControllerActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (DataToGuiInterface.getDirection(currentTrain) == 0) {
-                    directionButton.setChecked(true);
-                } else {
-                    directionButton.setChecked(false);
-                }
+                    DataToGuiInterface.setDirection(currentTrain, (byte) 1);
+                } else DataToGuiInterface.setDirection(currentTrain, (byte) 0);
             }
         });
 

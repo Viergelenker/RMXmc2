@@ -228,12 +228,15 @@
         android:layout_alignParentStart="true" />
 
     <ToggleButton
-        android:text="ToggleButton"
+        android:id="@+id/directionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/button_F8"
-        android:layout_alignRight="@+id/seekBar"
         android:layout_alignEnd="@+id/seekBar"
-        android:id="@+id/directionButton" />
+        android:layout_alignRight="@+id/seekBar"
+        android:checked="true"
+        android:text="@string/togglebutton"
+        android:textOff="@string/DirectionBack"
+        android:textOn=">" />
 
 </RelativeLayout>
