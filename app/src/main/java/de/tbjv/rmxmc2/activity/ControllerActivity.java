@@ -399,11 +399,13 @@ public class ControllerActivity extends AppCompatActivity {
 
             SharedPreferences settings = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
             SharedPreferences.Editor editor = settings.edit();
-            editor.putString(String.valueOf(currentTrain), functionList.toString());
+            editor.putString(String.valueOf(currentTrain), functionList.toString().replaceAll("\\W", ""));
 
             // and commit the edits (i used apply() instead of commit, because this way it gets handled
             // in the background whereas commit() blocks the thread)
             editor.apply();
+
+            functionMappingString = functionList.toString().replaceAll("\\W", "");
         }
     }
 
@@ -439,17 +441,17 @@ public class ControllerActivity extends AppCompatActivity {
         if (functionValueOfKey > 7 && functionValueOfKey < 16) {
             modeByte = DataToGuiInterface.getModeF8F15(currentTrain);
             if (UtilsByte.bitIsSet(modeByte, functionValueOfKey)) {
-                DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToZero(modeByte, functionValueOfKey));
+                DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToZero(modeByte, functionValueOfKey-8));
             } else {
-                DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToOne(modeByte, functionValueOfKey));
+                DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToOne(modeByte, functionValueOfKey-8));
             }
         }
         if (functionValueOfKey == 16) {
             modeByte = DataToGuiInterface.getModeF16F23(currentTrain);
             if (UtilsByte.bitIsSet(modeByte, functionValueOfKey)) {
-                DataToGuiInterface.setModeF16F23(currentTrain, UtilsByte.setToZero(modeByte, functionValueOfKey));
+                DataToGuiInterface.setModeF16F23(currentTrain, UtilsByte.setToZero(modeByte, 0));
             } else {
-                DataToGuiInterface.setModeF16F23(currentTrain, UtilsByte.setToOne(modeByte, functionValueOfKey));
+                DataToGuiInterface.setModeF16F23(currentTrain, UtilsByte.setToOne(modeByte, 0));
             }
         }
         if (functionValueOfKey == 17) {
