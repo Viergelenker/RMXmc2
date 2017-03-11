@@ -120,7 +120,6 @@ public class ControllerActivity extends AppCompatActivity {
             }
         });
 
-
         // Versucht eine Verbindung herzustellen
         DataToComInterface.deleteAllTrains();
         DataToGuiInterface.connect();
@@ -377,38 +376,40 @@ public class ControllerActivity extends AppCompatActivity {
 
     public void setMapping(int keyToMap, int function) {
 
-        // Load the current mapping of the selected profile and train
-        SharedPreferences mapping = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
-        // The second string is the value to return if this preference does not exist.
-        String functionMappingString = mapping.getString(String.valueOf(currentTrain), "00010203");
+        if (currentTrain >= 0) {
+            // Load the current mapping of the selected profile and train
+            SharedPreferences mapping = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
+            // The second string is the value to return if this preference does not exist.
+            String functionMappingString = mapping.getString(String.valueOf(currentTrain), "00010203");
 
-        // Add a zero to the function number so the final string has always the same size
-        String functionString;
-        if (function < 10) {
-            functionString = "0";
-            functionString.concat(String.valueOf(function));
-        } else functionString = String.valueOf(function);
+            // Add a zero to the function number so the final string has always the same size
+            String functionString;
+            if (function < 10) {
+                functionString = "0";
+                functionString.concat(String.valueOf(function));
+            } else functionString = String.valueOf(function);
 
-        // Split the retrieved string and build a array list with it
-        List<String> functionList = new ArrayList<>();
-        int index = 0;
-        while (index < functionMappingString.length()) {
-            functionList.add(functionMappingString.substring(index, Math.min(index + 2,
-                    functionMappingString.length())));
-            index = index + 2;
+            // Split the retrieved string and build an array list with it
+            List<String> functionList = new ArrayList<>();
+            int index = 0;
+            while (index < functionMappingString.length()) {
+                functionList.add(functionMappingString.substring(index, Math.min(index + 2,
+                        functionMappingString.length())));
+                index = index + 2;
+            }
+
+            // Now the value of the new function is set within the array list, at the corresponding
+            // index of the keyToMap
+            functionList.set(keyToMap, functionString);
+
+            SharedPreferences settings = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString(String.valueOf(currentTrain), functionList.toString());
+
+            // and commit the edits (i used apply() instead of commit, because this way it gets handled
+            // in the background whereas commit() blocks the thread)
+            editor.apply();
         }
-
-        // Now the value of the new function is set within the array list, at the corresponding
-        // index of the keyToMap
-        functionList.set(keyToMap, functionString);
-
-        SharedPreferences settings = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(String.valueOf(currentTrain), "01020304");
-
-        // and commit the edits (i used apply() instead of commit, because this way it gets handled
-        // in the background whereas commit() blocks the thread)
-        editor.apply();
     }
 
     @Override
