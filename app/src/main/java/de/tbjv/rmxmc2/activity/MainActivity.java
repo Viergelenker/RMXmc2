@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 // Loads the specific profile
                                 DataToGuiInterface.loadConfigObject(context, item);
-                                Intent intent = new Intent(context, ControllerActivity.class);
+                                Intent intent = new Intent(context, MainControlActivity.class);
                                 startActivity(intent);
                             }
                         })
