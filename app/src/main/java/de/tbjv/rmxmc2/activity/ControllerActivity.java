@@ -26,8 +26,6 @@ import de.ccck.rmxmobile.UtilsByte;
 import de.ccck.rmxmobile.communication.Connection;
 import de.ccck.rmxmobile.data_management.DataToComInterface;
 import de.ccck.rmxmobile.data_management.DataToGuiInterface;
-import de.ccck.rmxmobile.data_management.TrainDepotMap;
-import de.ccck.rmxmobile.data_management.TrainObject;
 import de.tbjv.rmxmc2.R;
 import eu.esu.mobilecontrol2.sdk.MobileControl2;
 import eu.esu.mobilecontrol2.sdk.StopButtonFragment;
@@ -63,6 +61,8 @@ public class ControllerActivity extends AppCompatActivity {
     private static ToggleButton buttonF15;
     private static ToggleButton buttonF16;
     private static ToggleButton directionButton;
+
+    private String functionMappingString;
 
     // ErrorThread benötigte Variablen
     private Thread ErrorThread;
@@ -111,6 +111,11 @@ public class ControllerActivity extends AppCompatActivity {
                     trainMode0to7Handler.sendEmptyMessage(currentTrain);
                     trainMode8to15Handler.sendEmptyMessage(currentTrain);
                     trainMode16to23Handler.sendEmptyMessage(currentTrain);
+
+                    // Load the current mapping of the selected profile and train
+                    SharedPreferences mapping = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
+                    // The second string is the value to return if this preference does not exist.
+                    functionMappingString = mapping.getString(String.valueOf(currentTrain), "00010203");
                 }
             }
 
@@ -374,33 +379,23 @@ public class ControllerActivity extends AppCompatActivity {
         });
     }
 
-    public void setMapping(int keyToMap, int function) {
+    private void setMapping(int keyToMap, int function) {
 
         if (currentTrain >= 0) {
-            // Load the current mapping of the selected profile and train
-            SharedPreferences mapping = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
-            // The second string is the value to return if this preference does not exist.
-            String functionMappingString = mapping.getString(String.valueOf(currentTrain), "00010203");
 
             // Add a zero to the function number so the final string has always the same size
-            String functionString;
+            String functionNumberAsString;
             if (function < 10) {
-                functionString = "0";
-                functionString.concat(String.valueOf(function));
-            } else functionString = String.valueOf(function);
+                functionNumberAsString = "0";
+                functionNumberAsString = functionNumberAsString + String.valueOf(function);
+            } else functionNumberAsString = String.valueOf(function);
 
-            // Split the retrieved string and build an array list with it
-            List<String> functionList = new ArrayList<>();
-            int index = 0;
-            while (index < functionMappingString.length()) {
-                functionList.add(functionMappingString.substring(index, Math.min(index + 2,
-                        functionMappingString.length())));
-                index = index + 2;
-            }
+            List<String> functionList;
+            functionList = splitMappingStringIntoList(functionMappingString);
 
             // Now the value of the new function is set within the array list, at the corresponding
             // index of the keyToMap
-            functionList.set(keyToMap, functionString);
+            functionList.set(keyToMap, functionNumberAsString);
 
             SharedPreferences settings = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
             SharedPreferences.Editor editor = settings.edit();
@@ -412,37 +407,81 @@ public class ControllerActivity extends AppCompatActivity {
         }
     }
 
+    private List<String> splitMappingStringIntoList(String functionMappingString) {
+
+        // Split the retrieved string and build an array list with it
+        List<String> functionList = new ArrayList<>();
+        int index = 0;
+        while (index < functionMappingString.length()) {
+            functionList.add(functionMappingString.substring(index, Math.min(index + 2,
+                    functionMappingString.length())));
+            index = index + 2;
+        }
+        return functionList;
+    }
+
+    private void getMapping(int key) {
+
+        byte modeByte;
+
+        List<String> functionList = splitMappingStringIntoList(functionMappingString);
+
+        int functionValueOfKey = Integer.parseInt(functionList.get(key));
+
+        if (functionValueOfKey < 8) {
+            modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
+            if (UtilsByte.bitIsSet(modeByte, functionValueOfKey)) {
+                DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, functionValueOfKey));
+            } else {
+                DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, functionValueOfKey));
+            }
+        }
+        if (functionValueOfKey > 7 && functionValueOfKey < 16) {
+            modeByte = DataToGuiInterface.getModeF8F15(currentTrain);
+            if (UtilsByte.bitIsSet(modeByte, functionValueOfKey)) {
+                DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToZero(modeByte, functionValueOfKey));
+            } else {
+                DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToOne(modeByte, functionValueOfKey));
+            }
+        }
+        if (functionValueOfKey == 16) {
+            modeByte = DataToGuiInterface.getModeF16F23(currentTrain);
+            if (UtilsByte.bitIsSet(modeByte, functionValueOfKey)) {
+                DataToGuiInterface.setModeF16F23(currentTrain, UtilsByte.setToZero(modeByte, functionValueOfKey));
+            } else {
+                DataToGuiInterface.setModeF16F23(currentTrain, UtilsByte.setToOne(modeByte, functionValueOfKey));
+            }
+        }
+        if (functionValueOfKey == 17) {
+            if (DataToGuiInterface.getRunningNotch(currentTrain) > 0) {
+                DataToGuiInterface.setRunningNotch(currentTrain, DataToGuiInterface.getRunningNotch(currentTrain) - 1);
+            }
+        }
+        if (functionValueOfKey == 18) {
+            if (DataToGuiInterface.getRunningNotch(currentTrain) < DataToGuiInterface.getMaxRunningNotch(currentTrain)) {
+                DataToGuiInterface.setRunningNotch(currentTrain, DataToGuiInterface.getRunningNotch(currentTrain) + 1);
+            }
+        }
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
+
         switch (keyCode) {
             case ThrottleFragment.KEYCODE_THROTTLE_WAKEUP:
                 // Ignore the wake up key. You must return true here to avoid further input key handling.
                 return true;
             case MobileControl2.KEYCODE_TOP_LEFT:
-                if (UtilsByte.bitIsSet(modeByte, 0)) {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 0));
-                } else {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 0));
-                }
+                getMapping(0);
                 return true;
             case MobileControl2.KEYCODE_BOTTOM_LEFT:
-                ;
-                if (UtilsByte.bitIsSet(modeByte, 1)) {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 1));
-                } else {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 1));
-                }
+                getMapping(1);
                 return true;
             case MobileControl2.KEYCODE_TOP_RIGHT:
-                if (DataToGuiInterface.getRunningNotch(currentTrain) < DataToGuiInterface.getMaxRunningNotch(currentTrain)) {
-                    DataToGuiInterface.setRunningNotch(currentTrain, DataToGuiInterface.getRunningNotch(currentTrain) + 1);
-                }
+                getMapping(2);
                 return true;
             case MobileControl2.KEYCODE_BOTTOM_RIGHT:
-                if (DataToGuiInterface.getRunningNotch(currentTrain) > 0) {
-                    DataToGuiInterface.setRunningNotch(currentTrain, DataToGuiInterface.getRunningNotch(currentTrain) - 1);
-                }
+                getMapping(3);
                 return true;
             default:
                 return super.onKeyDown(keyCode, event);
