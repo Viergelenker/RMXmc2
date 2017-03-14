@@ -23,7 +23,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import de.tbjv.rmxmc2.R;
 import de.tbjv.rmxmc2.fragment.HomeFragment;
-import de.tbjv.rmxmc2.fragment.MoviesFragment;
+import de.tbjv.rmxmc2.fragment.MappingFragment;
 import de.tbjv.rmxmc2.fragment.SettingsFragment;
 
 public class MainControlActivity extends AppCompatActivity {
@@ -45,7 +45,7 @@ public class MainControlActivity extends AppCompatActivity {
 
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
-    private static final String TAG_MOVIES = "movies";
+    private static final String TAG_MAPPING = "mapping";
     private static final String TAG_SETTINGS = "settings";
     public static String CURRENT_TAG = TAG_HOME;
 
@@ -171,9 +171,9 @@ public class MainControlActivity extends AppCompatActivity {
                 HomeFragment homeFragment = new HomeFragment();
                 return homeFragment;
             case 1:
-                // movies fragment
-                MoviesFragment moviesFragment = new MoviesFragment();
-                return moviesFragment;
+                // mapping fragment
+                MappingFragment mappingFragment = new MappingFragment();
+                return mappingFragment;
             case 2:
                 // settings fragment
                 SettingsFragment settingsFragment = new SettingsFragment();
@@ -202,19 +202,21 @@ public class MainControlActivity extends AppCompatActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
-                    case R.id.home:
+                    case R.id.nav_train_control:
                         navItemIndex = 0;
                         CURRENT_TAG = TAG_HOME;
                         break;
-                    case R.id.nav_movies:
+                    case R.id.nav_mapping:
                         navItemIndex = 1;
-                        CURRENT_TAG = TAG_MOVIES;
+                        CURRENT_TAG = TAG_MAPPING;
                         break;
                     case R.id.nav_settings:
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_SETTINGS;
                         break;
-                    case R.id.nav_about_us:
+                    case R.id.nav_profile:
+                        navItemIndex = 2;
+                        //TODO: StoppThread
                         // launch new intent instead of loading fragment
                         startActivity(new Intent(MainControlActivity.this, MainActivity.class));
                         drawer.closeDrawers();
@@ -268,11 +270,11 @@ public class MainControlActivity extends AppCompatActivity {
         }
 
         // This code loads home fragment when back key is pressed
-        // when user is in other fragment than home
+        // when user is in other fragment than home or main
         if (shouldLoadHomeFragOnBackPress) {
             // checking if user is on other navigation menu
-            // rather than home
-            if (navItemIndex != 0) {
+            // rather than home or main
+            if (navItemIndex != 0 & navItemIndex !=3) {
                 navItemIndex = 0;
                 CURRENT_TAG = TAG_HOME;
                 loadHomeFragment();

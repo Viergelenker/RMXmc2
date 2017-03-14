@@ -12,18 +12,18 @@
     <string name="closeDrawer">close_drawer</string>
 
     <!-- Navigation Drawer menu labels -->
-    <string name="nav_home">Home</string>
-    <string name="nav_movies">Movies</string>
+    <string name="nav_train_control">Zugsteuerung</string>
+    <string name="nav_mapping">Tastenzuordnung</string>
     <string name="nav_settings">Settings</string>
 
     <!-- Toolbar titles when navigation menu item is selected -->
     <string-array name="nav_item_activity_titles">
-        <item>Home</item>
-        <item>Movies</item>
+        <item>Zugsteuerung</item>
+        <item>Tastenzuordnung</item>
         <item>Settings</item>
     </string-array>
 
-    <string name="activity_title_about_us">About Us</string>
+    <string name="activity_title_about_us">Profilwechsel</string>
     <string name="action_clear_all">Clear All</string>
     <string name="action_logout">Logout</string>
     <string name="action_mark_all_read">Mark All as Read</string>
