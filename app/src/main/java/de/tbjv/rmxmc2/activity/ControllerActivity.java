@@ -831,7 +831,7 @@ public class ControllerActivity extends AppCompatActivity {
 
         @Override
         public void onPositionChanged(int position) {
-            DataToComInterface.setTrainSpeed(currentTrain, throttleScale.positionToStep(position));
+            DataToGuiInterface.setRunningNotch(currentTrain, throttleScale.positionToStep(position));
         }
     };
 
