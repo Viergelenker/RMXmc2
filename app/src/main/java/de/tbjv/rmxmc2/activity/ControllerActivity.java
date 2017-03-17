@@ -1,12 +1,15 @@
 package de.tbjv.rmxmc2.activity;
 
+import android.app.AlarmManager;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -104,7 +107,7 @@ public class ControllerActivity extends AppCompatActivity {
                 if (currentTrain >= 0) {
                     currentTrain = i + 1;
 
-                    throttleScale = new ThrottleScale(10, DataToGuiInterface.getMaxRunningNotch(currentTrain)+1);
+                    throttleScale = new ThrottleScale(10, DataToGuiInterface.getMaxRunningNotch(currentTrain) + 1);
                     seekBar1.setMax(DataToGuiInterface.getMaxRunningNotch(currentTrain));
 
                     // Sets the position of the seekbar and throttle wheel to the running notch of the selected train
@@ -122,6 +125,7 @@ public class ControllerActivity extends AppCompatActivity {
                     SharedPreferences mapping = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
                     // The second string is the value to return if this preference does not exist.
                     functionMappingString = mapping.getString(String.valueOf(currentTrain), "00010203");
+                    startRepeatingTask();
                 }
             }
 
@@ -446,9 +450,9 @@ public class ControllerActivity extends AppCompatActivity {
         if (functionValueOfKey > 7 && functionValueOfKey < 16) {
             modeByte = DataToGuiInterface.getModeF8F15(currentTrain);
             if (UtilsByte.bitIsSet(modeByte, functionValueOfKey)) {
-                DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToZero(modeByte, functionValueOfKey-8));
+                DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToZero(modeByte, functionValueOfKey - 8));
             } else {
-                DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToOne(modeByte, functionValueOfKey-8));
+                DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToOne(modeByte, functionValueOfKey - 8));
             }
         }
         if (functionValueOfKey == 16) {
@@ -520,7 +524,7 @@ public class ControllerActivity extends AppCompatActivity {
         }
     }
 
-    public int calculateSeekBarTrainSpeed(){
+    public int calculateSeekBarTrainSpeed() {
 
         int rmxTrainSpeed = DataToGuiInterface.getRunningNotch(currentTrain);
 
@@ -531,7 +535,7 @@ public class ControllerActivity extends AppCompatActivity {
         return (int) Math.ceil(proportionalSpeed * rmxTrainSpeed);
     }
 
-    public String calculateRMXTrainSpeed(int seekbarPosition){
+    public String calculateRMXTrainSpeed(int seekbarPosition) {
         return null;
     }
 
@@ -557,9 +561,28 @@ public class ControllerActivity extends AppCompatActivity {
                 speed.setText(String.valueOf(trainSpeed));
                 // Sets the position of the seekbar and throttle wheel to the running notch of the selected train
                 seekBar1.setProgress(trainSpeed);
-                throttleFragment.moveThrottle(throttleScale.stepToPosition(trainSpeed));
             }
         }
+    }
+
+    // Updates the throttle wheel every 3 seconds
+    private final static int INTERVAL = 3000;
+    Handler mHandler = new Handler();
+
+    Runnable mHandlerTask = new Runnable() {
+        @Override
+        public void run() {
+            throttleFragment.moveThrottle(throttleScale.stepToPosition(DataToGuiInterface.getRunningNotch(currentTrain)));
+            mHandler.postDelayed(mHandlerTask, INTERVAL);
+        }
+    };
+
+    void startRepeatingTask() {
+        mHandlerTask.run();
+    }
+
+    void stopRepeatingTask() {
+        mHandler.removeCallbacks(mHandlerTask);
     }
 
     /**
@@ -843,6 +866,8 @@ public class ControllerActivity extends AppCompatActivity {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
+
+            boolean userInput = fromUser;
             DataToGuiInterface.setRunningNotch(currentTrain, progress);
 
             /*int position = throttleScale.stepToPosition(progress);
