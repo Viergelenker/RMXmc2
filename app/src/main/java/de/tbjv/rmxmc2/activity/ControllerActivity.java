@@ -112,6 +112,8 @@ public class ControllerActivity extends AppCompatActivity {
                     seekBar1.setProgress(trainSpeed);
                     speed.setText(String.valueOf(trainSpeed));
 
+                    throttleFragment.moveThrottle(throttleScale.stepToPosition(trainSpeed));
+
                     trainMode0to7Handler.sendEmptyMessage(currentTrain);
                     trainMode8to15Handler.sendEmptyMessage(currentTrain);
                     trainMode16to23Handler.sendEmptyMessage(currentTrain);
@@ -555,6 +557,7 @@ public class ControllerActivity extends AppCompatActivity {
                 speed.setText(String.valueOf(trainSpeed));
                 // Sets the position of the seekbar and throttle wheel to the running notch of the selected train
                 seekBar1.setProgress(trainSpeed);
+                throttleFragment.moveThrottle(throttleScale.stepToPosition(trainSpeed));
             }
         }
     }
@@ -841,7 +844,6 @@ public class ControllerActivity extends AppCompatActivity {
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
             DataToGuiInterface.setRunningNotch(currentTrain, progress);
-            throttleFragment.moveThrottle(progress);
 
             /*int position = throttleScale.stepToPosition(progress);
 
