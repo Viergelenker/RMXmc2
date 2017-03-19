@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/content_controller"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -231,8 +232,9 @@
         android:layout_width="wrap_content"
         android:layout_height="180dp"
         android:layout_above="@+id/button_F16"
-        android:layout_centerVertical="true"
-        android:layout_centerInParent="true" />
+        android:layout_below="@+id/button_F5"
+        android:layout_alignLeft="@+id/speedTextView"
+        android:layout_alignStart="@+id/speedTextView" />
 
     <TextView
         android:id="@+id/speedTextView"
@@ -243,5 +245,38 @@
         android:text="0"
         android:layout_centerVertical="true"
         android:layout_centerInParent="true"/>
+
+    <LinearLayout
+        android:id="@+id/button_switch"
+        android:orientation="vertical"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:gravity="center"
+        android:layout_above="@+id/button_F13"
+        android:layout_alignLeft="@+id/connectionStatus"
+        android:layout_alignStart="@+id/connectionStatus">
+
+        <com.github.zagum.switchicon.SwitchIconView
+            android:id="@+id/switchIconView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".5"
+            app:si_disabled_color="#b7b7b7"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:si_tint_color="#ff3c00"
+            app:srcCompat="@drawable/ic_cloud"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Licht"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

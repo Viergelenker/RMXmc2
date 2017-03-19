@@ -19,6 +19,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.github.zagum.switchicon.SwitchIconView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +64,42 @@ public class ControllerActivity extends AppCompatActivity {
     private static ToggleButton buttonF16;
     private static ToggleButton directionButton;
 
+    private static SwitchIconView switchIconLight;
+    private static SwitchIconView switchIconF1;
+    private static SwitchIconView switchIconF2;
+    private static SwitchIconView switchIconF3;
+    private static SwitchIconView switchIconF4;
+    private static SwitchIconView switchIconF5;
+    private static SwitchIconView switchIconF6;
+    private static SwitchIconView switchIconF7;
+    private static SwitchIconView switchIconF8;
+    private static SwitchIconView switchIconF9;
+    private static SwitchIconView switchIconF10;
+    private static SwitchIconView switchIconF11;
+    private static SwitchIconView switchIconF12;
+    private static SwitchIconView switchIconF13;
+    private static SwitchIconView switchIconF14;
+    private static SwitchIconView switchIconF15;
+    private static SwitchIconView switchIconF16;
+
+    private View button_switchLight;
+    private View button_switchF1;
+    private View button_switchF2;
+    private View button_switchF3;
+    private View button_switchF4;
+    private View button_switchF5;
+    private View button_switchF6;
+    private View button_switchF7;
+    private View button_switchF8;
+    private View button_switchF9;
+    private View button_switchF10;
+    private View button_switchF11;
+    private View button_switchF12;
+    private View button_switchF13;
+    private View button_switchF14;
+    private View button_switchF15;
+    private View button_switchF16;
+
     private String functionMappingString;
 
     // ErrorThread benötigte Variablen
@@ -91,6 +129,26 @@ public class ControllerActivity extends AppCompatActivity {
         startThread();
 
         context = this.getApplicationContext();
+
+        switchIconLight = (SwitchIconView) findViewById(R.id.switchIconView1);
+        button_switchLight = findViewById(R.id.button_switch);
+
+        button_switchLight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
+                if (UtilsByte.bitIsSet(modeByte, 0)) {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 0));
+                    switchIconLight.setIconEnabled(false);
+
+                } else {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 0));
+                    switchIconLight.setIconEnabled(true);
+                }
+
+            }
+        });
 
         connectionStatus = (TextView) findViewById(R.id.connectionStatus);
         speed = (TextView) findViewById(R.id.speedTextView);
@@ -167,6 +225,40 @@ public class ControllerActivity extends AppCompatActivity {
                 } else {
                     DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 0));
                 }
+            }
+        });
+
+        button_switchLight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
+                if (UtilsByte.bitIsSet(modeByte, 0)) {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 0));
+                    switchIconLight.setIconEnabled(false);
+
+                } else {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 0));
+                    switchIconLight.setIconEnabled(true);
+                }
+
+            }
+        });
+
+        button_switchLight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
+                if (UtilsByte.bitIsSet(modeByte, 0)) {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 0));
+                    switchIconLight.setIconEnabled(false);
+
+                } else {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 0));
+                    switchIconLight.setIconEnabled(true);
+                }
+
             }
         });
 
@@ -589,50 +681,66 @@ public class ControllerActivity extends AppCompatActivity {
                 // This is so unbelievable ugly, pls fix it if you find a better solution
                 if (UtilsByte.bitIsSet(modeByte, 0)) {
                     buttonLight.setChecked(true);
+                    switchIconLight.setIconEnabled(true);
                 } else {
                     buttonLight.setChecked(false);
+                    switchIconLight.setIconEnabled(false);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 1)) {
                     buttonF1.setChecked(true);
+                    // switchIconF1.setIconEnabled(true);
                 } else {
                     buttonF1.setChecked(false);
+                    // switchIconF1.setIconEnabled(false);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 2)) {
                     buttonF2.setChecked(true);
+                    // switchIconF2.setIconEnabled(true);
                 } else {
                     buttonF2.setChecked(false);
+                    // switchIconF2.setIconEnabled(false);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 3)) {
                     buttonF3.setChecked(true);
+                    // switchIconF3.setIconEnabled(true);
                 } else {
                     buttonF3.setChecked(false);
+                    // switchIconF3.setIconEnabled(false);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 4)) {
                     buttonF4.setChecked(true);
+                    // switchIconF4.setIconEnabled(true);
                 } else {
                     buttonF4.setChecked(false);
+                    // switchIconF4.setIconEnabled(false);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 5)) {
                     buttonF5.setChecked(true);
+                    // switchIconF5.setIconEnabled(true);
                 } else {
                     buttonF5.setChecked(false);
+                    // switchIconF5.setIconEnabled(false);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 6)) {
                     buttonF6.setChecked(true);
+                    // switchIconF6.setIconEnabled(true);
                 } else {
                     buttonF6.setChecked(false);
+                    // switchIconF6.setIconEnabled(false);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 7)) {
                     buttonF7.setChecked(true);
+                    // switchIconF7.setIconEnabled(true);
                 } else {
                     buttonF7.setChecked(false);
+                    // switchIconF7.setIconEnabled(false);
                 }
             }
         }
@@ -660,50 +768,66 @@ public class ControllerActivity extends AppCompatActivity {
                 // This is so unbelievable ugly, pls fix it if you find a better solution
                 if (UtilsByte.bitIsSet(modeByte, 0)) {
                     buttonF8.setChecked(true);
+                    // switchIconF8.setIconEnabled(true);
                 } else {
                     buttonF8.setChecked(false);
+                    // switchIconF8.setIconEnabled(false);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 1)) {
                     buttonF9.setChecked(true);
+                    // switchIconF9.setIconEnabled(true);
                 } else {
                     buttonF9.setChecked(false);
+                    // switchIconF9.setIconEnabled(false);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 2)) {
                     buttonF10.setChecked(true);
+                    // switchIconF10.setIconEnabled(true);
                 } else {
                     buttonF10.setChecked(false);
+                    // switchIconF10.setIconEnabled(false);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 3)) {
                     buttonF11.setChecked(true);
+                    // switchIconF11.setIconEnabled(true);
                 } else {
                     buttonF11.setChecked(false);
+                    // switchIconF11.setIconEnabled(false);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 4)) {
                     buttonF12.setChecked(true);
+                    // switchIconF12.setIconEnabled(false);
                 } else {
                     buttonF12.setChecked(false);
+                    // switchIconF12.setIconEnabled(true);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 5)) {
                     buttonF13.setChecked(true);
+                    // switchIconF13.setIconEnabled(true);
                 } else {
                     buttonF13.setChecked(false);
+                    // switchIconF13.setIconEnabled(false);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 6)) {
                     buttonF14.setChecked(true);
+                    // switchIconF14.setIconEnabled(true);
                 } else {
                     buttonF14.setChecked(false);
+                    // switchIconF14.setIconEnabled(false);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 7)) {
                     buttonF15.setChecked(true);
+                    // switchIconF15.setIconEnabled(false);
                 } else {
                     buttonF15.setChecked(false);
+                    // switchIconF15.setIconEnabled(false);
                 }
             }
         }
@@ -731,8 +855,10 @@ public class ControllerActivity extends AppCompatActivity {
                 // This is so unbelievable ugly, pls fix it if you find a better solution
                 if (UtilsByte.bitIsSet(modeByte, 0)) {
                     buttonF16.setChecked(true);
+                    // switchIconF16.setIconEnabled(true);
                 } else {
                     buttonF16.setChecked(false);
+                    // switchIconF16.setIconEnabled(false);
                 }
             }
         }
