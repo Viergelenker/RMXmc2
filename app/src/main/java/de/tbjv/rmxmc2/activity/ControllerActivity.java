@@ -194,8 +194,8 @@ public class ControllerActivity extends AppCompatActivity {
         });
 
         // Button onClickListener
-        switchIconLight = (SwitchIconView) findViewById(R.id.switchIconView1);
-        button_switchLight = findViewById(R.id.button_switch);
+        switchIconLight = (SwitchIconView) findViewById(R.id.switchIconViewLight);
+        button_switchLight = findViewById(R.id.button_switchLight);
         button_switchLight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -235,11 +235,11 @@ public class ControllerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
-                if (UtilsByte.bitIsSet(modeByte, 1)) {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 1));
+                if (UtilsByte.bitIsSet(modeByte, 2)) {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 2));
                     switchIconF2.setIconEnabled(false);
                 } else {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 1));
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 2));
                     switchIconF2.setIconEnabled(true);
                 }
             }
@@ -251,11 +251,11 @@ public class ControllerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
-                if (UtilsByte.bitIsSet(modeByte, 1)) {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 1));
+                if (UtilsByte.bitIsSet(modeByte, 3)) {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 3));
                     switchIconF3.setIconEnabled(false);
                 } else {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 1));
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 3));
                     switchIconF3.setIconEnabled(true);
                 }
             }
@@ -267,11 +267,11 @@ public class ControllerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
-                if (UtilsByte.bitIsSet(modeByte, 1)) {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 1));
+                if (UtilsByte.bitIsSet(modeByte, 4)) {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 4));
                     switchIconF4.setIconEnabled(false);
                 } else {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 1));
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 4));
                     switchIconF4.setIconEnabled(true);
                 }
             }
@@ -283,11 +283,11 @@ public class ControllerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
-                if (UtilsByte.bitIsSet(modeByte, 1)) {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 1));
+                if (UtilsByte.bitIsSet(modeByte, 5)) {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 5));
                     switchIconF5.setIconEnabled(false);
                 } else {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 1));
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 5));
                     switchIconF5.setIconEnabled(true);
                 }
             }
@@ -299,11 +299,11 @@ public class ControllerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
-                if (UtilsByte.bitIsSet(modeByte, 1)) {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 1));
+                if (UtilsByte.bitIsSet(modeByte, 6)) {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 6));
                     switchIconF6.setIconEnabled(false);
                 } else {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 1));
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 6));
                     switchIconF6.setIconEnabled(true);
                 }
             }
@@ -315,11 +315,11 @@ public class ControllerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
-                if (UtilsByte.bitIsSet(modeByte, 1)) {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 1));
+                if (UtilsByte.bitIsSet(modeByte, 7)) {
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 7));
                     switchIconF7.setIconEnabled(false);
                 } else {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 1));
+                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 7));
                     switchIconF7.setIconEnabled(true);
                 }
             }
@@ -330,12 +330,12 @@ public class ControllerActivity extends AppCompatActivity {
         button_switchF8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
-                if (UtilsByte.bitIsSet(modeByte, 1)) {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 1));
+                byte modeByte = DataToGuiInterface.getModeF8F15(currentTrain);
+                if (UtilsByte.bitIsSet(modeByte, 0)) {
+                    DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToZero(modeByte, 0));
                     switchIconF8.setIconEnabled(false);
                 } else {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 1));
+                    DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToOne(modeByte, 0));
                     switchIconF8.setIconEnabled(true);
                 }
             }
@@ -358,7 +358,7 @@ public class ControllerActivity extends AppCompatActivity {
             }
         });
 
-        switchIconF10 = (SwitchIconView) findViewById(R.id.switchIconView1);
+        switchIconF10 = (SwitchIconView) findViewById(R.id.switchIconViewLight);
         button_switchF10 = findViewById(R.id.button_switch);
         button_switchF10.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -373,7 +373,7 @@ public class ControllerActivity extends AppCompatActivity {
                 }
             }
         });
-        switchIconF11 = (SwitchIconView) findViewById(R.id.switchIconView1);
+        switchIconF11 = (SwitchIconView) findViewById(R.id.switchIconViewLight);
         button_switchF11 = findViewById(R.id.button_switch);
         button_switchF11.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -388,7 +388,7 @@ public class ControllerActivity extends AppCompatActivity {
                 }
             }
         });
-        switchIconF12 = (SwitchIconView) findViewById(R.id.switchIconView1);
+        switchIconF12 = (SwitchIconView) findViewById(R.id.switchIconViewLight);
         button_switchF12 = findViewById(R.id.button_switch);
         button_switchF12.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -403,7 +403,7 @@ public class ControllerActivity extends AppCompatActivity {
                 }
             }
         });
-        switchIconF13 = (SwitchIconView) findViewById(R.id.switchIconView1);
+        switchIconF13 = (SwitchIconView) findViewById(R.id.switchIconViewLight);
         button_switchF13 = findViewById(R.id.button_switch);
         button_switchF13.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -418,7 +418,7 @@ public class ControllerActivity extends AppCompatActivity {
                 }
             }
         });
-        switchIconF14 = (SwitchIconView) findViewById(R.id.switchIconView1);
+        switchIconF14 = (SwitchIconView) findViewById(R.id.switchIconViewLight);
         button_switchF14 = findViewById(R.id.button_switch);
         button_switchF14.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -434,7 +434,7 @@ public class ControllerActivity extends AppCompatActivity {
             }
         });
 
-        switchIconF15 = (SwitchIconView) findViewById(R.id.switchIconView1);
+        switchIconF15 = (SwitchIconView) findViewById(R.id.switchIconViewLight);
         button_switchF15 = findViewById(R.id.button_switch);
         button_switchF15.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -450,7 +450,7 @@ public class ControllerActivity extends AppCompatActivity {
             }
         });
 
-        switchIconF16 = (SwitchIconView) findViewById(R.id.switchIconView1);
+        switchIconF16 = (SwitchIconView) findViewById(R.id.switchIconViewLight);
         button_switchF16 = findViewById(R.id.button_switch);
         button_switchF16.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -790,7 +790,6 @@ public class ControllerActivity extends AppCompatActivity {
                 if (UtilsByte.bitIsSet(modeByte, 1)) {
                     switchIconF1.setIconEnabled(true);
                 } else {
-                    //buttonF1.setChecked(false);
                     switchIconF1.setIconEnabled(false);
                 }
 
