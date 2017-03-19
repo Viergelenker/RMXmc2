@@ -875,11 +875,10 @@ public class ControllerActivity extends AppCompatActivity {
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 1)) {
-                    buttonF1.setChecked(true);
-                    // switchIconF1.setIconEnabled(true);
+                    switchIconF1.setIconEnabled(true);
                 } else {
-                    buttonF1.setChecked(false);
-                    // switchIconF1.setIconEnabled(false);
+                    //buttonF1.setChecked(false);
+                    switchIconF1.setIconEnabled(false);
                 }
 
                 if (UtilsByte.bitIsSet(modeByte, 2)) {
