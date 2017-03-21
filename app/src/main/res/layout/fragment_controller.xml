@@ -424,7 +424,7 @@
     <io.ghyeok.stickyswitch.widget.StickySwitch
         android:id="@+id/switch_direction"
         android:layout_width="80dp"
-        android:layout_height="120dp"
+        android:layout_height="60dp"
         app:iconPadding="8dp"
         app:iconSize="25dp"
         app:leftIcon="@drawable/ic_backward"
@@ -436,8 +436,7 @@
         app:sliderBackgroundColor="@color/colorPrimary"
         app:switchColor="@color/colorAccent"
         app:textColor="@color/colorPrimary"
-        android:layout_alignBaseline="@+id/button_F16"
-        android:layout_alignBottom="@+id/button_F16"
+        android:layout_below="@+id/seekBar"
         android:layout_centerHorizontal="true"/>
 
     <LinearLayout
