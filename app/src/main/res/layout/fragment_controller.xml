@@ -454,8 +454,8 @@
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
             app:si_no_dash="true"
-            app:si_tint_color="#ff3c00"
-            app:srcCompat="@drawable/ic_cloud"/>
+            app:si_tint_color="#ffe600"
+            app:srcCompat="@drawable/ic_lightbulb"/>
 
         <TextView
             android:id="@+id/textViewLight"
