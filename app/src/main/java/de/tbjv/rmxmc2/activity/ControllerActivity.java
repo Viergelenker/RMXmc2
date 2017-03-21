@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.github.zagum.switchicon.SwitchIconView;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ import eu.esu.mobilecontrol2.sdk.MobileControl2;
 import eu.esu.mobilecontrol2.sdk.StopButtonFragment;
 import eu.esu.mobilecontrol2.sdk.ThrottleFragment;
 import eu.esu.mobilecontrol2.sdk.ThrottleScale;
+import io.ghyeok.stickyswitch.widget.StickySwitch;
 
 public class ControllerActivity extends AppCompatActivity {
 
@@ -61,7 +63,6 @@ public class ControllerActivity extends AppCompatActivity {
     private static ToggleButton buttonF14;
     private static ToggleButton buttonF15;
     private static ToggleButton buttonF16;
-    private static ToggleButton directionButton;
 
     private static SwitchIconView switchIconLight;
     private static SwitchIconView switchIconF1;
@@ -98,6 +99,8 @@ public class ControllerActivity extends AppCompatActivity {
     private View button_switchF14;
     private View button_switchF15;
     private View button_switchF16;
+
+    private static StickySwitch switchDirection;
 
     private String functionMappingString;
 
@@ -182,18 +185,21 @@ public class ControllerActivity extends AppCompatActivity {
                 .add(stopButtonFragment, "mc2:stopKey")
                 .commit();
 
-        directionButton = (ToggleButton) findViewById(R.id.directionButton);
-        directionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        /**
+         * The following Listeners detect button changes, made by the user and synchronizes the changes with the server
+         */
 
-                if (DataToGuiInterface.getDirection(currentTrain) == 0) {
-                    DataToGuiInterface.setDirection(currentTrain, (byte) 1);
-                } else DataToGuiInterface.setDirection(currentTrain, (byte) 0);
+        switchDirection = (StickySwitch) findViewById(R.id.switch_direction);
+        switchDirection.setOnSelectedChangeListener(new StickySwitch.OnSelectedChangeListener() {
+            @Override
+            public void onSelectedChange(@NotNull StickySwitch.Direction direction, @NotNull String text) {
+
+                if (switchDirection.getDirection() == StickySwitch.Direction.RIGHT) {
+                    DataToGuiInterface.setDirection(currentTrain, (byte) 0);
+                } else DataToGuiInterface.setDirection(currentTrain, (byte) 1);
             }
         });
 
-        // Button onClickListener
         switchIconLight = (SwitchIconView) findViewById(R.id.switchIconViewLight);
         button_switchLight = findViewById(R.id.button_switchLight);
         button_switchLight.setOnClickListener(new View.OnClickListener() {
@@ -204,12 +210,10 @@ public class ControllerActivity extends AppCompatActivity {
                 if (UtilsByte.bitIsSet(modeByte, 0)) {
                     DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 0));
                     switchIconLight.setIconEnabled(false);
-
                 } else {
                     DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 0));
                     switchIconLight.setIconEnabled(true);
                 }
-
             }
         });
 
@@ -635,9 +639,9 @@ public class ControllerActivity extends AppCompatActivity {
         if (functionValueOfKey > 7 && functionValueOfKey < 16) {
             modeByte = DataToGuiInterface.getModeF8F15(currentTrain);
             if (UtilsByte.bitIsSet(modeByte, functionValueOfKey)) {
-                DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToZero(modeByte, functionValueOfKey-8));
+                DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToZero(modeByte, functionValueOfKey - 8));
             } else {
-                DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToOne(modeByte, functionValueOfKey-8));
+                DataToGuiInterface.setModeF8F15(currentTrain, UtilsByte.setToOne(modeByte, functionValueOfKey - 8));
             }
         }
         if (functionValueOfKey == 16) {
@@ -753,9 +757,9 @@ public class ControllerActivity extends AppCompatActivity {
             // Only change the direction if its the currently selected train
             if (currentTrain == message.what) {
                 if (DataToGuiInterface.getDirection(currentTrain) == 0) {
-                    directionButton.setChecked(true);
+                    switchDirection.setDirection(StickySwitch.Direction.RIGHT);
                 } else {
-                    directionButton.setChecked(false);
+                    switchDirection.setDirection(StickySwitch.Direction.LEFT);
                 }
             }
         }
