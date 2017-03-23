@@ -107,7 +107,7 @@ public class ControllerActivity extends AppCompatActivity {
                 if (currentTrain >= 0) {
                     currentTrain = i + 1;
 
-                    throttleScale = new ThrottleScale(10, DataToGuiInterface.getMaxRunningNotch(currentTrain) + 1);
+                    throttleScale = new ThrottleScale(0, DataToGuiInterface.getMaxRunningNotch(currentTrain) + 1);
                     seekBar1.setMax(DataToGuiInterface.getMaxRunningNotch(currentTrain));
 
                     // Sets the position of the seekbar and throttle wheel to the running notch of the selected train
@@ -125,7 +125,7 @@ public class ControllerActivity extends AppCompatActivity {
                     SharedPreferences mapping = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
                     // The second string is the value to return if this preference does not exist.
                     functionMappingString = mapping.getString(String.valueOf(currentTrain), "00010203");
-                    startRepeatingTask();
+                    // startRepeatingTask();
                 }
             }
 
@@ -524,19 +524,18 @@ public class ControllerActivity extends AppCompatActivity {
         }
     }
 
-    public int calculateSeekBarTrainSpeed() {
+    public static void calculateRMXTrainSpeed(int trainSpeed) {
 
-        int rmxTrainSpeed = DataToGuiInterface.getRunningNotch(currentTrain);
+        int throttleWheelPosition = throttleFragment.getLastPosition();
 
-        int maxTrainSpeed = DataToGuiInterface.getMaxRunningNotch(currentTrain);
+        float segment = 255 / DataToGuiInterface.getMaxRunningNotch(currentTrain);
 
-        float proportionalSpeed = (float) (126.0 / maxTrainSpeed);
+        float throttleWheelPositionForTrainSpeed = segment * trainSpeed;
 
-        return (int) Math.ceil(proportionalSpeed * rmxTrainSpeed);
-    }
-
-    public String calculateRMXTrainSpeed(int seekbarPosition) {
-        return null;
+        if (throttleWheelPosition > throttleWheelPositionForTrainSpeed + segment || throttleWheelPosition < throttleWheelPositionForTrainSpeed - segment) {
+            throttleFragment.moveThrottle(throttleScale.stepToPosition(DataToGuiInterface
+                    .getRunningNotch(currentTrain)));
+        }
     }
 
     public static void updateTrainSpeed(int trainNumber) {
@@ -552,11 +551,8 @@ public class ControllerActivity extends AppCompatActivity {
             if (currentTrain == message.what) {
 
                 int trainSpeed = DataToGuiInterface.getRunningNotch(currentTrain);
-                /*int maxTrainSpeed = DataToGuiInterface.getMaxRunningNotch(currentTrain);
-                float proportionalSpeed = (float) (126.0 / maxTrainSpeed);
-                double trainSpeedSetting = Math.ceil(proportionalSpeed * trainSpeed);*/
 
-                fromServer = true;
+                calculateRMXTrainSpeed(DataToGuiInterface.getRunningNotch(currentTrain));
 
                 speed.setText(String.valueOf(trainSpeed));
                 // Sets the position of the seekbar and throttle wheel to the running notch of the selected train
@@ -565,14 +561,15 @@ public class ControllerActivity extends AppCompatActivity {
         }
     }
 
-    // Updates the throttle wheel every 3 seconds
+   /* // Updates the throttle wheel every 3 seconds
     private final static int INTERVAL = 3000;
     Handler mHandler = new Handler();
 
     Runnable mHandlerTask = new Runnable() {
         @Override
         public void run() {
-            throttleFragment.moveThrottle(throttleScale.stepToPosition(DataToGuiInterface.getRunningNotch(currentTrain)));
+            throttleFragment.moveThrottle(throttleScale.stepToPosition(DataToGuiInterface
+                    .getRunningNotch(currentTrain)));
             mHandler.postDelayed(mHandlerTask, INTERVAL);
         }
     };
@@ -583,7 +580,7 @@ public class ControllerActivity extends AppCompatActivity {
 
     void stopRepeatingTask() {
         mHandler.removeCallbacks(mHandlerTask);
-    }
+    }*/
 
     /**
      * Update the trainDirection button within the gui
@@ -859,38 +856,13 @@ public class ControllerActivity extends AppCompatActivity {
     };
 
     /**
-     * Repositions the throttle wheel if the seekbar/slider on screen is changed
+     * Sets the trainSpeed if the seekbar/slider on screen is changed
      */
     private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
 
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-
-            boolean userInput = fromUser;
             DataToGuiInterface.setRunningNotch(currentTrain, progress);
-
-            /*int position = throttleScale.stepToPosition(progress);
-
-            if (currentTrain >= 0) {
-
-                int maxTrainSpeed = DataToGuiInterface.getMaxRunningNotch(currentTrain);
-                float proportionalMaxSpeed = (float) (maxTrainSpeed / 255.0);
-                double trainSpeed = Math.ceil(proportionalMaxSpeed * position);
-
-                if (!fromServer) {
-                    changedFromUser = true;
-                    DataToGuiInterface.setRunningNotch(currentTrain, (int) trainSpeed);
-                    String speedString = String.valueOf((int) trainSpeed);
-                    speed.setText(speedString);
-                } else fromServer = false;
-
-            }
-*/
-            /* Not working with the current api level
-            if (fromUser) {
-                throttleFragment.moveThrottle(position);
-            }*/
         }
 
         @Override
