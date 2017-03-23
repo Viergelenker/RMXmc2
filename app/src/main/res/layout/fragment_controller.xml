@@ -13,28 +13,72 @@
     tools:showIn="@layout/activity_controller">
 
     <TextView
-        android:text="TextView"
+        android:id="@+id/connectionStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/connectionStatus"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="TextView" />
+
+    <Spinner
+        android:id="@+id/trainSelector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/connectionStatus"
+        android:layout_marginTop="39dp" />
 
     <LinearLayout
         android:id="@+id/button_switchF1"
-        android:orientation="horizontal"
         android:layout_width="80dp"
         android:layout_height="35dp"
         android:background="?selectableItemBackgroundBorderless"
         android:gravity="left"
+        android:orientation="horizontal"
+        android:layout_below="@+id/trainSelector"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/trainSelector">
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:id="@+id/button_switchF1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/trainSelector"
+            android:background="?selectableItemBackgroundBorderless"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <com.github.zagum.switchicon.SwitchIconView
+                android:id="@+id/switchIconViewF1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:padding="0dp"
+                app:si_animation_duration="500"
+                app:si_disabled_alpha=".5"
+                app:si_disabled_color="#b7b7b7"
+                app:si_enabled="false"
+                app:si_no_dash="true"
+                app:si_tint_color="@color/colorAccent"
+                app:srcCompat="@drawable/ic_power" />
+
+            <TextView
+                android:id="@+id/textViewF1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="F1"
+                android:textSize="24sp" />
+
+        </LinearLayout>
 
         <com.github.zagum.switchicon.SwitchIconView
             android:id="@+id/switchIconViewF1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
             android:layout_gravity="left"
             android:padding="0dp"
             app:si_animation_duration="500"
@@ -47,7 +91,7 @@
 
         <TextView
             android:id="@+id/textViewF1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="F1"
@@ -57,16 +101,49 @@
 
     <LinearLayout
         android:id="@+id/button_switchF2"
-        android:orientation="horizontal"
         android:layout_width="80dp"
         android:layout_height="35dp"
-        android:background="?selectableItemBackgroundBorderless"
-        android:gravity="left"
-        android:layout_below="@+id/button_switchF1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/button_switchF1"
-        android:layout_alignEnd="@+id/button_switchF1">
+        android:layout_below="@+id/button_switchF1"
+        android:background="?selectableItemBackgroundBorderless"
+        android:gravity="left"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/button_switchF2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/button_switchF1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <com.github.zagum.switchicon.SwitchIconView
+                android:id="@+id/switchIconViewF2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:padding="0dp"
+                app:si_animation_duration="500"
+                app:si_disabled_alpha=".5"
+                app:si_disabled_color="#b7b7b7"
+                app:si_enabled="false"
+                app:si_no_dash="true"
+                app:si_tint_color="@color/colorAccent"
+                app:srcCompat="@drawable/ic_power" />
+
+            <TextView
+                android:id="@+id/textViewF2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="F2"
+                android:textSize="24sp" />
+
+        </LinearLayout>
 
         <com.github.zagum.switchicon.SwitchIconView
             android:id="@+id/switchIconViewF2"
@@ -84,11 +161,11 @@
 
         <TextView
             android:id="@+id/textViewF2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="F2"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -121,7 +198,7 @@
 
         <TextView
             android:id="@+id/textViewF3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="F3"
@@ -158,11 +235,11 @@
 
         <TextView
             android:id="@+id/textViewF4"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="F4"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -195,7 +272,7 @@
 
         <TextView
             android:id="@+id/textViewF5"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="F5"
@@ -232,7 +309,7 @@
 
         <TextView
             android:id="@+id/textViewF6"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="F6"
@@ -270,7 +347,7 @@
 
         <TextView
             android:id="@+id/textViewF7"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="F7"
@@ -307,7 +384,7 @@
 
         <TextView
             android:id="@+id/textViewF8"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="F8"
@@ -315,119 +392,56 @@
 
     </LinearLayout>
 
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button_switchF2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/button_F9"
-        android:textOn="F9"
-        android:textOff="F9"/>
+    <LinearLayout
+        android:id="@+id/button_switchLight"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/switch_direction"
+        android:layout_alignStart="@+id/switch_direction"
+        android:layout_below="@+id/trainSelector"
+        android:background="?selectableItemBackgroundBorderless"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_F9"
-        android:layout_alignLeft="@+id/button_F9"
-        android:layout_alignStart="@+id/button_F9"
-        android:id="@+id/button_F10"
-        android:textOn="F10"
-        android:textOff="F10"/>
+        <com.github.zagum.switchicon.SwitchIconView
+            android:id="@+id/switchIconViewLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".5"
+            app:si_disabled_color="#b7b7b7"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:si_tint_color="#ffe600"
+            app:srcCompat="@drawable/ic_lightbulb" />
 
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_F10"
-        android:layout_alignLeft="@+id/button_F10"
-        android:layout_alignStart="@+id/button_F10"
-        android:id="@+id/button_F11"
-        android:textOn="F11"
-        android:textOff="F11"/>
+        <TextView
+            android:id="@+id/textViewLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Licht"
+            android:textSize="24sp" />
 
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_F11"
-        android:layout_alignLeft="@+id/button_F11"
-        android:layout_alignStart="@+id/button_F11"
-        android:id="@+id/button_F12"
-        android:textOn="F12"
-        android:textOff="F12"/>
-
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_F12"
-        android:layout_alignLeft="@+id/button_F12"
-        android:layout_alignStart="@+id/button_F12"
-        android:id="@+id/button_F13"
-        android:textOn="F13"
-        android:textOff="F13"/>
-
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_F13"
-        android:layout_alignLeft="@+id/button_F13"
-        android:layout_alignStart="@+id/button_F13"
-        android:id="@+id/button_F14"
-        android:textOn="F14"
-        android:textOff="F14"/>
-
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_F14"
-        android:layout_alignLeft="@+id/button_F14"
-        android:layout_alignStart="@+id/button_F14"
-        android:id="@+id/button_F15"
-        android:textOn="F15"
-        android:textOff="F15"/>
-
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_F15"
-        android:layout_alignLeft="@+id/button_F15"
-        android:layout_alignStart="@+id/button_F15"
-        android:id="@+id/button_F16"
-        android:textOn="F16"
-        android:textOff="F16"/>
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/trainSelector"
-        android:layout_marginTop="14dp"
-        android:layout_below="@+id/connectionStatus"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <android.widget.VerticalSeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="wrap_content"
-        android:layout_height="180dp"
-        android:layout_below="@+id/button_F11"
-        android:layout_centerHorizontal="true" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/speedTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_switchLight"
-        android:layout_marginTop="13dp"
-        android:text="0"
+        android:layout_centerInParent="true"
         android:layout_centerVertical="true"
-        android:layout_centerInParent="true"/>
+        android:layout_marginTop="13dp"
+        android:text="0" />
+
+    <android.widget.VerticalSeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"
+        android:layout_below="@+id/speedTextView"
+        android:layout_centerHorizontal="true" />
 
     <io.ghyeok.stickyswitch.widget.StickySwitch
         android:id="@+id/switch_direction"
@@ -448,35 +462,282 @@
         android:layout_centerHorizontal="true"/>
 
     <LinearLayout
-        android:id="@+id/button_switchLight"
-        android:orientation="vertical"
+        android:id="@+id/button_switchF9"
         android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_height="35dp"
         android:background="?selectableItemBackgroundBorderless"
-        android:gravity="center"
-        android:layout_above="@+id/button_F11"
-        android:layout_centerHorizontal="true">
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:layout_below="@+id/trainSelector"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
 
         <com.github.zagum.switchicon.SwitchIconView
-            android:id="@+id/switchIconViewLight"
+            android:id="@+id/switchIconViewF9"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="8dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:padding="0dp"
             app:si_animation_duration="500"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
             app:si_no_dash="true"
-            app:si_tint_color="#ffe600"
-            app:srcCompat="@drawable/ic_lightbulb"/>
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
 
         <TextView
-            android:id="@+id/textViewLight"
-            android:layout_width="wrap_content"
+            android:id="@+id/textViewF9"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Licht"
-            android:textSize="24sp"/>
+            android:layout_gravity="center"
+            android:text="F9"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_switchF10"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:layout_below="@+id/button_switchF9"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <com.github.zagum.switchicon.SwitchIconView
+            android:id="@+id/switchIconViewF10"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:padding="0dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".5"
+            app:si_disabled_color="#b7b7b7"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
+
+        <TextView
+            android:id="@+id/textViewF10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="F10"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_switchF11"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:layout_below="@+id/button_switchF10"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <com.github.zagum.switchicon.SwitchIconView
+            android:id="@+id/switchIconViewF11"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:padding="0dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".5"
+            app:si_disabled_color="#b7b7b7"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
+
+        <TextView
+            android:id="@+id/textViewF11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="F11"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_switchF12"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:layout_below="@+id/button_switchF11"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <com.github.zagum.switchicon.SwitchIconView
+            android:id="@+id/switchIconViewF12"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:padding="0dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".5"
+            app:si_disabled_color="#b7b7b7"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
+
+        <TextView
+            android:id="@+id/textViewF12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="F12"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_switchF13"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:layout_below="@+id/button_switchF12"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <com.github.zagum.switchicon.SwitchIconView
+            android:id="@+id/switchIconViewF13"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:padding="0dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".5"
+            app:si_disabled_color="#b7b7b7"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
+
+        <TextView
+            android:id="@+id/textViewF13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="F13"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_switchF14"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:layout_below="@+id/button_switchF13"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <com.github.zagum.switchicon.SwitchIconView
+            android:id="@+id/switchIconViewF14"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:padding="0dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".5"
+            app:si_disabled_color="#b7b7b7"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
+
+        <TextView
+            android:id="@+id/textViewF14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="F14"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_switchF15"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:layout_below="@+id/button_switchF14"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <com.github.zagum.switchicon.SwitchIconView
+            android:id="@+id/switchIconViewF15"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:padding="0dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".5"
+            app:si_disabled_color="#b7b7b7"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
+
+        <TextView
+            android:id="@+id/textViewF15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="F15"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_switchF16"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:layout_below="@+id/button_switchF15"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <com.github.zagum.switchicon.SwitchIconView
+            android:id="@+id/switchIconViewF16"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:padding="0dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".5"
+            app:si_disabled_color="#b7b7b7"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
+
+        <TextView
+            android:id="@+id/textViewF16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="F16"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
