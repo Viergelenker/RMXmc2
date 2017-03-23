@@ -135,6 +135,7 @@ public class ControllerActivity extends AppCompatActivity {
         connectionStatus = (TextView) findViewById(R.id.connectionStatus);
         speed = (TextView) findViewById(R.id.speedTextView);
         trainSelector = (Spinner) findViewById(R.id.trainSelector);
+        switchDirection = (StickySwitch) findViewById(R.id.switch_direction);
         trainSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -151,6 +152,12 @@ public class ControllerActivity extends AppCompatActivity {
                     trainMode0to7Handler.sendEmptyMessage(currentTrain);
                     trainMode8to15Handler.sendEmptyMessage(currentTrain);
                     trainMode16to23Handler.sendEmptyMessage(currentTrain);
+
+                    if (DataToGuiInterface.getDirection(currentTrain) == 1) {
+                        switchDirection.setDirection(StickySwitch.Direction.LEFT);
+                    } else if (DataToGuiInterface.getDirection(currentTrain) == 0) {
+                        switchDirection.setDirection(StickySwitch.Direction.RIGHT);
+                    }
 
                     // Load the current mapping of the selected profile and train
                     SharedPreferences mapping = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
@@ -189,7 +196,6 @@ public class ControllerActivity extends AppCompatActivity {
          * The following Listeners detect button changes, made by the user and synchronizes the changes with the server
          */
 
-        switchDirection = (StickySwitch) findViewById(R.id.switch_direction);
         switchDirection.setOnSelectedChangeListener(new StickySwitch.OnSelectedChangeListener() {
             @Override
             public void onSelectedChange(@NotNull StickySwitch.Direction direction, @NotNull String text) {
