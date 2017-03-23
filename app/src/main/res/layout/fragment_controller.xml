@@ -27,9 +27,9 @@
         android:layout_height="35dp"
         android:background="?selectableItemBackgroundBorderless"
         android:gravity="left"
-        android:layout_below="@+id/trainSelector"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/trainSelector">
 
         <com.github.zagum.switchicon.SwitchIconView
             android:id="@+id/switchIconViewF1"
@@ -42,15 +42,16 @@
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
             app:si_no_dash="true"
-            app:si_tint_color="#ffe600"
-            app:srcCompat="@drawable/ic_cloud" />
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
 
         <TextView
             android:id="@+id/textViewF1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F1" />
+            android:text="F1"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -78,15 +79,16 @@
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
             app:si_no_dash="true"
-            app:si_tint_color="#ffe600"
-            app:srcCompat="@drawable/ic_cloud" />
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
 
         <TextView
             android:id="@+id/textViewF2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F2" />
+            android:text="F2"
+            android:textSize="24sp"/>
 
     </LinearLayout>
 
@@ -114,15 +116,16 @@
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
             app:si_no_dash="true"
-            app:si_tint_color="#ffe600"
-            app:srcCompat="@drawable/ic_cloud" />
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
 
         <TextView
             android:id="@+id/textViewF3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F3" />
+            android:text="F3"
+            android:textSize="24sp"/>
 
     </LinearLayout>
 
@@ -150,15 +153,16 @@
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
             app:si_no_dash="true"
-            app:si_tint_color="#ffe600"
-            app:srcCompat="@drawable/ic_cloud" />
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
 
         <TextView
             android:id="@+id/textViewF4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F4" />
+            android:text="F4"
+            android:textSize="24sp"/>
 
     </LinearLayout>
 
@@ -186,15 +190,16 @@
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
             app:si_no_dash="true"
-            app:si_tint_color="#ffe600"
-            app:srcCompat="@drawable/ic_cloud" />
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
 
         <TextView
             android:id="@+id/textViewF5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F5" />
+            android:text="F5"
+            android:textSize="24sp"/>
 
     </LinearLayout>
 
@@ -222,15 +227,16 @@
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
             app:si_no_dash="true"
-            app:si_tint_color="#ffe600"
-            app:srcCompat="@drawable/ic_cloud" />
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
 
         <TextView
             android:id="@+id/textViewF6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F6" />
+            android:text="F6"
+            android:textSize="24sp"/>
 
     </LinearLayout>
 
@@ -259,15 +265,16 @@
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
             app:si_no_dash="true"
-            app:si_tint_color="#ffe600"
-            app:srcCompat="@drawable/ic_cloud" />
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
 
         <TextView
             android:id="@+id/textViewF7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F7" />
+            android:text="F7"
+            android:textSize="24sp"/>
 
     </LinearLayout>
 
@@ -295,15 +302,16 @@
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
             app:si_no_dash="true"
-            app:si_tint_color="#ffe600"
-            app:srcCompat="@drawable/ic_cloud" />
+            app:si_tint_color="@color/colorAccent"
+            app:srcCompat="@drawable/ic_power" />
 
         <TextView
             android:id="@+id/textViewF8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F8" />
+            android:text="F8"
+            android:textSize="24sp"/>
 
     </LinearLayout>
 
@@ -467,7 +475,8 @@
             android:id="@+id/textViewLight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Licht"/>
+            android:text="Licht"
+            android:textSize="24sp"/>
 
     </LinearLayout>
 
