@@ -214,14 +214,18 @@ public class ControllerActivity extends AppCompatActivity {
         button_switchF1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
-                if (UtilsByte.bitIsSet(modeByte, 1)) {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 1));
-                    switchIconF1.setIconEnabled(false);
-                } else {
-                    DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 1));
-                    switchIconF1.setIconEnabled(true);
-                }
+
+                if (connectionStatus.getText() == "Verbunden") {
+
+                    byte modeByte = DataToGuiInterface.getModeF0F7(currentTrain);
+                    if (UtilsByte.bitIsSet(modeByte, 1)) {
+                        DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToZero(modeByte, 1));
+                        switchIconF1.setIconEnabled(false);
+                    } else {
+                        DataToGuiInterface.setModeF0F7(currentTrain, UtilsByte.setToOne(modeByte, 1));
+                        switchIconF1.setIconEnabled(true);
+                    }
+                } else noConnectionMethod();
             }
         });
 
@@ -1067,6 +1071,18 @@ public class ControllerActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    // metho to correctly stop connection Thread and forward user to MainActivity
+    // TODO: new Activity or popup with detailed info
+    private void noConnectionMethod() {
+        stoppThread();
+        stopRepeatingTask();
+        DataToGuiInterface.terminateThread();
+        Intent intent = new Intent(ControllerActivity.this,
+                MainActivity.class);
+        ControllerActivity.this.startActivity(intent);
+        finish();
     }
 
     public static List<String> getErrorList() {
