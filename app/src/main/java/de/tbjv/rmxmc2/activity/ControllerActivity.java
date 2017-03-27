@@ -104,7 +104,7 @@ public class ControllerActivity extends AppCompatActivity {
     private static TrainMode8to15Handler trainMode8to15Handler = new TrainMode8to15Handler();
     private static TrainMode16to23Handler trainMode16to23Handler = new TrainMode16to23Handler();
 
-    private static int currentTrain = -1;
+    public static int currentTrain = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -489,36 +489,6 @@ public class ControllerActivity extends AppCompatActivity {
         switchIconF16 = (SwitchIconView) findViewById(R.id.switchIconViewF16);
         button_switchF16 = findViewById(R.id.button_switchF16);
         button_switchF16.setOnClickListener(listener);
-    }
-
-    private void setMapping(int keyToMap, int function) {
-
-        if (currentTrain >= 0) {
-
-            // Add a zero to the function number so the final string has always the same size
-            String functionNumberAsString;
-            if (function < 10) {
-                functionNumberAsString = "0";
-                functionNumberAsString = functionNumberAsString + String.valueOf(function);
-            } else functionNumberAsString = String.valueOf(function);
-
-            List<String> functionList;
-            functionList = splitMappingStringIntoList(functionMappingString);
-
-            // Now the value of the new function is set within the array list, at the corresponding
-            // index of the keyToMap
-            functionList.set(keyToMap, functionNumberAsString);
-
-            SharedPreferences settings = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putString(String.valueOf(currentTrain), functionList.toString().replaceAll("\\W", ""));
-
-            // and commit the edits (i used apply() instead of commit, because this way it gets handled
-            // in the background whereas commit() blocks the thread)
-            editor.apply();
-
-            functionMappingString = functionList.toString().replaceAll("\\W", "");
-        }
     }
 
     private List<String> splitMappingStringIntoList(String functionMappingString) {

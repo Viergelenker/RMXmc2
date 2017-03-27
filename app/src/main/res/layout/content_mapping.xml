@@ -13,6 +13,17 @@
     tools:context="de.tbjv.rmxmc2.activity.MappingActivity"
     tools:showIn="@layout/activity_mapping">
 
+    <TextView
+        android:id="@+id/mappingDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Drücke eine Taste auf der Mobile Control II, der Du eine Funktion zuweisen möchtest."
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
     <LinearLayout
         android:id="@+id/button_F1"
         android:layout_width="80dp"
@@ -35,17 +46,6 @@
             android:textSize="28sp" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/mappingDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="Drücke eine Taste auf der Mobile Control II, der Du eine Funktion zuweisen möchtest."
-        android:textAlignment="center"
-        android:textSize="18sp" />
 
     <LinearLayout
         android:id="@+id/button_F2"
@@ -399,7 +399,7 @@
             android:layout_gravity="center"
             android:text="Richtung"
             android:textAlignment="center"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
