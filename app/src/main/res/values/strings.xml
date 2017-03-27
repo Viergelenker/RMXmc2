@@ -5,5 +5,6 @@
     <string name="title_activity_controller">Steuerung</string>
     <string name="togglebutton">ToggleButton</string>
     <string name="DirectionBack"><![CDATA[<]]></string>
+    <string name="title_activity_mapping">Tastenzuordnung</string>
 
 </resources>
