@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">RMXmc2</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_mapping">Tastenzuordnung</string>
     <string name="title_activity_add_profile">Neues Profil</string>
     <string name="title_activity_controller">Steuerung</string>
     <string name="togglebutton">ToggleButton</string>
