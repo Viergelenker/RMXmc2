@@ -444,10 +444,9 @@
         android:background="@drawable/shape_rounded"
         android:gravity="right"
         android:orientation="horizontal"
-        android:layout_below="@+id/button_switchF9"
+        android:layout_below="@+id/button_switchF1"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="2dp">
+        android:layout_alignParentEnd="true">
 
         <com.github.zagum.switchicon.SwitchIconView
             android:id="@+id/switchIconViewF10"
@@ -480,10 +479,9 @@
         android:background="@drawable/shape_rounded"
         android:gravity="right"
         android:orientation="horizontal"
-        android:layout_below="@+id/button_switchF10"
+        android:layout_below="@+id/button_switchF2"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="2dp">
+        android:layout_alignParentEnd="true">
 
         <com.github.zagum.switchicon.SwitchIconView
             android:id="@+id/switchIconViewF11"
@@ -516,10 +514,9 @@
         android:background="@drawable/shape_rounded"
         android:gravity="right"
         android:orientation="horizontal"
-        android:layout_below="@+id/button_switchF11"
+        android:layout_below="@+id/button_switchF3"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="2dp">
+        android:layout_alignParentEnd="true">
 
         <com.github.zagum.switchicon.SwitchIconView
             android:id="@+id/switchIconViewF12"
@@ -552,10 +549,9 @@
         android:background="@drawable/shape_rounded"
         android:gravity="right"
         android:orientation="horizontal"
-        android:layout_below="@+id/button_switchF12"
+        android:layout_below="@+id/button_switchF4"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="2dp">
+        android:layout_alignParentEnd="true">
 
         <com.github.zagum.switchicon.SwitchIconView
             android:id="@+id/switchIconViewF13"
@@ -588,10 +584,9 @@
         android:background="@drawable/shape_rounded"
         android:gravity="right"
         android:orientation="horizontal"
-        android:layout_below="@+id/button_switchF13"
+        android:layout_below="@+id/button_switchF5"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="2dp">
+        android:layout_alignParentEnd="true">
 
         <com.github.zagum.switchicon.SwitchIconView
             android:id="@+id/switchIconViewF14"
@@ -624,10 +619,9 @@
         android:background="@drawable/shape_rounded"
         android:gravity="right"
         android:orientation="horizontal"
-        android:layout_below="@+id/button_switchF14"
+        android:layout_below="@+id/button_switchF6"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="2dp">
+        android:layout_alignParentEnd="true">
 
         <com.github.zagum.switchicon.SwitchIconView
             android:id="@+id/switchIconViewF15"
@@ -660,10 +654,9 @@
         android:background="@drawable/shape_rounded"
         android:gravity="right"
         android:orientation="horizontal"
-        android:layout_below="@+id/button_switchF15"
+        android:layout_below="@+id/button_switchF7"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="2dp">
+        android:layout_alignParentEnd="true">
 
         <com.github.zagum.switchicon.SwitchIconView
             android:id="@+id/switchIconViewF16"

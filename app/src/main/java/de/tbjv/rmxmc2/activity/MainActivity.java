@@ -108,8 +108,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * loads available profiles and shows them within profileListView
+     */
     private void loadAndPublishProfiles() {
-        // Load available profiles...
+
         ArrayList<String> profiles = new ArrayList<>(DataToGuiInterface.generateConfigNameList(getBaseContext()));
         ArrayAdapter<String> profileListAdapter = new ArrayAdapter<>(
                 getBaseContext(),
@@ -118,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
                 profiles
         );
 
-        // and show them within the listView
         profileListView = (ListView) findViewById(R.id.profilesListView);
         profileListView.setAdapter(profileListAdapter);
 
@@ -133,4 +135,8 @@ public class MainActivity extends AppCompatActivity {
         loadAndPublishProfiles();
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }
