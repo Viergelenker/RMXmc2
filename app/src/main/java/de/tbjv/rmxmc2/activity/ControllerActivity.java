@@ -937,7 +937,9 @@ public class ControllerActivity extends AppCompatActivity {
 
         @Override
         public void onPositionChanged(int position) {
-            DataToGuiInterface.setRunningNotch(currentTrain, throttleScale.positionToStep(position));
+            if (currentTrain >= 0) {
+                DataToGuiInterface.setRunningNotch(currentTrain, throttleScale.positionToStep(position));
+            }
         }
     };
 
