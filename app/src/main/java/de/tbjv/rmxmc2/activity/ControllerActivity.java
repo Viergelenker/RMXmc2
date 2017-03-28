@@ -1013,52 +1013,7 @@ public class ControllerActivity extends AppCompatActivity {
 
                 if (DataToGuiInterface.getErrorList().size() > 0) {
 
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-
-                            final Dialog dialog = new Dialog(
-                                    ControllerActivity.this);
-                            dialog.setContentView(R.layout.dialog_error);
-                            dialog.setTitle("Verbindungsfehler");
-                            dialog.setCanceledOnTouchOutside(false);
-
-                            TextView txtSubTitle = (TextView) dialog
-                                    .findViewById(R.id.errorView);
-                            txtSubTitle.setText(readArray());
-                            Button closeButton = (Button) dialog
-                                    .findViewById(R.id.close);
-                            closeButton
-                                    .setOnClickListener(new View.OnClickListener() {
-
-                                        @Override
-                                        public void onClick(View v) {
-                                            ControllerActivity
-                                                    .setActive(true);
-                                            setActive(true);
-                                            dialog.dismiss();
-                                            noConnectionMethod();
-
-                                        }
-                                    });
-
-                            dialog.show();
-
-                        }
-
-                        private CharSequence readArray() {
-                            String string = "";
-                            errorList = Connection.getErrorList();
-                            for (int i = 0; i < getErrorList().size(); i++) {
-                                string = string
-                                        + (Integer.toString(i + 1) + ": "
-                                        + getErrorList().get(i) + System
-                                        .getProperty("line.separator"));
-                            }
-                            Connection.clearErrorList();
-                            return string;
-
-                        }
-                    });
+                    noConnectionMethod();
                 }
 
                 try {
@@ -1071,18 +1026,69 @@ public class ControllerActivity extends AppCompatActivity {
     }
 
     /**
-     * handles connection Errors
-     * TODO: popup Edit
+     * handles connection Errors and displays dialog with info
      */
     private void noConnectionMethod() {
-        stoppThread();
-        stopRepeatingTask();
-        DataToGuiInterface.terminateThread();
-        currentTrain = -1;
-        Intent intent = new Intent(ControllerActivity.this,
-                MainActivity.class);
-        ControllerActivity.this.startActivity(intent);
-        finish();
+
+        runOnUiThread(new Runnable() {
+            public void run() {
+
+                final Dialog dialog = new Dialog(
+                        ControllerActivity.this);
+                dialog.setContentView(R.layout.dialog_error);
+                dialog.setTitle("Verbindungsfehler");
+                dialog.setCanceledOnTouchOutside(false);
+
+                TextView txtDescription = (TextView) dialog
+                        .findViewById(R.id.dialogDescription);
+
+                TextView txtSubTitle = (TextView) dialog
+                        .findViewById(R.id.errorView);
+                txtSubTitle.setText(readArray());
+
+                TextView txtDescription2 = (TextView) dialog
+                        .findViewById(R.id.dialogDescription2);
+                Button closeButton = (Button) dialog
+                        .findViewById(R.id.close);
+                closeButton
+                        .setOnClickListener(new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
+                                ControllerActivity
+                                        .setActive(true);
+                                setActive(true);
+                                dialog.dismiss();
+                                stoppThread();
+                                stopRepeatingTask();
+                                DataToGuiInterface.terminateThread();
+                                currentTrain = -1;
+                                Intent intent = new Intent(ControllerActivity.this,
+                                        MainActivity.class);
+                                ControllerActivity.this.startActivity(intent);
+                                finish();
+
+                            }
+                        });
+
+                dialog.show();
+
+            }
+
+            private CharSequence readArray() {
+                String string = "";
+                errorList = Connection.getErrorList();
+                for (int i = 0; i < getErrorList().size(); i++) {
+                    string = string
+                            + (Integer.toString(i + 1) + ": "
+                            + getErrorList().get(i) + System
+                            .getProperty("line.separator"));
+                }
+                Connection.clearErrorList();
+                return string;
+
+            }
+        });
     }
 
     public static List<String> getErrorList() {
