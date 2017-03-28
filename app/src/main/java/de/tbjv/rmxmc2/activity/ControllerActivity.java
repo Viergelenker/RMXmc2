@@ -1093,4 +1093,14 @@ public class ControllerActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onResume()
+    {  // After a pause OR at startup
+        super.onResume();
+        // Load the current mapping of the selected profile and train
+        SharedPreferences mapping = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
+        // The second string is the value to return if this preference does not exist.
+        functionMappingString = mapping.getString(String.valueOf(currentTrain), "00010203");
+    }
 }
