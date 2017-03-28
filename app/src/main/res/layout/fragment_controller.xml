@@ -31,7 +31,7 @@
 
     <LinearLayout
         android:id="@+id/button_switchF1"
-        android:layout_width="80dp"
+        android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
         android:gravity="left"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -123,7 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -161,7 +161,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -199,7 +199,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -237,7 +237,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -276,7 +276,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -314,7 +314,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -334,7 +334,7 @@
 
     <LinearLayout
         android:id="@+id/button_switchLight"
-        android:layout_width="80dp"
+        android:layout_width="85dp"
         android:layout_height="80dp"
         android:background="@drawable/shape_rounded"
         android:gravity="center"
@@ -350,7 +350,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -386,7 +386,7 @@
 
     <io.ghyeok.stickyswitch.widget.StickySwitch
         android:id="@+id/switch_direction"
-        android:layout_width="80dp"
+        android:layout_width="85dp"
         android:layout_height="60dp"
         app:iconPadding="8dp"
         app:iconSize="25dp"
@@ -404,15 +404,14 @@
 
     <LinearLayout
         android:id="@+id/button_switchF9"
-        android:layout_width="80dp"
+        android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
         android:gravity="right"
         android:orientation="horizontal"
         android:layout_below="@+id/trainSelector"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="2dp">
+        android:layout_alignParentEnd="true">
 
         <com.github.zagum.switchicon.SwitchIconView
             android:id="@+id/switchIconViewF9"
@@ -420,7 +419,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -440,7 +439,7 @@
 
     <LinearLayout
         android:id="@+id/button_switchF10"
-        android:layout_width="80dp"
+        android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
         android:gravity="right"
@@ -456,7 +455,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -476,7 +475,7 @@
 
     <LinearLayout
         android:id="@+id/button_switchF11"
-        android:layout_width="80dp"
+        android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
         android:gravity="right"
@@ -492,7 +491,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -512,7 +511,7 @@
 
     <LinearLayout
         android:id="@+id/button_switchF12"
-        android:layout_width="80dp"
+        android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
         android:gravity="right"
@@ -528,7 +527,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -548,7 +547,7 @@
 
     <LinearLayout
         android:id="@+id/button_switchF13"
-        android:layout_width="80dp"
+        android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
         android:gravity="right"
@@ -564,7 +563,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -584,7 +583,7 @@
 
     <LinearLayout
         android:id="@+id/button_switchF14"
-        android:layout_width="80dp"
+        android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
         android:gravity="right"
@@ -600,7 +599,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -620,7 +619,7 @@
 
     <LinearLayout
         android:id="@+id/button_switchF15"
-        android:layout_width="80dp"
+        android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
         android:gravity="right"
@@ -636,7 +635,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
@@ -656,7 +655,7 @@
 
     <LinearLayout
         android:id="@+id/button_switchF16"
-        android:layout_width="80dp"
+        android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
         android:gravity="right"
@@ -672,7 +671,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:padding="0dp"
-            app:si_animation_duration="500"
+            app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
             app:si_disabled_color="#b7b7b7"
             app:si_enabled="false"
