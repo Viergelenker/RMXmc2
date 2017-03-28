@@ -48,6 +48,8 @@ public class ControllerActivity extends AppCompatActivity {
     private static TextView speed;
     private static Spinner trainSelector;
     private static boolean changedFromUser = false;
+    public static String trainName;
+    public static ArrayList<String> trainList;
 
     private static SwitchIconView switchIconLight;
     private static SwitchIconView switchIconF1;
@@ -129,6 +131,8 @@ public class ControllerActivity extends AppCompatActivity {
 
                 if (currentTrain >= 0) {
                     currentTrain = i + 1;
+
+                    trainName = trainList.get(currentTrain-1).toString();
 
                     throttleScale = new ThrottleScale(0, DataToGuiInterface.getMaxRunningNotch(currentTrain) + 1);
                     seekBar1.setMax(DataToGuiInterface.getMaxRunningNotch(currentTrain));
@@ -596,7 +600,7 @@ public class ControllerActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message message) {
 
-            ArrayList<String> trainList = DataToGuiInterface.generateTrainNameList();
+            trainList = DataToGuiInterface.generateTrainNameList();
             ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.spinner_list_item, trainList);
             //specify the layout to appear list items
             adapter.setDropDownViewResource(R.layout.spinner_list_item);
@@ -605,6 +609,7 @@ public class ControllerActivity extends AppCompatActivity {
             //set the currentTrain if the list isn't empty
             if (!trainList.isEmpty()) {
                 currentTrain = 0;
+                trainName = trainList.get(currentTrain).toString();
             }
         }
     }

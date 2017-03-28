@@ -55,6 +55,8 @@ public class MappingActivity extends AppCompatActivity {
         initializeObjects();
         hideButtons(true);
 
+        mappingDescription.setText("Drücke eine Taste auf der Mobile Control II, der Du eine Funktion für \"" + ControllerActivity.trainName + "\" zuweisen möchtest.");
+
         View.OnClickListener listener = new View.OnClickListener() {
 
             @Override
@@ -64,7 +66,6 @@ public class MappingActivity extends AppCompatActivity {
 
                     switch (v.getId()) {
                         case R.id.button_F1:
-                            System.out.println("F1 gedrückt");
                             setMapping(ControllerActivity.currentTrain, keyToMap, 1);
                             break;
                         case R.id.button_F2:
@@ -297,7 +298,7 @@ public class MappingActivity extends AppCompatActivity {
         }
         hideButtons(true);
         mappingStarted = false;
-        mappingDescription.setText("Die Tastenbelegung wurde erfolgreich übernommen!\r\n\nDrücke eine weitere Taste auf der Mobile Control II, der Du eine Funktion zuweisen möchtest.");
+        mappingDescription.setText("Die Tastenbelegung wurde erfolgreich für \"" + ControllerActivity.trainName + "\" übernommen!\r\n\nDrücke eine weitere Taste auf der Mobile Control II, der Du eine Funktion zuweisen möchtest.");
     }
 
     private List<String> splitMappingStringIntoList(String functionMappingString) {
