@@ -546,6 +546,11 @@ public class ControllerActivity extends AppCompatActivity {
                 DataToGuiInterface.setRunningNotch(currentTrain, DataToGuiInterface.getRunningNotch(currentTrain) + 1);
             }
         }
+        if (functionValueOfKey == 19) {
+            if (DataToGuiInterface.getDirection(currentTrain) == 0) {
+                DataToGuiInterface.setDirection(currentTrain, (byte) 1);
+            } else DataToGuiInterface.setDirection(currentTrain, (byte) 0);
+        }
     }
 
     @Override

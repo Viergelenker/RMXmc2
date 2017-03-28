@@ -26,7 +26,6 @@ public class MappingActivity extends AppCompatActivity {
 
     private static boolean mappingStarted;
     public int keyToMap;
-    private String functionMappingString;
 
     private TextView mappingDescription;
     private View button_F1;
@@ -68,58 +67,58 @@ public class MappingActivity extends AppCompatActivity {
                     switch (v.getId()) {
                         case R.id.button_F1:
                             System.out.println("F1 gedrückt");
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 1);
                             break;
                         case R.id.button_F2:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 2);
                             break;
                         case R.id.button_F3:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 3);
                             break;
                         case R.id.button_F4:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 4);
                             break;
                         case R.id.button_F5:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 5);
                             break;
                         case R.id.button_F6:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 6);
                             break;
                         case R.id.button_F7:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 7);
                             break;
                         case R.id.button_F8:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 8);
                             break;
                         case R.id.button_F9:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 9);
                             break;
                         case R.id.button_F10:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 10);
                             break;
                         case R.id.button_F11:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 11);
                             break;
                         case R.id.button_F12:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 12);
                             break;
                         case R.id.button_F13:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 13);
                             break;
                         case R.id.button_F14:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 14);
                             break;
                         case R.id.button_F15:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 15);
                             break;
                         case R.id.button_F16:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 16);
                             break;
                         case R.id.button_Direction:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 19);
                             break;
                         case R.id.button_Light:
-                            setMapping(keyToMap, 01);
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 0);
                             break;
 
                         default:
@@ -261,7 +260,7 @@ public class MappingActivity extends AppCompatActivity {
         }
     }
 
-    public void setMapping(int keyToMap, int function) {
+    public void setMapping(int currentTrain, int keyToMap, int function) {
 
         if (ControllerActivity.currentTrain >= 0) {
 
@@ -271,6 +270,11 @@ public class MappingActivity extends AppCompatActivity {
                 functionNumberAsString = "0";
                 functionNumberAsString = functionNumberAsString + String.valueOf(function);
             } else functionNumberAsString = String.valueOf(function);
+
+            // Load the current mapping of the selected profile and train
+            SharedPreferences mapping = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
+            // The second string is the value to return if this preference does not exist.
+            String functionMappingString = mapping.getString(String.valueOf(currentTrain), "00010203");
 
             List<String> functionList;
             functionList = splitMappingStringIntoList(functionMappingString);
@@ -286,8 +290,6 @@ public class MappingActivity extends AppCompatActivity {
             // and commit the edits (i used apply() instead of commit, because this way it gets handled
             // in the background whereas commit() blocks the thread)
             editor.apply();
-
-            functionMappingString = functionList.toString().replaceAll("\\W", "");
         }
         hideButtons(true);
         mappingStarted = false;
