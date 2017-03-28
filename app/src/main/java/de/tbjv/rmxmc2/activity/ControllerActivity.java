@@ -868,6 +868,7 @@ public class ControllerActivity extends AppCompatActivity {
         stoppThread();
         stopRepeatingTask();
         DataToGuiInterface.terminateThread();
+        currentTrain = -1;
         Intent intent = new Intent(ControllerActivity.this,
                 MainActivity.class);
         ControllerActivity.this.startActivity(intent);
@@ -1061,6 +1062,7 @@ public class ControllerActivity extends AppCompatActivity {
         stoppThread();
         stopRepeatingTask();
         DataToGuiInterface.terminateThread();
+        currentTrain = -1;
         Intent intent = new Intent(ControllerActivity.this,
                 MainActivity.class);
         ControllerActivity.this.startActivity(intent);
