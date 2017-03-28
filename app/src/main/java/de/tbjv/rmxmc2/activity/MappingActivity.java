@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -152,7 +150,7 @@ public class MappingActivity extends AppCompatActivity {
 
 
     /**
-     * casts buttons and fixes null object reference
+     * initializes buttons and fixes null object reference
      */
     private void initializeObjects() {
 
@@ -181,7 +179,7 @@ public class MappingActivity extends AppCompatActivity {
     /**
      * hides all buttons when mapping process has not started yet or is already finished
      *
-     * @param bool wheter buttons should be hidden or visible
+     * @param bool whether buttons should be hidden or visible
      */
     private void hideButtons(boolean bool) {
 
@@ -260,6 +258,12 @@ public class MappingActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * sets mapping (button) for given train and given mc2 key
+     * @param currentTrain
+     * @param keyToMap which button of the mc2 should be used
+     * @param function which button/function should be mapped to mc2 button
+     */
     public void setMapping(int currentTrain, int keyToMap, int function) {
 
         if (ControllerActivity.currentTrain >= 0) {

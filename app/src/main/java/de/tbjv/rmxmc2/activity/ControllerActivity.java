@@ -162,7 +162,7 @@ public class ControllerActivity extends AppCompatActivity {
             }
         });
 
-        // Versucht eine Verbindung herzustellen
+        // tries to connect to RMX server
         DataToComInterface.deleteAllTrains();
         DataToGuiInterface.connect();
 
@@ -490,9 +490,13 @@ public class ControllerActivity extends AppCompatActivity {
         button_switchF16.setOnClickListener(listener);
     }
 
+    /**
+     * Splits the retrieved string and build an array list with it
+     * @param functionMappingString
+     * @return functionList
+     */
     private List<String> splitMappingStringIntoList(String functionMappingString) {
 
-        // Split the retrieved string and build an array list with it
         List<String> functionList = new ArrayList<>();
         int index = 0;
         while (index < functionMappingString.length()) {
@@ -503,6 +507,10 @@ public class ControllerActivity extends AppCompatActivity {
         return functionList;
     }
 
+    /**
+     * gets the mapping (=button) for the given key
+     * @param key of the MC2
+     */
     private void getMapping(int key) {
 
         byte modeByte;
@@ -601,6 +609,9 @@ public class ControllerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * moves the ThrottleWheel to correct position (speed) if trainSpeed is different
+     */
     public static void moveThrottleWheelIfChanged() {
 
         if (currentTrain >= 0) {
@@ -619,6 +630,9 @@ public class ControllerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * moves the SeekBar to correct position (speed) if trainSpeed is different
+     */
     public static void moveSeekbarIfChanged() {
 
         if (DataToGuiInterface.getRunningNotch(currentTrain) != seekBar1.getProgress()) {
@@ -949,7 +963,7 @@ public class ControllerActivity extends AppCompatActivity {
     };
 
     /**
-     * startThread - Startet den ErrorThread
+     * starts ErrorThread
      */
     protected void startThread() {
 
@@ -961,7 +975,7 @@ public class ControllerActivity extends AppCompatActivity {
     }
 
     /**
-     * stoppThread - Stopt den ErrorThread
+     * stops ErrorThread
      */
     protected void stoppThread() {
         setActive(false);
@@ -969,7 +983,7 @@ public class ControllerActivity extends AppCompatActivity {
     }
 
     /**
-     * isActive- ob der ErrorThread grade Active ist oder nicht
+     * checks if ErrorThread is active
      *
      * @return boolean
      */
@@ -978,7 +992,7 @@ public class ControllerActivity extends AppCompatActivity {
     }
 
     /**
-     * Setter für die active vom ErrorThread
+     * sets ErrorThread as active
      *
      * @param active
      */
@@ -987,7 +1001,7 @@ public class ControllerActivity extends AppCompatActivity {
     }
 
     /**
-     * ErrorThread für ein Verbindungsaufbau Fehler
+     * creates an errorList with errors that occure while connection
      *
      * @author Arthur Kaul, Tobias Ilg
      */
@@ -1056,8 +1070,10 @@ public class ControllerActivity extends AppCompatActivity {
 
     }
 
-    // metho to correctly stop connection Thread and forward user to MainActivity
-    // TODO: new Activity or popup with detailed info
+    /**
+     * handles connection Errors
+     * TODO: popup Edit
+     */
     private void noConnectionMethod() {
         stoppThread();
         stopRepeatingTask();
