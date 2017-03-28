@@ -17,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import de.ccck.rmxmobile.data_management.DataToGuiInterface;
@@ -26,12 +28,14 @@ public class MainActivity extends AppCompatActivity {
 
     private Context context = this;
     private AdapterView profileListView;
+    private TextView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        profile = (TextView) findViewById(R.id.profile);
         setSupportActionBar(toolbar);
 
         FloatingActionButton addProfile = (FloatingActionButton) findViewById(R.id.addProfile);
@@ -117,12 +121,15 @@ public class MainActivity extends AppCompatActivity {
         // and show them within the listView
         profileListView = (ListView) findViewById(R.id.profilesListView);
         profileListView.setAdapter(profileListAdapter);
+
+        if (profiles.size() == 0) {
+            profile.setText("Es existiert noch kein Profil. \r\nFüge ein neues hinzu, indem Du auf das + klickst.");
+        } else profile.setText("Profile");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
         loadAndPublishProfiles();
     }
 
