@@ -374,17 +374,22 @@
         android:layout_below="@+id/button_switchLight"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="8dp"
         android:text="0" />
 
-    <android.widget.VerticalSeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="wrap_content"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="180dp"
         android:layout_height="180dp"
-        android:layout_below="@+id/speedTextView"
-        android:layout_centerHorizontal="true" />
+        android:progress="0"
+        android:progressDrawable="@drawable/progressbar_states"
+        android:layout_above="@+id/button_switchF8"
+        android:layout_toRightOf="@+id/button_switchF3"
+        android:layout_toEndOf="@+id/button_switchF3" />
 
     <io.ghyeok.stickyswitch.widget.StickySwitch
+        android:layout_marginTop="8dp"
         android:id="@+id/switch_direction"
         android:layout_width="85dp"
         android:layout_height="60dp"
@@ -399,7 +404,7 @@
         app:sliderBackgroundColor="@color/colorPrimary"
         app:switchColor="@color/colorAccent"
         app:textColor="@color/colorPrimary"
-        android:layout_below="@+id/seekBar"
+        android:layout_below="@+id/progressBar"
         android:layout_centerHorizontal="true"/>
 
     <LinearLayout

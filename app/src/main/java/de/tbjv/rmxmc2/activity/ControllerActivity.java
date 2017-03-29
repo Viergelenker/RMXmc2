@@ -16,7 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.SeekBar;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -41,7 +41,7 @@ import io.ghyeok.stickyswitch.widget.StickySwitch;
 public class ControllerActivity extends AppCompatActivity {
 
     private static ThrottleFragment throttleFragment;
-    private static SeekBar seekBar1;
+    private static ProgressBar progressBar;
     private static ThrottleScale throttleScale;
     public static Context context;
     private static TextView connectionStatus;
@@ -135,11 +135,11 @@ public class ControllerActivity extends AppCompatActivity {
                     trainName = trainList.get(currentTrain-1).toString();
 
                     throttleScale = new ThrottleScale(0, DataToGuiInterface.getMaxRunningNotch(currentTrain) + 1);
-                    seekBar1.setMax(DataToGuiInterface.getMaxRunningNotch(currentTrain));
+                    progressBar.setMax(DataToGuiInterface.getMaxRunningNotch(currentTrain));
 
                     // Sets the position of the seekbar and throttle wheel to the running notch of the selected train
                     int trainSpeed = DataToGuiInterface.getRunningNotch(currentTrain);
-                    seekBar1.setProgress(trainSpeed);
+                    progressBar.setProgress(trainSpeed);
                     speed.setText(String.valueOf(trainSpeed));
 
                     trainMode0to7Handler.sendEmptyMessage(currentTrain);
@@ -177,7 +177,7 @@ public class ControllerActivity extends AppCompatActivity {
         stopButtonFragment.setOnStopButtonListener(mStopButtonListener);
 
         // Set up views
-        seekBar1 = (SeekBar) findViewById(R.id.seekBar);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         getSupportFragmentManager().beginTransaction()
                 .add(throttleFragment, "mc2:throttle")
@@ -636,12 +636,12 @@ public class ControllerActivity extends AppCompatActivity {
     }
 
     /**
-     * moves the SeekBar to correct position (speed) if trainSpeed is different
+     * moves the ProgressBar to correct position (speed) if trainSpeed is different
      */
-    public static void moveSeekbarIfChanged() {
+    public static void moveProgressBarIfChanged() {
 
-        if (DataToGuiInterface.getRunningNotch(currentTrain) != seekBar1.getProgress()) {
-            seekBar1.setProgress(DataToGuiInterface.getRunningNotch(currentTrain));
+        if (DataToGuiInterface.getRunningNotch(currentTrain) != progressBar.getProgress()) {
+            progressBar.setProgress(DataToGuiInterface.getRunningNotch(currentTrain));
         }
     }
 
@@ -660,7 +660,7 @@ public class ControllerActivity extends AppCompatActivity {
                 int trainSpeed = DataToGuiInterface.getRunningNotch(currentTrain);
 
                 speed.setText(String.valueOf(trainSpeed));
-                moveSeekbarIfChanged();
+                moveProgressBarIfChanged();
             }
         }
     }
