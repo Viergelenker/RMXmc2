@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (profiles.size() == 0) {
             profile.setText("Es existiert noch kein Profil. \r\nFüge ein neues hinzu, indem Du auf das + klickst.");
-        } else profile.setText("Profile");
+        } else profile.setText(R.string.MainProfile);
     }
 
     @Override

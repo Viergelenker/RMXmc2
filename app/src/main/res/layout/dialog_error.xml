@@ -9,7 +9,7 @@
         android:id="@+id/dialogDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Es ist ein Fehler bei der Verbindung mit dem RMX Server mit folgender Fehlermeldung aufgetreten:"
+        android:text="@string/ErrorHeader"
         android:textAlignment="center" />
 
     <ScrollView
@@ -17,6 +17,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dialogDescription"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true">
 
@@ -32,7 +34,7 @@
         android:id="@+id/dialogDescription2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stelle sicher, dass alle Geräte richtig konfiguriert sind und verbinde Dich anschließend erneut."
+        android:text="@string/ErrorBeschreibung2"
         android:textAlignment="center"
         android:layout_below="@+id/MainView"
         android:layout_alignParentLeft="true"
@@ -42,7 +44,7 @@
         android:id="@+id/close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="OK"
+        android:text="@string/ErrorOK"
         android:layout_below="@+id/dialogDescription2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />

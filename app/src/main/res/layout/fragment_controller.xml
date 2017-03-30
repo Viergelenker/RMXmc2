@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="TextView" />
+        android:text="@string/ControllerVerbingungsStatusText" />
 
     <Spinner
         android:id="@+id/trainSelector"
@@ -34,7 +34,7 @@
         android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_below="@+id/trainSelector"
         android:layout_alignParentLeft="true"
@@ -45,7 +45,7 @@
             android:id="@+id/switchIconViewF1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -53,6 +53,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -60,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F1"
+            android:text="@string/F1"
             android:textSize="24sp"/>
 
     </LinearLayout>
@@ -71,7 +72,7 @@
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:layout_below="@+id/button_switchF1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -83,7 +84,7 @@
             android:id="@+id/switchIconViewF2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -91,6 +92,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -98,7 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F2"
+            android:text="@string/F2"
             android:textSize="24sp"/>
 
     </LinearLayout>
@@ -109,7 +111,7 @@
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:layout_below="@+id/button_switchF2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -121,7 +123,7 @@
             android:id="@+id/switchIconViewF3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -129,6 +131,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -136,7 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F3"
+            android:text="@string/F3"
             android:textSize="24sp"/>
 
     </LinearLayout>
@@ -147,7 +150,7 @@
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:layout_below="@+id/button_switchF3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -159,7 +162,7 @@
             android:id="@+id/switchIconViewF4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -167,6 +170,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -174,7 +178,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F4"
+            android:text="@string/F4"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -185,7 +189,7 @@
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:layout_below="@+id/button_switchF4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -197,7 +201,7 @@
             android:id="@+id/switchIconViewF5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -205,6 +209,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -212,7 +217,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F5"
+            android:text="@string/F5"
             android:textSize="24sp"/>
 
     </LinearLayout>
@@ -223,7 +228,7 @@
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:layout_below="@+id/button_switchF5"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -235,7 +240,7 @@
             android:id="@+id/switchIconViewF6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -243,6 +248,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -250,7 +256,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F6"
+            android:text="@string/F6"
             android:textSize="24sp"/>
 
     </LinearLayout>
@@ -261,11 +267,12 @@
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:layout_below="@+id/button_switchF6"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/switch_direction"
+        android:layout_toLeftOf="@+id/switch_direction"
         android:layout_alignRight="@+id/button_switchF6"
         android:layout_alignEnd="@+id/button_switchF6"
         android:layout_marginBottom="2dp">
@@ -274,7 +281,7 @@
             android:id="@+id/switchIconViewF7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -282,6 +289,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -289,7 +297,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F7"
+            android:text="@string/F7"
             android:textSize="24sp"/>
 
     </LinearLayout>
@@ -300,7 +308,7 @@
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:layout_below="@+id/button_switchF7"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -312,7 +320,7 @@
             android:id="@+id/switchIconViewF8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -320,6 +328,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -327,7 +336,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F8"
+            android:text="@string/F8"
             android:textSize="24sp"/>
 
     </LinearLayout>
@@ -356,13 +365,14 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="#ffe600"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_lightbulb" />
 
         <TextView
             android:id="@+id/textViewLight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Licht"
+            android:text="@string/Licht"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -375,7 +385,7 @@
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="8dp"
-        android:text="0" />
+        android:text="@string/Geschwindigkeit" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -396,9 +406,9 @@
         app:iconPadding="8dp"
         app:iconSize="25dp"
         app:leftIcon="@drawable/ic_backward"
-        app:leftText="Rück"
+        app:leftText="@string/Rueckwaerts"
         app:rightIcon="@drawable/ic_forward"
-        app:rightText="Vor"
+        app:rightText="@string/Vorwaerts"
         app:selectedTextSize="12sp"
         app:textSize="12sp"
         app:sliderBackgroundColor="@color/colorPrimary"
@@ -412,7 +422,7 @@
         android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="right"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_below="@+id/trainSelector"
         android:layout_alignParentRight="true"
@@ -422,7 +432,7 @@
             android:id="@+id/switchIconViewF9"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -430,6 +440,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -437,7 +448,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F9"
+            android:text="@string/F9"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -447,7 +458,7 @@
         android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="right"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_below="@+id/button_switchF1"
         android:layout_alignParentRight="true"
@@ -457,7 +468,7 @@
             android:id="@+id/switchIconViewF10"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -465,6 +476,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -472,7 +484,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F10"
+            android:text="@string/F10"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -482,7 +494,7 @@
         android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="right"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_below="@+id/button_switchF2"
         android:layout_alignParentRight="true"
@@ -492,7 +504,7 @@
             android:id="@+id/switchIconViewF11"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -500,6 +512,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -507,7 +520,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F11"
+            android:text="@string/F11"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -517,7 +530,7 @@
         android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="right"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_below="@+id/button_switchF3"
         android:layout_alignParentRight="true"
@@ -527,7 +540,7 @@
             android:id="@+id/switchIconViewF12"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -535,6 +548,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -542,7 +556,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F12"
+            android:text="@string/F12"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -552,7 +566,7 @@
         android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="right"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_below="@+id/button_switchF4"
         android:layout_alignParentRight="true"
@@ -562,7 +576,7 @@
             android:id="@+id/switchIconViewF13"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -570,6 +584,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -577,7 +592,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F13"
+            android:text="@string/F13"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -587,7 +602,7 @@
         android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="right"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_below="@+id/button_switchF5"
         android:layout_alignParentRight="true"
@@ -597,7 +612,7 @@
             android:id="@+id/switchIconViewF14"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -605,6 +620,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -612,7 +628,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F14"
+            android:text="@string/F14"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -622,7 +638,7 @@
         android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="right"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_below="@+id/button_switchF6"
         android:layout_alignParentRight="true"
@@ -632,7 +648,7 @@
             android:id="@+id/switchIconViewF15"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -640,6 +656,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -647,7 +664,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F15"
+            android:text="@string/F15"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -657,7 +674,7 @@
         android:layout_width="85dp"
         android:layout_height="40dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="right"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_below="@+id/button_switchF7"
         android:layout_alignParentRight="true"
@@ -667,7 +684,7 @@
             android:id="@+id/switchIconViewF16"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:padding="0dp"
             app:si_animation_duration="100"
             app:si_disabled_alpha=".5"
@@ -675,6 +692,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
@@ -682,7 +700,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F16"
+            android:text="@string/F16"
             android:textSize="24sp" />
 
     </LinearLayout>

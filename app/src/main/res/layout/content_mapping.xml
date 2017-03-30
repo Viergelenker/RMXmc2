@@ -20,7 +20,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="Drücke eine Taste auf der Mobile Control II, der Du eine Funktion zuweisen möchtest."
+        android:text="@string/MappingBeschreibung"
         android:textAlignment="center"
         android:textSize="18sp" />
 
@@ -30,7 +30,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="11dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_below="@+id/mappingDescription"
         android:layout_alignParentLeft="true"
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F1"
+            android:text="@string/F1"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -52,7 +52,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_alignTop="@+id/button_F1"
         android:layout_centerHorizontal="true">
@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F2"
+            android:text="@string/F2"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -73,7 +73,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_alignTop="@+id/button_F1"
         android:layout_alignParentRight="true"
@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F3"
+            android:text="@string/F3"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -95,7 +95,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_marginTop="11dp"
         android:layout_below="@+id/button_F1"
@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F4"
+            android:text="@string/F4"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -118,7 +118,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_alignTop="@+id/button_F4"
         android:layout_alignLeft="@+id/button_F2"
@@ -129,7 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F5"
+            android:text="@string/F5"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -140,7 +140,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_alignTop="@+id/button_F5"
         android:layout_alignParentRight="true"
@@ -151,7 +151,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F6"
+            android:text="@string/F6"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -162,7 +162,7 @@
     android:layout_width="80dp"
     android:layout_height="50dp"
     android:background="@drawable/shape_rounded"
-    android:gravity="left"
+    android:gravity="start"
     android:orientation="horizontal"
     android:layout_marginTop="12dp"
     android:layout_below="@+id/button_F4"
@@ -174,7 +174,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="F7"
+        android:text="@string/F7"
         android:textAlignment="center"
         android:textSize="28sp" />
 
@@ -185,7 +185,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_alignTop="@+id/button_F9"
         android:layout_alignLeft="@+id/button_F5"
@@ -196,7 +196,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F8"
+            android:text="@string/F8"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -207,7 +207,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_alignTop="@+id/button_F7"
         android:layout_alignParentRight="true"
@@ -218,7 +218,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F9"
+            android:text="@string/F9"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -229,7 +229,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_marginTop="13dp"
         android:layout_below="@+id/button_F7"
@@ -241,7 +241,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F10"
+            android:text="@string/F10"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -252,7 +252,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_alignTop="@+id/button_F10"
         android:layout_alignLeft="@+id/button_F8"
@@ -263,7 +263,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F11"
+            android:text="@string/F11"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -274,7 +274,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_alignTop="@+id/button_F11"
         android:layout_alignParentRight="true"
@@ -285,7 +285,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F12"
+            android:text="@string/F12"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -296,7 +296,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_marginTop="13dp"
         android:layout_below="@+id/button_F10"
@@ -308,7 +308,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F13"
+            android:text="@string/F13"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -319,7 +319,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_alignTop="@+id/button_F13"
         android:layout_alignLeft="@+id/button_F11"
@@ -330,7 +330,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F14"
+            android:text="@string/F14"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -341,7 +341,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_alignTop="@+id/button_F14"
         android:layout_alignParentRight="true"
@@ -352,7 +352,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F15"
+            android:text="@string/F15"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -363,7 +363,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_marginTop="13dp"
         android:layout_below="@+id/button_F13"
@@ -375,7 +375,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="F16"
+            android:text="@string/F16"
             android:textAlignment="center"
             android:textSize="28sp" />
 
@@ -386,7 +386,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_alignTop="@+id/button_F16"
         android:layout_alignLeft="@+id/button_F14"
@@ -397,7 +397,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Richtung"
+            android:text="@string/Richtung"
             android:textAlignment="center"
             android:textSize="16sp" />
 
@@ -408,7 +408,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:background="@drawable/shape_rounded"
-        android:gravity="left"
+        android:gravity="start"
         android:orientation="horizontal"
         android:layout_alignTop="@+id/button_Direction"
         android:layout_alignParentRight="true"
@@ -419,11 +419,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Licht"
+            android:text="@string/Licht"
             android:textAlignment="center"
             android:textSize="28sp" />
 
     </LinearLayout>
-
 
 </RelativeLayout>

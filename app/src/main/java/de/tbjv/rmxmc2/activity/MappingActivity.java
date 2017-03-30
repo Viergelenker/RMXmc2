@@ -1,5 +1,6 @@
 package de.tbjv.rmxmc2.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import de.tbjv.rmxmc2.R;
 import eu.esu.mobilecontrol2.sdk.MobileControl2;
 import eu.esu.mobilecontrol2.sdk.ThrottleFragment;
 
+@SuppressLint("SetTextI18n")
 public class MappingActivity extends AppCompatActivity {
 
     Context context = this;
@@ -55,7 +57,7 @@ public class MappingActivity extends AppCompatActivity {
         initializeObjects();
         hideButtons(true);
 
-        mappingDescription.setText("Drücke eine Taste auf der Mobile Control II, der Du eine Funktion für \"" + ControllerActivity.trainName + "\" zuweisen möchtest.");
+        mappingDescription.setText(getString(R.string.MappingBeschreibung1) + ControllerActivity.trainName + getString(R.string.MappingBeschreibung2));
 
         View.OnClickListener listener = new View.OnClickListener() {
 
@@ -223,7 +225,7 @@ public class MappingActivity extends AppCompatActivity {
             button_F16.setVisibility(View.VISIBLE);
             button_Direction.setVisibility(View.VISIBLE);
             button_Light.setVisibility(View.VISIBLE);
-            mappingDescription.setText("Wähle nun eine Funktion aus.");
+            mappingDescription.setText(R.string.MappingFunktion);
         }
     }
 
@@ -261,7 +263,7 @@ public class MappingActivity extends AppCompatActivity {
 
     /**
      * sets mapping (button) for given train and given mc2 key
-     * @param currentTrain
+     * @param currentTrain int of the current train
      * @param keyToMap which button of the mc2 should be used
      * @param function which button/function should be mapped to mc2 button
      */

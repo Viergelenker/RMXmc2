@@ -16,8 +16,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:id="@+id/port"
-        android:hint="Port"
-        android:text="950"
+        android:hint="@string/AddProfilePort"
+        android:text="@string/AddProfile950"
         android:layout_below="@+id/ipAddress"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -29,7 +29,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/profileName"
-        android:hint="Profil name"
+        android:hint="@string/AddProfileName"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -39,14 +39,14 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:id="@+id/ipAddress"
-        android:hint="IP Adresse"
+        android:hint="@string/AddProfileIP"
         android:layout_below="@+id/profileName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:inputType="phone" />
 
     <Button
-        android:text="Speichern"
+        android:text="@string/AddProfileSpeichern"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/saveButton"
@@ -54,7 +54,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Speichern und Verbinden"
+        android:text="@string/AddProfileSpeichernUndVerbinden"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/saveAndConnectButton"

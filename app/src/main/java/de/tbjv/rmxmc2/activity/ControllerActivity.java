@@ -1,5 +1,6 @@
 package de.tbjv.rmxmc2.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -41,13 +42,17 @@ import io.ghyeok.stickyswitch.widget.StickySwitch;
 public class ControllerActivity extends AppCompatActivity {
 
     private static ThrottleFragment throttleFragment;
+    @SuppressLint("StaticFieldLeak")
     private static ProgressBar progressBar;
     private static ThrottleScale throttleScale;
+    @SuppressLint("StaticFieldLeak")
     public static Context context;
+    @SuppressLint("StaticFieldLeak")
     private static TextView connectionStatus;
+    @SuppressLint("StaticFieldLeak")
     private static TextView speed;
+    @SuppressLint("StaticFieldLeak")
     private static Spinner trainSelector;
-    private static boolean changedFromUser = false;
     public static String trainName;
     public static ArrayList<String> trainList;
 
@@ -132,7 +137,7 @@ public class ControllerActivity extends AppCompatActivity {
                 if (currentTrain >= 0) {
                     currentTrain = i + 1;
 
-                    trainName = trainList.get(currentTrain-1).toString();
+                    trainName = trainList.get(currentTrain - 1);
 
                     throttleScale = new ThrottleScale(0, DataToGuiInterface.getMaxRunningNotch(currentTrain) + 1);
                     progressBar.setMax(DataToGuiInterface.getMaxRunningNotch(currentTrain));
@@ -184,7 +189,7 @@ public class ControllerActivity extends AppCompatActivity {
                 .add(stopButtonFragment, "mc2:stopKey")
                 .commit();
 
-        /**
+        /*
          * The following Listeners detect button changes, made by the user and synchronizes the changes with the server
          */
 
@@ -192,7 +197,7 @@ public class ControllerActivity extends AppCompatActivity {
             @Override
             public void onSelectedChange(@NotNull StickySwitch.Direction direction, @NotNull String text) {
 
-                if (connectionStatus.getText() == "Verbunden") {
+                if (Connection.getConnectionStatus() == 2) {
                     if (switchDirection.getDirection() == StickySwitch.Direction.RIGHT) {
                         DataToGuiInterface.setDirection(currentTrain, (byte) 0);
                     } else DataToGuiInterface.setDirection(currentTrain, (byte) 1);
@@ -200,7 +205,7 @@ public class ControllerActivity extends AppCompatActivity {
             }
         });
 
-        /**
+        /*
          * listens if a button is pressed
          */
         View.OnClickListener listener = new View.OnClickListener() {
@@ -209,7 +214,7 @@ public class ControllerActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // button can only be used if rmxmc2 is connected to RMX Server
-                if (connectionStatus.getText() == "Verbunden") {
+                if (Connection.getConnectionStatus() == 2) {
 
                     switch (v.getId()) {
                         case R.id.button_switchF1:
@@ -496,7 +501,8 @@ public class ControllerActivity extends AppCompatActivity {
 
     /**
      * Splits the retrieved string and build an array list with it
-     * @param functionMappingString
+     *
+     * @param functionMappingString actual mapping combination as a string
      * @return functionList
      */
     private List<String> splitMappingStringIntoList(String functionMappingString) {
@@ -513,6 +519,7 @@ public class ControllerActivity extends AppCompatActivity {
 
     /**
      * gets the mapping (=button) for the given key
+     *
      * @param key of the MC2
      */
     private void getMapping(int key) {
@@ -541,7 +548,7 @@ public class ControllerActivity extends AppCompatActivity {
         }
         if (functionValueOfKey == 16) {
             modeByte = DataToGuiInterface.getModeF16F23(currentTrain);
-            if (UtilsByte.bitIsSet(modeByte, functionValueOfKey -16)) {
+            if (UtilsByte.bitIsSet(modeByte, functionValueOfKey - 16)) {
                 DataToGuiInterface.setModeF16F23(currentTrain, UtilsByte.setToZero(modeByte, 0));
             } else {
                 DataToGuiInterface.setModeF16F23(currentTrain, UtilsByte.setToOne(modeByte, 0));
@@ -590,12 +597,11 @@ public class ControllerActivity extends AppCompatActivity {
 
     public static void updateTrainSelector() {
 
-        if (!changedFromUser) {
-            trainSelectorHandler.sendEmptyMessage(0);
-        }
+        boolean changedFromUser = false;
+        trainSelectorHandler.sendEmptyMessage(0);
     }
 
-    static class TrainSelectorHandler extends Handler {
+    private static class TrainSelectorHandler extends Handler {
 
         @Override
         public void handleMessage(Message message) {
@@ -609,7 +615,7 @@ public class ControllerActivity extends AppCompatActivity {
             //set the currentTrain if the list isn't empty
             if (!trainList.isEmpty()) {
                 currentTrain = 0;
-                trainName = trainList.get(currentTrain).toString();
+                trainName = trainList.get(currentTrain);
             }
         }
     }
@@ -650,7 +656,7 @@ public class ControllerActivity extends AppCompatActivity {
         trainSpeedHandler.sendEmptyMessage(trainNumber);
     }
 
-    static class TrainSpeedHandler extends Handler {
+    private static class TrainSpeedHandler extends Handler {
 
         @Override
         public void handleMessage(Message message) {
@@ -688,14 +694,14 @@ public class ControllerActivity extends AppCompatActivity {
     /**
      * Update the trainDirection button within the gui
      *
-     * @param trainNumber
+     * @param trainNumber int of the currently selected train
      */
     public static void updateTrainDirection(int trainNumber) {
 
         trainDirectionHandler.sendEmptyMessage(trainNumber);
     }
 
-    static class TrainDirectionHandler extends Handler {
+    private static class TrainDirectionHandler extends Handler {
 
         public void handleMessage(Message message) {
 
@@ -713,14 +719,14 @@ public class ControllerActivity extends AppCompatActivity {
     /**
      * Update the train mode buttons within the gui
      *
-     * @param trainNumber
+     * @param trainNumber int of the currently selected train
      */
     public static void updateTrainMode0to7(int trainNumber) {
 
         trainMode0to7Handler.sendEmptyMessage(trainNumber);
     }
 
-    static class TrainMode0to7Handler extends Handler {
+    private static class TrainMode0to7Handler extends Handler {
 
         public void handleMessage(Message message) {
 
@@ -784,14 +790,14 @@ public class ControllerActivity extends AppCompatActivity {
     /**
      * Update the train mode buttons within the gui
      *
-     * @param trainNumber
+     * @param trainNumber int of the currently selected train
      */
     public static void updateTrainMode8to15(int trainNumber) {
 
         trainMode8to15Handler.sendEmptyMessage(trainNumber);
     }
 
-    static class TrainMode8to15Handler extends Handler {
+    private static class TrainMode8to15Handler extends Handler {
 
         public void handleMessage(Message message) {
 
@@ -855,14 +861,14 @@ public class ControllerActivity extends AppCompatActivity {
     /**
      * Update the train mode buttons within the gui
      *
-     * @param trainNumber
+     * @param trainNumber int of the currently selected train
      */
     public static void updateTrainMode16to23(int trainNumber) {
 
         trainMode16to23Handler.sendEmptyMessage(trainNumber);
     }
 
-    static class TrainMode16to23Handler extends Handler {
+    private static class TrainMode16to23Handler extends Handler {
 
         public void handleMessage(Message message) {
 
@@ -898,29 +904,29 @@ public class ControllerActivity extends AppCompatActivity {
         connectionHandler.sendEmptyMessage(connectionStatus);
     }
 
-    static class ConnectionHandler extends Handler {
+    private static class ConnectionHandler extends Handler {
 
         @Override
         public void handleMessage(Message message) {
 
-            switch (Integer.valueOf(message.what)) {
+            switch (message.what) {
                 case 0:
-                    connectionStatus.setText("Null");
+                    connectionStatus.setText(R.string.ConnectNull);
                     break;
                 case 1:
-                    connectionStatus.setText("Verbinden...");
+                    connectionStatus.setText(R.string.ConnectVerbinden);
                     break;
                 case 2:
-                    connectionStatus.setText("Verbunden");
+                    connectionStatus.setText(R.string.ConnectVerbunden);
                     break;
                 case 3:
-                    connectionStatus.setText("Verbindung trennen...");
+                    connectionStatus.setText(R.string.ConnectTrennen);
                     break;
                 case 4:
-                    connectionStatus.setText("Nicht verbunden");
+                    connectionStatus.setText(R.string.ConnectNichtVerbunden);
                     break;
                 default:
-                    connectionStatus.setText("Unbekannter Status");
+                    connectionStatus.setText(R.string.ConnectUnbekannt);
                     break;
             }
         }
@@ -930,7 +936,7 @@ public class ControllerActivity extends AppCompatActivity {
         @Override
         public void onStopButtonDown() {
 
-            if (connectionStatus.getText() == "Verbunden") {
+            if (Connection.getConnectionStatus() == 2) {
                 DataToGuiInterface.sendPanic();
             } else noConnectionMethod();
         }
@@ -945,7 +951,7 @@ public class ControllerActivity extends AppCompatActivity {
         @Override
         public void onButtonDown() {
 
-            if (connectionStatus.getText() == "Verbunden") {
+            if (Connection.getConnectionStatus() == 2) {
                 // Changes the train direction if the user turns the throttle wheel all the way counter-clockwise
                 if (DataToGuiInterface.getDirection(currentTrain) == 0) {
                     DataToGuiInterface.setDirection(currentTrain, (byte) 1);
@@ -999,7 +1005,7 @@ public class ControllerActivity extends AppCompatActivity {
     /**
      * sets ErrorThread as active
      *
-     * @param active
+     * @param active describes whether the error thread is active or not
      */
     public static void setActive(boolean active) {
         ControllerActivity.active = active;
@@ -1017,13 +1023,13 @@ public class ControllerActivity extends AppCompatActivity {
             while (isActive()) {
 
                 if (DataToGuiInterface.getErrorList().size() > 0) {
-
                     noConnectionMethod();
                 }
 
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
+
                 }
             }
         }
@@ -1044,15 +1050,10 @@ public class ControllerActivity extends AppCompatActivity {
                 dialog.setTitle("Verbindungsfehler");
                 dialog.setCanceledOnTouchOutside(false);
 
-                TextView txtDescription = (TextView) dialog
-                        .findViewById(R.id.dialogDescription);
-
                 TextView txtSubTitle = (TextView) dialog
                         .findViewById(R.id.errorView);
                 txtSubTitle.setText(readArray());
 
-                TextView txtDescription2 = (TextView) dialog
-                        .findViewById(R.id.dialogDescription2);
                 Button closeButton = (Button) dialog
                         .findViewById(R.id.close);
                 closeButton
@@ -1116,7 +1117,7 @@ public class ControllerActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_mapping) {
-            startActivity(new Intent (ControllerActivity.this, MappingActivity.class));
+            startActivity(new Intent(ControllerActivity.this, MappingActivity.class));
             return true;
         }
 
@@ -1124,8 +1125,7 @@ public class ControllerActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onResume()
-    {  // After a pause OR at startup
+    public void onResume() {  // After a pause OR at startup
         super.onResume();
         // Load the current mapping of the selected profile and train
         SharedPreferences mapping = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);

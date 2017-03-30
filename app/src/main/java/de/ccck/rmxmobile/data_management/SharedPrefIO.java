@@ -3,6 +3,7 @@ package de.ccck.rmxmobile.data_management;
 import java.util.ArrayList;
 import java.util.Map;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ public class SharedPrefIO {
 
 	private Context context;
 
+	@SuppressLint("StaticFieldLeak")
 	private static SharedPrefIO SharedPrefIO;
 
 	private SharedPrefIO(Context context) {
@@ -77,7 +79,7 @@ public class SharedPrefIO {
 				"ConfigObjectPref", Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sharedPreferences.edit();
 		editor.putInt("LastID", value);
-		editor.commit();
+		editor.apply();
 	}
 
 	protected int loadLastID() {
@@ -91,7 +93,7 @@ public class SharedPrefIO {
 				"ConfigObjectPref", Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sharedPreferences.edit();
 		editor.putInt("LastTheme", ConfigObject.getConfigObject().getTheme());
-		editor.commit();
+		editor.apply();
 	}
 
 	protected void loadLastTheme() {

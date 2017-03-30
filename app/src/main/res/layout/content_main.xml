@@ -19,14 +19,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Profile"
+        android:text="@string/MainContentProfile"
         android:textAlignment="center"
         android:textSize="24sp" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/connectionStatus"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="41dp"
         android:id="@+id/profilesListView" />
