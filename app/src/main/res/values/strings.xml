@@ -44,7 +44,8 @@
     <string name="ErrorBeschreibung2">Stelle sicher, dass alle Geräte richtig konfiguriert sind und verbinde Dich anschließend erneut.</string>
     <string name="ErrorOK">OK</string>
     <string name="ControllerVerbingungsStatusText">Nicht verbunden</string>
-    <string name="Rueckwaerts"><![CDATA[<]]></string>
-    <string name="Vorwaerts"><![CDATA[>]]></string>
+    <string name="Rueckwaerts">Rück</string>
+    <string name="Vorwaerts">Vor</string>
     <string name="Geschwindigkeit">0</string>
+    <string name="MappingZurueck">Zurück</string>
 </resources>

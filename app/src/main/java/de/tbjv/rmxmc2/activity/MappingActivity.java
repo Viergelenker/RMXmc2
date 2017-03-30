@@ -2,6 +2,7 @@ package de.tbjv.rmxmc2.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -46,6 +48,7 @@ public class MappingActivity extends AppCompatActivity {
     private View button_F16;
     private View button_Direction;
     private View button_Light;
+    private View button_Back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +58,7 @@ public class MappingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         initializeObjects();
-        hideButtons(true);
+        showButtons(false);
 
         mappingDescription.setText(getString(R.string.MappingBeschreibung1) + ControllerActivity.trainName + getString(R.string.MappingBeschreibung2));
 
@@ -121,9 +124,13 @@ public class MappingActivity extends AppCompatActivity {
                         case R.id.button_Light:
                             setMapping(ControllerActivity.currentTrain, keyToMap, 0);
                             break;
-
                         default:
                             break;
+                    }
+                }
+                else {
+                    if (v.getId() == R.id.button_Back) {
+                        onBackPressed();
                     }
                 }
 
@@ -148,7 +155,7 @@ public class MappingActivity extends AppCompatActivity {
         button_F16.setOnClickListener(listener);
         button_Direction.setOnClickListener(listener);
         button_Light.setOnClickListener(listener);
-
+        button_Back.setOnClickListener(listener);
     }
 
 
@@ -176,37 +183,18 @@ public class MappingActivity extends AppCompatActivity {
         button_Direction = (LinearLayout) findViewById(R.id.button_Direction);
         button_Light = (LinearLayout) findViewById(R.id.button_Light);
         mappingDescription = (TextView) findViewById(R.id.mappingDescription);
+        button_Back = findViewById(R.id.button_Back);
 
     }
 
     /**
      * hides all buttons when mapping process has not started yet or is already finished
      *
-     * @param bool whether buttons should be hidden or visible
+     * @param visible whether buttons should be hidden or visible
      */
-    private void hideButtons(boolean bool) {
+    private void showButtons(boolean visible) {
 
-        if (bool) {
-            button_F1.setVisibility(View.INVISIBLE);
-            button_F2.setVisibility(View.INVISIBLE);
-            button_F3.setVisibility(View.INVISIBLE);
-            button_F4.setVisibility(View.INVISIBLE);
-            button_F5.setVisibility(View.INVISIBLE);
-            button_F6.setVisibility(View.INVISIBLE);
-            button_F7.setVisibility(View.INVISIBLE);
-            button_F8.setVisibility(View.INVISIBLE);
-            button_F9.setVisibility(View.INVISIBLE);
-            button_F10.setVisibility(View.INVISIBLE);
-            button_F11.setVisibility(View.INVISIBLE);
-            button_F12.setVisibility(View.INVISIBLE);
-            button_F13.setVisibility(View.INVISIBLE);
-            button_F14.setVisibility(View.INVISIBLE);
-            button_F15.setVisibility(View.INVISIBLE);
-            button_F16.setVisibility(View.INVISIBLE);
-            button_Direction.setVisibility(View.INVISIBLE);
-            button_Light.setVisibility(View.INVISIBLE);
-
-        } else {
+        if (visible) {
             button_F1.setVisibility(View.VISIBLE);
             button_F2.setVisibility(View.VISIBLE);
             button_F3.setVisibility(View.VISIBLE);
@@ -226,6 +214,27 @@ public class MappingActivity extends AppCompatActivity {
             button_Direction.setVisibility(View.VISIBLE);
             button_Light.setVisibility(View.VISIBLE);
             mappingDescription.setText(R.string.MappingFunktion);
+            button_Back.setVisibility(View.INVISIBLE);
+        } else {
+            button_F1.setVisibility(View.INVISIBLE);
+            button_F2.setVisibility(View.INVISIBLE);
+            button_F3.setVisibility(View.INVISIBLE);
+            button_F4.setVisibility(View.INVISIBLE);
+            button_F5.setVisibility(View.INVISIBLE);
+            button_F6.setVisibility(View.INVISIBLE);
+            button_F7.setVisibility(View.INVISIBLE);
+            button_F8.setVisibility(View.INVISIBLE);
+            button_F9.setVisibility(View.INVISIBLE);
+            button_F10.setVisibility(View.INVISIBLE);
+            button_F11.setVisibility(View.INVISIBLE);
+            button_F12.setVisibility(View.INVISIBLE);
+            button_F13.setVisibility(View.INVISIBLE);
+            button_F14.setVisibility(View.INVISIBLE);
+            button_F15.setVisibility(View.INVISIBLE);
+            button_F16.setVisibility(View.INVISIBLE);
+            button_Direction.setVisibility(View.INVISIBLE);
+            button_Light.setVisibility(View.INVISIBLE);
+            button_Back.setVisibility(View.VISIBLE);
         }
     }
 
@@ -239,22 +248,22 @@ public class MappingActivity extends AppCompatActivity {
             case MobileControl2.KEYCODE_TOP_LEFT:
                 mappingStarted = true;
                 keyToMap = 0;
-                hideButtons(false);
+                showButtons(true);
                 return true;
             case MobileControl2.KEYCODE_BOTTOM_LEFT:
                 mappingStarted = true;
                 keyToMap = 1;
-                hideButtons(false);
+                showButtons(true);
                 return true;
             case MobileControl2.KEYCODE_TOP_RIGHT:
                 mappingStarted = true;
                 keyToMap = 2;
-                hideButtons(false);
+                showButtons(true);
                 return true;
             case MobileControl2.KEYCODE_BOTTOM_RIGHT:
                 mappingStarted = true;
                 keyToMap = 3;
-                hideButtons(false);
+                showButtons(true);
                 return true;
             default:
                 return super.onKeyDown(keyCode, event);
@@ -298,7 +307,7 @@ public class MappingActivity extends AppCompatActivity {
             // in the background whereas commit() blocks the thread)
             editor.apply();
         }
-        hideButtons(true);
+        showButtons(false);
         mappingStarted = false;
         mappingDescription.setText("Die Tastenbelegung wurde erfolgreich für \"" + ControllerActivity.trainName + "\" übernommen!\r\n\nDrücke eine weitere Taste auf der Mobile Control II, der Du eine Funktion zuweisen möchtest.");
     }

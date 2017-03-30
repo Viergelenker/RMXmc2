@@ -28,13 +28,13 @@
         android:id="@+id/button_F1"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/mappingDescription"
         android:layout_marginTop="11dp"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_below="@+id/mappingDescription"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF1"
@@ -51,11 +51,11 @@
         android:id="@+id/button_F2"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignTop="@+id/button_F1"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_alignTop="@+id/button_F1"
-        android:layout_centerHorizontal="true">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF2"
@@ -72,12 +72,12 @@
         android:id="@+id/button_F3"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/button_F1"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_alignTop="@+id/button_F1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF3"
@@ -94,13 +94,13 @@
         android:id="@+id/button_F4"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button_F1"
+        android:layout_marginTop="11dp"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_marginTop="11dp"
-        android:layout_below="@+id/button_F1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF4"
@@ -117,12 +117,12 @@
         android:id="@+id/button_F5"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignLeft="@+id/button_F2"
+        android:layout_alignStart="@+id/button_F2"
+        android:layout_alignTop="@+id/button_F4"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_alignTop="@+id/button_F4"
-        android:layout_alignLeft="@+id/button_F2"
-        android:layout_alignStart="@+id/button_F2">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF5"
@@ -139,12 +139,12 @@
         android:id="@+id/button_F6"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/button_F5"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_alignTop="@+id/button_F5"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF6"
@@ -158,38 +158,38 @@
     </LinearLayout>
 
     <LinearLayout
-    android:id="@+id/button_F7"
-    android:layout_width="80dp"
-    android:layout_height="50dp"
-    android:background="@drawable/shape_rounded"
-    android:gravity="start"
-    android:orientation="horizontal"
-    android:layout_marginTop="12dp"
-    android:layout_below="@+id/button_F4"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true">
+        android:id="@+id/button_F7"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button_F4"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/shape_rounded"
+        android:gravity="start"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textViewF7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/F7"
-        android:textAlignment="center"
-        android:textSize="28sp" />
+        <TextView
+            android:id="@+id/textViewF7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/F7"
+            android:textAlignment="center"
+            android:textSize="28sp" />
 
-</LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/button_F8"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignLeft="@+id/button_F5"
+        android:layout_alignStart="@+id/button_F5"
+        android:layout_alignTop="@+id/button_F9"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_alignTop="@+id/button_F9"
-        android:layout_alignLeft="@+id/button_F5"
-        android:layout_alignStart="@+id/button_F5">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF8"
@@ -206,12 +206,12 @@
         android:id="@+id/button_F9"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/button_F7"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_alignTop="@+id/button_F7"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF9"
@@ -228,13 +228,13 @@
         android:id="@+id/button_F10"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button_F7"
+        android:layout_marginTop="13dp"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_marginTop="13dp"
-        android:layout_below="@+id/button_F7"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF10"
@@ -251,12 +251,12 @@
         android:id="@+id/button_F11"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignLeft="@+id/button_F8"
+        android:layout_alignStart="@+id/button_F8"
+        android:layout_alignTop="@+id/button_F10"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_alignTop="@+id/button_F10"
-        android:layout_alignLeft="@+id/button_F8"
-        android:layout_alignStart="@+id/button_F8">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF11"
@@ -273,12 +273,12 @@
         android:id="@+id/button_F12"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/button_F11"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_alignTop="@+id/button_F11"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF12"
@@ -295,13 +295,13 @@
         android:id="@+id/button_F13"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button_F10"
+        android:layout_marginTop="13dp"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_marginTop="13dp"
-        android:layout_below="@+id/button_F10"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF13"
@@ -318,12 +318,12 @@
         android:id="@+id/button_F14"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignLeft="@+id/button_F11"
+        android:layout_alignStart="@+id/button_F11"
+        android:layout_alignTop="@+id/button_F13"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_alignTop="@+id/button_F13"
-        android:layout_alignLeft="@+id/button_F11"
-        android:layout_alignStart="@+id/button_F11">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF14"
@@ -340,12 +340,12 @@
         android:id="@+id/button_F15"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/button_F14"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_alignTop="@+id/button_F14"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF15"
@@ -362,13 +362,13 @@
         android:id="@+id/button_F16"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button_F13"
+        android:layout_marginTop="13dp"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_marginTop="13dp"
-        android:layout_below="@+id/button_F13"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewF16"
@@ -385,12 +385,12 @@
         android:id="@+id/button_Direction"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignLeft="@+id/button_F14"
+        android:layout_alignStart="@+id/button_F14"
+        android:layout_alignTop="@+id/button_F16"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_alignTop="@+id/button_F16"
-        android:layout_alignLeft="@+id/button_F14"
-        android:layout_alignStart="@+id/button_F14">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewDirection"
@@ -407,12 +407,12 @@
         android:id="@+id/button_Light"
         android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/button_Direction"
         android:background="@drawable/shape_rounded"
         android:gravity="start"
-        android:orientation="horizontal"
-        android:layout_alignTop="@+id/button_Direction"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textViewLight"
@@ -424,5 +424,25 @@
             android:textSize="28sp" />
 
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/button_Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_rounded"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textViewBack"
+            android:layout_gravity="bottom|end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/MappingZurueck"
+            android:textSize="28sp">
+
+        </TextView>
+
+    </FrameLayout>
 
 </RelativeLayout>
