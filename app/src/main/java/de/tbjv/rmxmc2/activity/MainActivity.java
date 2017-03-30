@@ -17,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import de.ccck.rmxmobile.data_management.DataToGuiInterface;
@@ -26,12 +28,14 @@ public class MainActivity extends AppCompatActivity {
 
     private Context context = this;
     private AdapterView profileListView;
+    private TextView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        profile = (TextView) findViewById(R.id.profile);
         setSupportActionBar(toolbar);
 
         FloatingActionButton addProfile = (FloatingActionButton) findViewById(R.id.addProfile);
@@ -104,8 +108,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * loads available profiles and shows them within profileListView
+     */
     private void loadAndPublishProfiles() {
-        // Load available profiles...
+
         ArrayList<String> profiles = new ArrayList<>(DataToGuiInterface.generateConfigNameList(getBaseContext()));
         ArrayAdapter<String> profileListAdapter = new ArrayAdapter<>(
                 getBaseContext(),
@@ -114,37 +121,22 @@ public class MainActivity extends AppCompatActivity {
                 profiles
         );
 
-        // and show them within the listView
         profileListView = (ListView) findViewById(R.id.profilesListView);
         profileListView.setAdapter(profileListAdapter);
+
+        if (profiles.size() == 0) {
+            profile.setText("Es existiert noch kein Profil. \r\nFüge ein neues hinzu, indem Du auf das + klickst.");
+        } else profile.setText("Profile");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
         loadAndPublishProfiles();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }

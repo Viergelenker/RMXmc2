@@ -29,6 +29,10 @@
             android:name=".activity.ControllerActivity"
             android:label="@string/title_activity_controller"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.MappingActivity"
+            android:label="@string/title_activity_mapping"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

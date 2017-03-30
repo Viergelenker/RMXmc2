@@ -68,9 +68,7 @@ public class AddProfileActivity extends AppCompatActivity {
     }
 
     /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
+     * saves RMX server connection profile if needed fields are filled in correctly
      */
     private boolean saveProfile(View view) {
 
@@ -90,12 +88,12 @@ public class AddProfileActivity extends AppCompatActivity {
         }
 
         if (TextUtils.isEmpty(ipAddressText)) {
-            ipAddress.setError("Bitte geben Sie eine IP Adresse ein");
+            ipAddress.setError("Es muss eine gültige IP-Adresse eingegeben werden");
             cancel = true;
         }
 
         if (TextUtils.isEmpty(portText)) {
-            port.setError("Bitte geben Sie den Port ein");
+            port.setError("Es muss ein gültiger Port eingegeben werden");
             cancel = true;
         }
 

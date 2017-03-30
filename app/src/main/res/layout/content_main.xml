@@ -14,13 +14,14 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
-        android:id="@+id/connectionStatus"
+        android:id="@+id/profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile"
-        android:textSize="24sp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="Profile"
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <ListView
         android:layout_width="match_parent"
