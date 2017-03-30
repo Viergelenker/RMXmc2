@@ -53,7 +53,7 @@
             app:si_enabled="false"
             app:si_no_dash="true"
             app:si_tint_color="@color/colorAccent"
-
+            tools:ignore="VectorDrawableCompat"
             app:srcCompat="@drawable/ic_power" />
 
         <TextView
