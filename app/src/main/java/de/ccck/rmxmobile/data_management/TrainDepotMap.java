@@ -4,10 +4,11 @@ import android.annotation.SuppressLint;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * TrainDepotMap enthaellt alle Methoden zur Verwaltung aller Zugobjekte.
- * 
+ *
  * @author Kientzle Claus, Coels Corinna
  */
 public class TrainDepotMap {
@@ -61,6 +62,23 @@ public class TrainDepotMap {
 					+ TrainDepotMap.get(sortedList.get(i)).getTrainName());
 		}
 		return TrainNameList;
+	}
+
+	protected synchronized Map<Integer, String> getTrainNameMap() {
+
+		Map<Integer, String> trainNameMap = new HashMap<>();
+
+		ArrayList<Integer> trainKeyList = new ArrayList<>();
+		for (Integer key : TrainDepotMap.keySet()) {
+			trainKeyList.add(key);
+		}
+
+		for (Integer key : trainKeyList) {
+			trainNameMap.put(key, TrainDepotMap.get(key).getTrainNumber() + ": " + TrainDepotMap
+                    .get(key).getTrainName());
+		}
+
+		return trainNameMap;
 	}
 
 	protected synchronized boolean isTrainExisting(int key) {

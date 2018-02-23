@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import android.content.Context;
 import de.ccck.rmxmobile.communication.Connection;
@@ -420,6 +421,10 @@ public class DataToGuiInterface {
 	 */
 	public static synchronized ArrayList<String> generateTrainNameList() {
 		return TrainDepotMap.getTrainDepot().generateTrainNameList();
+	}
+
+	public static synchronized Map<Integer, String> getTrainMap() {
+		return TrainDepotMap.getTrainDepot().getTrainNameMap();
 	}
 
 	/**

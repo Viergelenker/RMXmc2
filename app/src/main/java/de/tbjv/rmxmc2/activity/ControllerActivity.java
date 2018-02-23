@@ -27,11 +27,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import de.ccck.rmxmobile.UtilsByte;
 import de.ccck.rmxmobile.communication.Connection;
 import de.ccck.rmxmobile.data_management.DataToComInterface;
 import de.ccck.rmxmobile.data_management.DataToGuiInterface;
+import de.ccck.rmxmobile.data_management.TrainDepotMap;
+import de.ccck.rmxmobile.data_management.TrainObject;
 import de.tbjv.rmxmc2.R;
 import eu.esu.mobilecontrol2.sdk.MobileControl2;
 import eu.esu.mobilecontrol2.sdk.StopButtonFragment;
@@ -55,6 +58,7 @@ public class ControllerActivity extends AppCompatActivity {
     private static Spinner trainSelector;
     public static String trainName;
     public static ArrayList<String> trainList;
+    public static Map<Integer, String> trainMap;
 
     private static SwitchIconView switchIconLight;
     private static SwitchIconView switchIconF1;
@@ -120,6 +124,9 @@ public class ControllerActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        trainList = DataToGuiInterface.generateTrainNameList();
+        trainMap = DataToGuiInterface.getTrainMap();
+
         startThread();
 
         context = this.getApplicationContext();
@@ -138,6 +145,14 @@ public class ControllerActivity extends AppCompatActivity {
                     currentTrain = i + 1;
 
                     trainName = trainList.get(currentTrain - 1);
+
+                    for (Map.Entry<Integer, String> entry : DataToGuiInterface.getTrainMap().entrySet()) {
+                        if (entry.getValue().equals(trainName)) {
+                            currentTrain = entry.getKey();
+                        }
+                    }
+
+                    // currentTrain key is not equal to the position within the trainDepotMap
 
                     throttleScale = new ThrottleScale(0, DataToGuiInterface.getMaxRunningNotch(currentTrain) + 1);
                     progressBar.setMax(DataToGuiInterface.getMaxRunningNotch(currentTrain));
