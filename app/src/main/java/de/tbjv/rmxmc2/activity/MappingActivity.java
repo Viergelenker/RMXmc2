@@ -46,6 +46,8 @@ public class MappingActivity extends AppCompatActivity {
     private View button_F14;
     private View button_F15;
     private View button_F16;
+    private View button_F17;
+    private View button_F18;
     private View button_Direction;
     private View button_Light;
     private View button_Back;
@@ -118,6 +120,12 @@ public class MappingActivity extends AppCompatActivity {
                         case R.id.button_F16:
                             setMapping(ControllerActivity.currentTrain, keyToMap, 16);
                             break;
+                        case R.id.button_F17:
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 17);
+                            break;
+                        case R.id.button_F18:
+                            setMapping(ControllerActivity.currentTrain, keyToMap, 18);
+                            break;
                         case R.id.button_Direction:
                             setMapping(ControllerActivity.currentTrain, keyToMap, 19);
                             break;
@@ -127,8 +135,7 @@ public class MappingActivity extends AppCompatActivity {
                         default:
                             break;
                     }
-                }
-                else {
+                } else {
                     if (v.getId() == R.id.button_Back) {
                         onBackPressed();
                     }
@@ -153,6 +160,8 @@ public class MappingActivity extends AppCompatActivity {
         button_F14.setOnClickListener(listener);
         button_F15.setOnClickListener(listener);
         button_F16.setOnClickListener(listener);
+        button_F17.setOnClickListener(listener);
+        button_F18.setOnClickListener(listener);
         button_Direction.setOnClickListener(listener);
         button_Light.setOnClickListener(listener);
         button_Back.setOnClickListener(listener);
@@ -180,6 +189,8 @@ public class MappingActivity extends AppCompatActivity {
         button_F14 = (LinearLayout) findViewById(R.id.button_F14);
         button_F15 = (LinearLayout) findViewById(R.id.button_F15);
         button_F16 = (LinearLayout) findViewById(R.id.button_F16);
+        button_F17 = (LinearLayout) findViewById(R.id.button_F17);
+        button_F18 = (LinearLayout) findViewById(R.id.button_F18);
         button_Direction = (LinearLayout) findViewById(R.id.button_Direction);
         button_Light = (LinearLayout) findViewById(R.id.button_Light);
         mappingDescription = (TextView) findViewById(R.id.mappingDescription);
@@ -211,6 +222,8 @@ public class MappingActivity extends AppCompatActivity {
             button_F14.setVisibility(View.VISIBLE);
             button_F15.setVisibility(View.VISIBLE);
             button_F16.setVisibility(View.VISIBLE);
+            button_F17.setVisibility(View.VISIBLE);
+            button_F18.setVisibility(View.VISIBLE);
             button_Direction.setVisibility(View.VISIBLE);
             button_Light.setVisibility(View.VISIBLE);
             mappingDescription.setText(R.string.MappingFunktion);
@@ -232,6 +245,8 @@ public class MappingActivity extends AppCompatActivity {
             button_F14.setVisibility(View.INVISIBLE);
             button_F15.setVisibility(View.INVISIBLE);
             button_F16.setVisibility(View.INVISIBLE);
+            button_F17.setVisibility(View.INVISIBLE);
+            button_F18.setVisibility(View.INVISIBLE);
             button_Direction.setVisibility(View.INVISIBLE);
             button_Light.setVisibility(View.INVISIBLE);
             button_Back.setVisibility(View.VISIBLE);
@@ -272,9 +287,10 @@ public class MappingActivity extends AppCompatActivity {
 
     /**
      * sets mapping (button) for given train and given mc2 key
+     *
      * @param currentTrain int of the current train
-     * @param keyToMap which button of the mc2 should be used
-     * @param function which button/function should be mapped to mc2 button
+     * @param keyToMap     which button of the mc2 should be used
+     * @param function     which button/function should be mapped to mc2 button
      */
     public void setMapping(int currentTrain, int keyToMap, int function) {
 
@@ -290,7 +306,7 @@ public class MappingActivity extends AppCompatActivity {
             // Load the current mapping of the selected profile and train
             SharedPreferences mapping = getSharedPreferences(DataToGuiInterface.getAccountName(), 0);
             // The second string is the value to return if this preference does not exist.
-            String functionMappingString = mapping.getString(String.valueOf(currentTrain), "00010203");
+            String functionMappingString = mapping.getString(String.valueOf(currentTrain), "18170203");
 
             List<String> functionList;
             functionList = splitMappingStringIntoList(functionMappingString);

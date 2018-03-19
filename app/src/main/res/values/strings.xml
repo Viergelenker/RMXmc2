@@ -48,4 +48,6 @@
     <string name="Vorwaerts">Vor</string>
     <string name="Geschwindigkeit">0</string>
     <string name="MappingZurueck">Zurück</string>
+    <string name="F17">-</string>
+    <string name="F18">+</string>
 </resources>
